@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'fonte';
+    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
+    /* Adicione outros formatos de fonte se necessário */
+  }
+
+.ons{
+    font-family: 'fonte';
+    height: 100%;
+    
+}
