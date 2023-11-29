@@ -1,12 +1,19 @@
-import on from './style.module.css'
+'use client'
 
-export default function Cadastros() {
+import on from './style.module.css'
+import Cadastros from '../../components/Form/form'
+
+
+export default function VisitaCadastros() {
+   const minhaFuncao = () => {
+      alert('Clicou no botão!');
+    };
     return (
       <div className={on.Cadbody} >
-         
-         <main>
-          <div className={on.form}>
-          <header><h1>cadastro</h1></header>
+         <Cadastros
+         children={
+            <>
+        
             <input type="text" 
                placeholder='nome'
               />
@@ -18,13 +25,18 @@ export default function Cadastros() {
               />
                <input type="text" 
                placeholder='cnh'
-              />
-              <div className={on.submit}>
-                 <button>enviar</button>
-              </div>
+               />
+              
+            </>
              
-            </div>
-         </main>
+         
+         }
+
+         Onclik={minhaFuncao}
+         
+         header='cadastro'
+         />
+         
       </div>
     )
   }

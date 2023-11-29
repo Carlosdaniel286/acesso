@@ -2,7 +2,7 @@ import on from './style/card.module.css'
 import Image from 'next/image'
 
 
-export default function Ofertas(){
+export default function CardVisita(){
     
 
     return (
@@ -32,8 +32,7 @@ export default function Ofertas(){
               <button className={on.inside}>entrada</button>
               <button className={on.info}>informaçoes</button>
               <button className={on.outside}>saida</button>
-             
-             </div>
+            </div>
         </div>
     )
 }

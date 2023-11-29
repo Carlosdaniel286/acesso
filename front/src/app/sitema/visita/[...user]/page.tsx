@@ -12,7 +12,9 @@ export default function Mean() {
          </header>
            <main>
               <Scroll />
+             
             </main>
+            <div>fgfgf</div>
       </div>
     )
   }

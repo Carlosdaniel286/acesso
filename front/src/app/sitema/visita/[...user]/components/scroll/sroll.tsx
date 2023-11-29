@@ -1,5 +1,5 @@
 import on from '../scroll/style/scroll.module.css'
-import Ofertas from '../userbody/card'
+import Ofertas from '../visitaCard/card'
 
 export default function Scroll(){
     return (

@@ -1,0 +1,112 @@
+
+@font-face {
+    font-family: 'fonte';
+    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
+    /* Adicione outros formatos de fonte se necessário */
+  }
+
+.Cadbody{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+
+.Cadbody main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    background-color: white;
+    
+    
+    
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    border-radius: 3px;
+    padding: 10px;
+    justify-content: space-between;
+    border: 2px solid orangered;
+}
+.form input {
+    background-color:transparent;
+    border: 0px;
+    margin-top: 20px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(116, 114, 114, 0.7);;
+    font-size: 1rem;
+    font-family: 'fonte';
+    text-transform: capitalize;
+    color: rgb(15, 15, 15)
+}
+
+
+
+
+
+
+.form input:focus {
+    outline: none; /* Remove a borda de foco padrão (efeito de toque) */
+    /* Adicione outros estilos desejados para o input focado, se necessário */
+  }
+  .image input{
+    border-bottom: 0;
+  }
+  .form h1 {
+    margin: 5px;
+    padding: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(250, 75, 12);
+  }
+
+  .submit{
+    height: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
+  .submit button {
+    border: 0ch;
+    background-color: rgb(250, 75, 12);
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    font-family: 'fonte';
+    font-size: 1.2rem;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 40%;
+  }
+  .form input::placeholder{
+    color: rgb(17, 17, 17);
+    
+  }
+  .img{
+    width: 65%;
+    height: 100%;
+    background: radial-gradient(circle,  #d0ebf8, #052446);
+    background: radial-gradient(circle,  #4ef596, #02030e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+   
+    
+    
+ }
+
+  

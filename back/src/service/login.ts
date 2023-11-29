@@ -13,11 +13,11 @@ export class MeuErro extends Error {
   }
  export const meuCache = new NodeCache();
 export class Login {
-    private email:string=''
+    private cpf:string=''
     private password:string=''
 
- constructor(email:string,password:string){
-      this.email =email
+ constructor(cpf:string,password:string){
+      this.cpf =cpf
       this.password = password
      
     }
@@ -38,7 +38,7 @@ export class Login {
     try{
         
         if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
-        const user = await prisma.user.findUnique({ where: { email:this.email } })
+        const user = await prisma.user.findUnique({ where: { cpf:this.cpf } })
         
         if(!user) throw new MeuErro('email incorreto')
         const authenticated =  await bcrypt.compare(this.password, user.password)

@@ -9,7 +9,6 @@
 
 .scroll{
     background-color: rgba(248, 245, 245, 0.3);
-    background-colo: rgba(238, 11, 11, 0.2);
     width: 97%;
     max-height: 100%;
     overflow-y: scroll;
@@ -29,10 +28,9 @@
 }
 .ofertas{
     background-color: white;
-    border-radius: 7px;
+    border-radius: 10px;
     width:98%;
-    heigh: 450px;
-    display: flex;
+     display: flex;
     margin-left: 10px;
     margin-top: 30px;
     display: flex;

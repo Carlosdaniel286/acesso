@@ -1,7 +1,8 @@
 .body{
      width: 100%;
-     height: 100vh;
-    
+     height: 100%;
+     background-color:rgb(7, 7, 7);
+     backgroun: linear-gradient(to bottom, #d4d8db, #052446);
      
 }
 .seach{
@@ -26,6 +27,7 @@
   }
   .body main {
     width: 100%;
-    height: 100vh;
+    
+    
     
   }
