@@ -5,13 +5,12 @@
   }
   .portBody{
     height: 100vh;
-    background-color:orangered;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: radial-gradient(circle,  #4ef596, #02030e);
+    background-color: orangered;
   }
  .port{
     height: 98%;
-    width: 90%;
+    width: 70%;
   }

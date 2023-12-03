@@ -8,7 +8,7 @@
 }
 
 .scroll{
-    background-color: rgba(248, 245, 245, 0.3);
+    background-color: orangered;
     width: 97%;
     max-height: 100%;
     overflow-y: scroll;

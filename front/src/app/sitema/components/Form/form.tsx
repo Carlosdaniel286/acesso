@@ -25,20 +25,8 @@ export default function Cadastros({children,Onclik,header}:CadastrosProps) {
                  <button onClick={Onclik}>enviar</button>
               </div>
              
-            </div>
-         <div className={on.imgbody}>
-            <div className={on.img}>
-               <div className={on.contentImg}>
-              <Image 
-                alt=''
-                height={440}
-                width={380}
-                src={'/orange.png'}
-                
-              />
               </div>
-          </div>
-          </div>
+              
          </main>
       </div>
     )
