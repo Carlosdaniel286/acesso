@@ -55,6 +55,12 @@
     outline: none; /* Remove a borda de foco padrão (efeito de toque) */
     /* Adicione outros estilos desejados para o input focado, se necessário */
   }
+
+  .form input::placeholder {
+    color: #bebaba; /* Cor desejada para o placeholder */
+  }
+  
+  
   .image input{
     border-bottom: 0;
   }
@@ -86,8 +92,5 @@
     cursor: pointer;
     width: 40%;
   }
-  .form input::placeholder{
-    color: rgb(17, 17, 17);
-    
-  }
+  
   

@@ -1,9 +1,11 @@
 'use client'
 import zxcvbn from 'zxcvbn';
-import { useState } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
 import on from './style.module.css'
 import Cadastros from '../../components/Form/form';
 import Image from 'next/image';
+import { checkPasswordStrength } from '../helps/helps';
+import { Inputscof } from '../helps/setcpf';
 
 
 export default function Login () {
@@ -11,45 +13,37 @@ export default function Login () {
     cpf:'',
     password:''
   })
-  const[text, seText]=useState('')
+  const[scores, setScores]=useState({
+    score:0,
+    texts:''
+  })
+ const[cpf, setCpfs]=useState<string>('')
   
-  
-  
-  const signUp = () => {
-    const password = signIn.password; // Assuming signIn is an object with a password property
-    const result = zxcvbn(password);
-    const containsLetters = /[a-zA-Z]/.test(password);
-    const containsNumbers = /\d/.test(password);
-    const containsSpecialCharacters = /[!@#$%*]/.test(password);
-    const isValidPassword = containsLetters && containsNumbers && containsSpecialCharacters;
-    const score = Number(result.score);
-    seText(result.score.toString())
-    const verifque = isValidPassword && score < 3
-    console.log(verifque)
-    
+  const signUp = (ev:React.ChangeEvent<HTMLInputElement>) => {
+    const password = ev.target.value; // Assuming signIn is an object with a password property
+    const result= checkPasswordStrength(password)
+    setScores({...scores,texts:result.text,score:result.score})
+    setSignIn({...signIn,password})
   };
+  
   
 
-  
- 
- const setCpf = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    const cpf = ev.target.value.split('');
-    const lastChar: string = cpf[cpf.length - 1];
+
+
+
+const fetch = () => {
+    const containsLetters = /[a-zA-Z]/.test(signIn.password);
+    const containsNumbers = /\d/.test(signIn.password);
+    const containsSpecialCharacters = /[!@#$%*]/.test(signIn.password);
+    const isValidPassword = containsLetters && containsNumbers && containsSpecialCharacters;
     
-    if (cpf.length > 14) return;
-   
-    if (!isNaN(Number(lastChar)) || lastChar === '0') {
-      
-      if(cpf.length==3 || cpf.length==7) cpf.push('.') 
-      if(cpf.length==11) cpf.push('-')
-      setSignIn({ ...signIn, cpf: cpf.join('') });
-    }
-  
-    if (cpf.length === 0 || ev.target.value === '') {
-      console.log('Input cleared');
-      setSignIn({ ...signIn, cpf: '' });
+    const verifque = isValidPassword && scores.score > 2
+    console.log(verifque)
+    if(!verifque ){
+      setScores({...scores,texts:'deve contem letras, numeros , caracteris e ser forte '})
     }
   };
+  
   
   
   
@@ -58,27 +52,25 @@ export default function Login () {
           <div className={on.login}>
           
           <Cadastros 
+          // eslint-disable-next-line react/no-children-prop
           children={
             <>
-               <input type="text" 
-               placeholder='cpf'
-               onChange={(ev)=>setCpf(ev)}
-               value={signIn.cpf}
+              <Inputscof
+               inputvalue={setCpfs}
               />
               <div className={on.password}>
-               <input type="password" 
-               placeholder='senha'
-               onChange={
-                (ev:React.ChangeEvent<HTMLInputElement>) => 
-                setSignIn({...signIn,password:ev.target.value,})}
+               <input type="text" 
+               placeholder='deve contem letras, numeros , caracteris e ser forte'
+               onChange={(ev)=>signUp(ev)}
+              
                 value={signIn.password}
               />
-              <div className={on.text}><span>{text}</span></div>
+              <div className={on.text}><span>{scores.texts}</span></div>
               </div>
             </>
           }
           
-          Onclik={signUp}
+          Onclik={fetch}
           header='login'
           />
            
@@ -100,4 +92,5 @@ export default function Login () {
       </div>
     )
   }
+
   

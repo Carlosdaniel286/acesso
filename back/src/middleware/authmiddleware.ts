@@ -17,6 +17,9 @@ type Id ={
 export function authMiddleware( req:Request, res: Response, next: NextFunction): void {
   try{
       
+    const header = req.headers
+
+
       const cookies =req.headers.cookie
       if(!cookies) throw new MeuErro('sem cookies')
       
@@ -27,8 +30,9 @@ export function authMiddleware( req:Request, res: Response, next: NextFunction):
       const secretKey = process.env.SECRET_KEY as string;
       const verique = jwt.verify(token, secretKey) as Token
       const valor = meuCache.get(token) as Id
+      
       if(valor.id!==verique.userId) throw new MeuErro('usuario invalido')
-     console.log(verique)
+      console.log(verique)
       req.headers['user']=verique.userId.toString()
       req.headers['name']=verique.name
        
