@@ -1,0 +1,22 @@
+
+@font-face {
+    font-family: 'fonte';
+    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
+    /* Adicione outros formatos de fonte se necessário */
+  }
+
+.Cadbodys{
+    height: 100%;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    
+    
+}
+.main{
+  height: 100%;
+  width: 100%;
+}
