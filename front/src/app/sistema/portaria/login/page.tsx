@@ -5,7 +5,7 @@ import on from './style.module.css'
 import Cadastros from '../../components/Form/form';
 import Image from 'next/image';
 import { checkPasswordStrength } from '../helps/helps';
-import { Inputscof } from '../../components/inputcpf/setcpf';
+import { Inputscof } from '../../components/inputcpf/cpf';
 
 
 export default function Login () {

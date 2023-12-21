@@ -1,0 +1,8 @@
+.adress{
+    display: flex;
+    max-width: 95%;
+    justify-content: space-around;
+}
+.adress input {
+    width: 45%;
+}

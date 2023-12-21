@@ -1,30 +1,28 @@
-import { useState,useEffect, SetStateAction, Dispatch, ChangeEvent } from "react"
-type input={
-    inputvalue: Dispatch<SetStateAction<string>>
-}
+import { useUser } from "../../context/contetx"
 
-export const InputCnh=({inputvalue}:input)=>{
-    const[cnh, setCnh]=useState<string>('')
-    useEffect(()=>{
-      inputvalue(cnh)
-     
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[cnh])
-    
+import { useState,useEffect, SetStateAction, Dispatch, ChangeEvent } from "react"
+
+
+export const InputCnh=()=>{
+  const { cnh, updateCnh } = useUser();
+   
     const handleCnhChange = (e: ChangeEvent<HTMLInputElement>) => {
         const text = e.target.value
         const regex = /^\d+$/;
         const containerNumber = regex.test(text);
+        
+        if(text==''){updateCnh(text)}
         if(!containerNumber) return
-        if(cnh.length>11)return
-        setCnh(text);
+        if(text.split('').length>11)return
+       
+        updateCnh(text)
       };   
     
     return(
     
     <>
       <input type="text" 
-       placeholder="cnh"
+       placeholder={'cnh'}
        onChange={handleCnhChange}
        value={cnh}
       />

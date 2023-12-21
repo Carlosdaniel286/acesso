@@ -3,15 +3,13 @@
 import on from './style/style.module.css'
 import Cadastros from '../../components/Form/form'
 import { useState } from 'react';
-import { Inputcpf } from '../../components/inputcpf/setcpf';
+import { Inputcpf } from '../../components/inputcpf/cpf';
+import { useUser } from '../../context/contetx';
 
 export default function PortariaCadastro() {
-  const[cpf, setCpfs]=useState<string>('') 
-  const [input , setInput]=useState({
-    name:'',
-    cpf,
-    senha:''
-  })
+  
+  const { cnh} = useUser();
+  console.log(cnh)
    
   
   
@@ -29,7 +27,7 @@ export default function PortariaCadastro() {
                placeholder='nome'
               />
               <Inputcpf
-              inputvalue={setCpfs}
+             
               />
               
               <input type="text" 

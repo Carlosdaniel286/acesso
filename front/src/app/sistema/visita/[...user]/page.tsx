@@ -3,11 +3,13 @@ import on from './style/style.module.css'
 import Scroll from './components/scroll/sroll'
 import Nav from '../../components/navegador/nav'
 import { useState } from 'react'
-
+import { UserProvider } from '../../context/contetx'
 
 export default function Mean() {
   
     return (
+      <>
+ <UserProvider>
       <div className={on.body} >
        
           <header className={on.seach}>
@@ -24,6 +26,8 @@ export default function Mean() {
                 <Scroll />
              </main>
           </div>
+        </UserProvider>
+        </>
     )
   }
   

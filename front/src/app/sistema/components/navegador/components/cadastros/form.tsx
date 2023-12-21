@@ -2,49 +2,49 @@
 
 import on from './style.module.css'
 import Cadastros from '../../../Form/form'
-import { Inputcpf } from '../../../inputcpf/setcpf';
+import { Inputcpf } from '../../../inputcpf/cpf';
 import { Dispatch, ReactNode, SetStateAction, useEffect, useState } from 'react';
 import { InputCnh } from '../../../inputCnh/cnh';
+import { InputName } from '../../../inputname/name';
+import { useUser } from '@/app/sistema/context/contetx';
+import { InputAdress } from '../../../inputadress/andress';
 interface Props {
    setHidden: Dispatch<SetStateAction<boolean>>
  }
 
 
 export default function VisitaCadastros({setHidden}:Props) {
-   const[cpf, setCpf]=useState('')
-   const[cnh, setCnh]=useState('')
+  
+   const { cnh,cpf} = useUser();
    
    const minhaFuncao = () => {
       setHidden(false)
     };
     
     useEffect(()=>{
-      console.log(cnh)
-     },[cnh])
+      //console.log(cnh)
+      //console.log(cpf)
+     },[cnh,cpf])
     
     
      return (
       <div className={on.Cadbodys} >
-         <div className={on.main}>
+        <div className={on.main}>
          <Cadastros
          // eslint-disable-next-line react/no-children-prop
          children={
             <>
         
-            <input type="text" 
-               placeholder='nome'
-              />
-              <Inputcpf
-               inputvalue={setCpf}
+            <InputName 
+             text='name'
+            />
+            <Inputcpf/>
               
-               //onChang{(e: { target: { value: any; }; }) => setInput({ ...input, cpf: e.target.value })}
-              />
-              <input type="text" 
-               placeholder='endereço'
-              />
-               <InputCnh 
-                inputvalue={setCnh}
-               />
+             <InputAdress
+              text=''
+             />
+               
+            <InputCnh />
               
             </>
              
