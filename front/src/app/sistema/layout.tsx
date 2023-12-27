@@ -8,7 +8,9 @@ export default function RootLayout({
 }) {
   return (
      <>
-       <div className={style.ons}>{children}</div>
+       <div className={style.ons}>
+        {children}
+        </div>
       </>
     
   )

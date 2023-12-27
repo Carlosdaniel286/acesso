@@ -2,17 +2,16 @@
 import on from './style/style.module.css'
 import Scroll from './components/scroll/sroll'
 import Nav from '../../components/navegador/nav'
-import { useState } from 'react'
 import { UserProvider } from '../../context/contetx'
-
+import { ShowModal } from '../../components/modal/showModal'
 export default function Mean() {
   
     return (
-      <>
+      
  <UserProvider>
       <div className={on.body} >
-       
-          <header className={on.seach}>
+      <header className={on.seach}>
+          <div><ShowModal/></div>
             <input type="text" 
              placeholder='pequise e encontre'
             />
@@ -27,7 +26,7 @@ export default function Mean() {
              </main>
           </div>
         </UserProvider>
-        </>
+        
     )
   }
   

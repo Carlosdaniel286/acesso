@@ -1,9 +1,5 @@
 
-@font-face {
-    font-family: 'MinhaFonte1';
-    src: url('/pro/SF-Compact-Rounded-Semibold.tff') format('opentype');
-    /* Adicione outros formatos de fonte se necessário */
-  }
+
   @font-face {
     font-family: 'MinhaFonte';
     src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
