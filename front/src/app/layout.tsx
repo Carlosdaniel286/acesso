@@ -10,7 +10,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+        <title>easyresgistercondominios</title>
+      </head>
+      <body className={''}>
+        <UserProvider>
+          {children}
+        </UserProvider>
+        </body>
     </html>
   )
 }

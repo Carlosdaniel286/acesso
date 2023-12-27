@@ -13,11 +13,12 @@
     max-height: 80vh;
     overflow-y: scroll;
     display: flex;
-    align-items: center;
+    align-items:center;
+    justify-content: space-evenly;
     margin-top: 10px;
     flex-wrap: wrap;
     overflow-x: hidden;
-    padding-right: 10px;
+    padding-right: 5px;
     padding-bottom: 40px;
     
 }
@@ -25,18 +26,44 @@
 .scroll::-webkit-scrollbar {
     display: none;
 }
-.ofertas{
+.cards{
     background-color: white;
     border-radius: 10px;
-    width:33%;
+    width:32%;
     height: 230px;
     display: flex;
-    margin-left: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-top: 30px;
     display: flex;
     justify-content: center;
    
 }
 
+/* media query*/
 
-  
+
+@media (max-width: 780px) {
+    .cards {
+        margin-left: 3px;
+        margin-right: 3px;
+        width:46%;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .cards {
+     height: 300px;
+    }
+  }
+  @media (max-width: 600px) {
+    .cards {
+       width:95%;
+       flex-wrap: nowrap;
+    }
+  }
+  @media (max-width: 600px) {
+    .scroll {
+       overflow-x: hidden;
+    }
+  }

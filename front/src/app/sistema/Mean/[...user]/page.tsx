@@ -18,9 +18,7 @@ export default function Mean() {
          </header>
            <main>
             <div className={on.contentNav}>
-                <Nav
-                
-                />
+                <Nav/>
             </div>
                 <Scroll />
              </main>

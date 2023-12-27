@@ -26,8 +26,16 @@
     width: 100%;
   }
   .contentNav{
-   width: 50%;
+   width: 70%;
    height: 7vh;
   }
   /* styles/Overlay.module.css */
 
+  @media (max-width: 760px) {
+    .contentNav {
+      display: none;
+      width: 70%;
+    }
+    
+    
+  }
