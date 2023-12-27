@@ -5,7 +5,7 @@ import on from './style.module.css'
 import Cadastros from '../../components/Form/form';
 import Image from 'next/image';
 import { checkPasswordStrength } from '../helps/helps';
-import { Inputscof } from '../../components/inputcpf/cpf';
+import { Inputcpf } from '../../components/inputcpf/cpf';
 
 
 export default function Login () {
@@ -55,9 +55,7 @@ const fetch = () => {
           // eslint-disable-next-line react/no-children-prop
           children={
             <>
-              <Inputscof
-               inputvalue={setCpfs}
-              />
+              <Inputcpf/>
               <div className={on.password}>
                <input type="text" 
                placeholder='deve contem letras, numeros , caracteris e ser forte'
