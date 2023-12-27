@@ -5,34 +5,11 @@ import Image from 'next/image'
 
 
 export default function CardVisita(){
-  const divRef = useRef<HTMLDivElement>(null);
-  const[dimension, setDimension]=useState(100)
-  const [largura, setLargura] = useState(window.innerWidth);
-  const handleResize = () => {
-    setLargura(window.innerWidth);
-  };
-  useEffect(() => {
-    // Adiciona o ouvinte de evento de redimensionamento ao montar o componente
-    window.addEventListener('resize', handleResize);
-
-    // Remove o ouvinte de evento de redimensionamento ao desmontar o componente
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []); 
-  useEffect(() => {
-    if (divRef.current) {
-      const divWidth = divRef.current.clientWidth;
-      setDimension(divWidth)
-      console.log(divWidth)
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[largura])
-
-    return (
+ 
+return (
         <div className={on.bodyVisit}>
           <div className={on.person} >
-            <div className={on.visitimg} ref={divRef}>
+            <div className={on.visitimg} >
               <img
                  src={'/user.jpg'}
                   alt="Descrição da imagem"

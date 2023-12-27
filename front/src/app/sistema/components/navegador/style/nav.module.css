@@ -10,8 +10,13 @@
 }
 .nav li {
     margin: 5px;
-    background-color: rgb(160, 160, 167);
-    padding: 8px;
-    border-radius: 5px;
+    list-style: none;
     cursor: pointer;
+    border-bottom: 2px solid transparent; /* Adicione uma linha de borda inferior */
+    padding-bottom: 8px;
 }
+.nav li:hover {
+     /* Altere a cor de fundo conforme necessário */
+    border-bottom: 2px solid #95cbdb; /* Adicione uma linha de borda inferior */
+    padding-bottom: 8px; /* Ajuste conforme necessário para dar espaço para a linha */
+  }

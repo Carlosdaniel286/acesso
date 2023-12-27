@@ -1,3 +1,54 @@
 .bodyModalShow{
     margin-right: 30px;
+    
 }
+.bodyModal{
+    width: 55%;
+    background-color: rgb(20, 20, 20,0.9);
+    height: 700px;
+    position: fixed;
+    display: flex;
+    top:1px;
+    left: 0px;
+    z-index: 1000;
+    
+
+}
+.Navs {
+    color: white;
+   
+}
+
+.Navs ul{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    font-size: 20px;
+}
+.hiddenNav{
+    height: 50px;
+    width: 50px;
+    margin-left: 8px;
+    margin-top: 5px;
+    font-size: 40px;
+    border-radius: 50%;
+    background-color: rgba(82, 78, 78, 0.9);
+    text-align: center;
+    cursor: pointer;
+}
+
+
+@media (max-width: 580px) {
+ .bodyModal {
+     width: 60%;
+    }
+    
+    
+  }
+  @media (max-width: 480px) {
+    .bodyModal {
+        width: 65%;
+       }
+       
+       
+     }
