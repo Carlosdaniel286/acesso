@@ -30,12 +30,13 @@ export default function Mean() {
              placeholder='pequise e encontre'
             />
          </header>
-           <main>
-            <div className={on.contentNav}>
+         <div className={on.contentNav}>
                 <Nav/>
             </div>
-                <Scroll />
-             </main>
+            
+           <main className={on.main}>
+              <Scroll />
+           </main>
           </div>
         </UserProvider>
         

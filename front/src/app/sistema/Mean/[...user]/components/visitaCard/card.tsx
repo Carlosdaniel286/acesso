@@ -15,18 +15,20 @@ return (
                   alt="Descrição da imagem"
                   width={100}
                   height={100}
+                  style={{borderRadius:'50%'}}
                 />
             </div>
             <div className={on.content}>
             <ul >
                <li>nome:</li>
                <li>cpf:</li>
-               <li>endereço:</li>
-               <li>atendente:</li>
+               <li>codigo:</li>
+               <li className={on.linone}>atendente:</li>
             </ul>
              </div>
           </div>
           <div className={on.button}>
+            
               <button className={on.inside}>enter</button>
               <button className={on.outside}>saida</button>
               <button className={on.info}>info</button>

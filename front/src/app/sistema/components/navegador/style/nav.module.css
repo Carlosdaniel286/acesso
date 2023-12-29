@@ -1,19 +1,25 @@
 .nav{
     height: 100%;
+    width: 100%;
+    box-sizing: border-box;
 }
 .nav ul{
     display: flex;
     align-items: center;
     justify-content: space-between;
     list-style: none;
+    width: 100%;
+    box-sizing: border-box;
     
 }
 .nav li {
-    margin: 5px;
+    margin-right: 20px;
     list-style: none;
     cursor: pointer;
     border-bottom: 2px solid transparent; /* Adicione uma linha de borda inferior */
     padding-bottom: 8px;
+    padding-top: 8px;
+   
 }
 .nav li:hover {
      /* Altere a cor de fundo conforme necessário */
