@@ -14,9 +14,9 @@ export default function RootLayout({
         <title>easyresgistercondominios</title>
       </head>
       <body className={''}>
-        <UserProvider>
+       
           {children}
-        </UserProvider>
+        
         </body>
     </html>
   )

@@ -1,12 +1,14 @@
 'use client'
 import { redirect } from 'next/navigation'
-import Mean from './sistema/Mean/[...user]/page'
-import Cadastros from './sistema/components/Form/form'
+import PortariaCadastro from './sistema/portaria/cadastro/page'
+import { UserProvider } from './sistema/context/contetx'
 
 export default function Page(){
    return(
     <>
-      <Mean/>
+     <UserProvider>
+      <PortariaCadastro/>
+      </UserProvider>
     </>
    )
   

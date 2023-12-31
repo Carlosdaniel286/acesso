@@ -17,7 +17,7 @@ type Id ={
 export function authMiddleware( req:Request, res: Response, next: NextFunction): void {
   try{
       
-    const header = req.headers
+    
 
 
       const cookies =req.headers.cookie

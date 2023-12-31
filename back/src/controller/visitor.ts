@@ -1,5 +1,5 @@
 import {  Request,Response } from "express";
-import { Visitor } from "../service/visitor";
+import { Visitor } from "../service/Setvisitor";
 
 
 export const Visitors = async (req:Request, res:Response)=>{

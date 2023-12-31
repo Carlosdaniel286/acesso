@@ -11,6 +11,7 @@
   "dependencies": {
     "@sideway/address": "^5.0.0",
     "@sideway/formula": "^3.0.1",
+    "axios": "^1.6.3",
     "cpf-cnpj-validator": "^1.0.3",
     "joi": "^17.11.0",
     "next": "13.5.6",

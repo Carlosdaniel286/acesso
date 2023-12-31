@@ -1,58 +1,48 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id       Int      @id @default(autoincrement())
-  cpf    String   @unique
-  name     String
-  password String
+  id         Int        @id @default(autoincrement())
+  cpf        String     @unique
+  name       String
+  password   String
   idResident Resident[]
-  idvisitor Visitor []
- 
+  idvisitor  Visitor[]
 }
 
 model Visitor {
-  id      Int    @id @default(autoincrement())
-  name    String
-  cpf     Int 
-  address  String 
-  license String?
-  idResident   Int
-  idUser   Int
-  visits    Visit[]    
-  User     User  @relation(fields: [idUser], references: [id])
+  id         Int     @id @default(autoincrement())
+  name       String
+  cpf        Int
+  address    String
+  license    String?
+  idResident Int
+  idUser     Int
+  visits     Visit[]
+  User       User    @relation(fields: [idUser], references: [id])
 }
 
 model Resident {
-  id      Int    @id @default(autoincrement())
-  name    String
-  cpf     Int
-  address String
-  license String
+  id       Int     @id @default(autoincrement())
+  name     String
+  cpf      Int
+  address  String
+  license  String?
   idUser   Int
-  visitors  Visit[] 
-  User   User  @relation(fields: [idUser], references: [id])
+  User     User    @relation(fields: [idUser], references: [id])
+  visitors Visit[]
 }
 
 model Visit {
-  id          Int       @id @default(autoincrement())
-  visitorId   Int
-  residentId  Int
-  visitor     Visitor   @relation(fields: [visitorId], references: [id])
-  resident    Resident  @relation(fields: [residentId], references: [id])
+  id         Int      @id @default(autoincrement())
+  visitorId  Int
+  residentId Int
+  resident   Resident @relation(fields: [residentId], references: [id])
+  visitor    Visitor  @relation(fields: [visitorId], references: [id])
 }
-
-
-
-
-

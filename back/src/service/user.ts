@@ -2,6 +2,7 @@ import prisma from '../database/prisma';
 import bcrypt from 'bcrypt';
 import { MeuErro } from './login';
 import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@prisma/client/runtime/library';
+import zxcvbn from 'zxcvbn';
 export class User {
     private name:string =''
     private cpf:string
@@ -17,6 +18,7 @@ export class User {
     async creatUser(){
         try{
             if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
+             await this.verifiquePassword(this.password)
              const hashedPassword = await bcrypt.hash(this.password, 10);
              await prisma.user.create({
                 data: { cpf:this.cpf, name:this.name, password:hashedPassword},
@@ -47,5 +49,17 @@ export class User {
         
         }
     }
+    async verifiquePassword(password:string){
+        const result = zxcvbn(password);
+        const { score } = result;
+        const containsLetters = /[a-zA-Z]/.test(password);
+        const containsNumbers = /\d/.test(password);
+        const containsSpecialCharacters = /[!@#$%*]/.test(password);
+        const isValidPassword = containsLetters && containsNumbers && containsSpecialCharacters;
+        const verifque = isValidPassword && score > 2
+        
+        if(!verifque ) throw new MeuErro('senha esta faltando requistos')
+       
+      };
 
 }

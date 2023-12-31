@@ -4,7 +4,7 @@ import { useUser } from "../../context/contetx";
 
 
 export const Inputcpf=()=>{
-  const {cpf, updateCpf} = useUser();
+  const {inputs ,setInputs}= useUser();
    
   
       
@@ -19,22 +19,22 @@ export const Inputcpf=()=>{
           
           if (limit > 14) return 
            if (limit === 4) {
-             keys=[cpf,'.',last]
+             keys=[inputs.cpf,'.',last]
             }
           if (limit === 8) {
-           keys=[cpf,'.',last]
+           keys=[inputs.cpf,'.',last]
           }
            if (limit === 12) {
-           keys=[cpf,'-',last]
+           keys=[inputs.cpf,'-',last]
            
           }
-          updateCpf(keys.join(''))
+          setInputs({...inputs,cpf:keys.join('')})
         
          }else if(ponto){
-          const newarry = cpf.split('')
+          const newarry = inputs.cpf.split('')
           newarry.pop()
           
-          updateCpf(newarry.join(''))
+          setInputs({...inputs,cpf:newarry.join('')})
         }
     
     
@@ -44,7 +44,7 @@ export const Inputcpf=()=>{
                <input type="text" 
                placeholder='cpf'
                onChange={(ev)=>setCpf(ev)}
-               value={cpf}
+               value={inputs.cpf}
               />
         </>
     )

@@ -1,3 +1,4 @@
+import { UserProvider } from './context/contetx'
 import style from './styleLayout/style.module.css'
 
 
@@ -9,7 +10,9 @@ export default function RootLayout({
   return (
      <>
        <div className={style.ons}>
-        {children}
+        <UserProvider>
+           {children}
+        </UserProvider>
         </div>
       </>
     

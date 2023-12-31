@@ -83,14 +83,21 @@
   }
   .submit button {
     border: 0ch;
-    background-color: rgb(250, 75, 12);
-    padding: 10px;
+    padding: 6px;
     color: rgb(255, 255, 255);
     font-family: 'fonte';
     font-size: 1.2rem;
     border-radius: 6px;
     cursor: pointer;
     width: 40%;
+  }
+  .loginButton {
+   margin-right: 20px;
+   background-color: rgb(250, 75, 12);
+  }
+  .CadastroButton {
+    margin-right: 20px;
+    background-color:rgb(228, 129, 129);
   }
   
   

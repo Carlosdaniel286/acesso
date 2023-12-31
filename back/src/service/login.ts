@@ -36,7 +36,7 @@ export class Login {
 
     async authenticateUser (){
     try{
-        
+        console.log(this.password)
         if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
         const user = await prisma.user.findUnique({ where: { cpf:this.cpf } })
         
@@ -45,13 +45,13 @@ export class Login {
         
         if(!authenticated) throw new MeuErro('senha incorreta')
          
-        const token = await this.generateToken(user.id.toString(),user.name)
+        //const token = await this.generateToken(user.id.toString(),user.name)
         
-         if(!token)  throw new MeuErro('erro na geraçao de token')
-          const indtifqueUser ={id:user.id.toString()}
+         //if(!token)  throw new MeuErro('erro na geraçao de token')
+         // const indtifqueUser ={id:user.id.toString()}
 
-         meuCache.set(token, indtifqueUser, 2 * 60 * 60);
-        return token
+         //meuCache.set(token, indtifqueUser, 2 * 60 * 60);
+        return true
     
     }catch(err){
        

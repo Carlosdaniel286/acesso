@@ -15,16 +15,13 @@ interface Props {
 
 export default function VisitaCadastros({setHidden}:Props) {
   
-   const { cnh,cpf} = useUser();
+  const {inputs ,setInputs}= useUser();
    
    const minhaFuncao = () => {
       setHidden(false)
     };
     
-    useEffect(()=>{
-      //console.log(cnh)
-      //console.log(cpf)
-     },[cnh,cpf])
+    
     
     
      return (
@@ -52,8 +49,8 @@ export default function VisitaCadastros({setHidden}:Props) {
          }
 
          Onclik={minhaFuncao}
-         
          header='cadastro de vistantes'
+         SelectButton='1'
          />
          </div>
       </div>

@@ -5,12 +5,15 @@ import { Login} from "../service/login";
 export const signIn = async (req:Request, res:Response)=>{
     try{
       
-      const { email, password} = req.body;
-      const login = new Login(email, password)
+      const { cpf, password} = req.body;
+      const login = new Login(cpf, password)
       const authenticate = await login.authenticateUser()
-      res.cookie('token', authenticate, { httpOnly: true }).json({ message: 'Autenticação bem-sucedida.' });
+     // res.cookie('token', authenticate, { httpOnly: true }).json({ message: 'Autenticação bem-sucedida.' });
+     console.log(authenticate)
+     if(!authenticate)  res.status(400).send('error')
+     res.status(200).send(authenticate)
     
-    }catch(err){
+     }catch(err){
       const error = err as Error;
       res.status(400).json(error.message)
       

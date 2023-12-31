@@ -2,7 +2,7 @@ import { useState,useEffect, SetStateAction, Dispatch } from "react"
 import { useUser } from "../../context/contetx";
 
 export const InputName=({text}:{text:string})=>{
-  const { nome, updateNome} = useUser();
+  const {inputs ,setInputs}= useUser();
   
    
  const handleNomeChange =(e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -11,7 +11,7 @@ export const InputName=({text}:{text:string})=>{
     const isValidInput = regex.test(inputValue);
 
     if (isValidInput) {
-        updateNome(inputValue);
+      setInputs({...inputs,name:inputValue});
       }
    }
     
@@ -20,7 +20,7 @@ export const InputName=({text}:{text:string})=>{
         <input type="text" 
         placeholder={text}
         onChange={handleNomeChange}
-        value={nome}
+        value={inputs.name}
         />
         </>
     )

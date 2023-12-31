@@ -11,6 +11,25 @@
     background-color: orangered;
   }
  .port{
-    height: 98%;
-    width: 70%;
+    height: 90%;
+    width: 50%;
   }
+  .password{
+    width: 100%;
+    
+  }
+  .password input {
+    width: 100%;
+  }
+  .text{
+    margin-left: 20px;
+    margin-top: 10px;
+  
+  }
+  .text span {
+    font-size: 0.8rem;
+    color: rgb(155, 150, 150);
+  }
+  
+  
+    
