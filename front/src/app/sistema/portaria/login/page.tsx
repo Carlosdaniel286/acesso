@@ -7,16 +7,17 @@ import { Inputcpf } from '../../components/inputcpf/cpf';
 import InputPassword from '../../components/inputPassword/password';
 import {  useUser } from '../../context/contetx';
 import axios from 'axios';
-
+import { useRouter } from 'next/navigation'
 
 
 export default function Login () {
-  const {inputs ,setInputs}= useUser();
-  
+  const {inputs}= useUser();
+  const router = useRouter()
 const Request = async() => {
   const response = await axios.post('http://localhost:3001/login', {  cpf:inputs.cpf, password:inputs.password})
-  console.log(response.data)
-  console.log(response.status)
+  if(response.status===200) 
+  router.push('http://localhost:3000/sistema/Mean/novo')
+  
   
 }
  

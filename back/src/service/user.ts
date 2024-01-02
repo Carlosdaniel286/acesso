@@ -5,10 +5,10 @@ import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@pri
 import zxcvbn from 'zxcvbn';
 export class User {
     private name:string =''
-    private cpf:string
+    private cpf:number
     private password:string =''
     
-    constructor(name:string,cpf:string,passworld:string){
+    constructor(name:string,cpf:number,passworld:string){
         this.cpf =cpf
         this.name =name
         this.password =passworld

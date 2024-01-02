@@ -4,18 +4,18 @@ import { useState,useEffect, SetStateAction, Dispatch, ChangeEvent } from "react
 
 
 export const InputCnh=()=>{
-  const { cnh, updateCnh } = useUser();
+  const {inputs ,setInputs}= useUser();
    
     const handleCnhChange = (e: ChangeEvent<HTMLInputElement>) => {
         const text = e.target.value
         const regex = /^\d+$/;
         const containerNumber = regex.test(text);
         
-        if(text==''){updateCnh(text)}
+        if(text==''){setInputs({...inputs,cnh:text})}
         if(!containerNumber) return
         if(text.split('').length>11)return
        
-        updateCnh(text)
+        setInputs({...inputs,cnh:text})
       };   
     
     return(
@@ -24,7 +24,7 @@ export const InputCnh=()=>{
       <input type="text" 
        placeholder={'cnh'}
        onChange={handleCnhChange}
-       value={cnh}
+       value={inputs.cnh}
       />
               
     </>

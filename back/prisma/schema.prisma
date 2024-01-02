@@ -7,42 +7,54 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Address {
+  id         Int      @id @default(autoincrement())
+  qd         Int
+  lt         Int
+  idvisitor  Int?
+  idResident Int?
+  Resident   Resident? @relation(fields: [idResident], references: [id])
+  Visitor    Visitor?  @relation(fields: [idvisitor], references: [id])
+}
+
+
+
+model Resident {
+  id      Int       @id @default(autoincrement())
+  name    String
+  cpf     BigInt
+  license String?
+  idUser  Int
+  Address Address[]
+  User    User      @relation(fields: [idUser], references: [id])
+  Visitor ResidentVisitor[]
+}
+
 model User {
-  id         Int        @id @default(autoincrement())
-  cpf        String     @unique
-  name       String
-  password   String
-  idResident Resident[]
-  idvisitor  Visitor[]
+  id       Int        @id @default(autoincrement())
+  cpf      BigInt     @unique
+  name     String
+  password String
+  Resident Resident[]
+  Visitor  Visitor[]
 }
 
 model Visitor {
-  id         Int     @id @default(autoincrement())
+  id         Int        @id @default(autoincrement())
   name       String
-  cpf        Int
-  address    String
+  cpf        BigInt
   license    String?
   idResident Int
   idUser     Int
-  visits     Visit[]
-  User       User    @relation(fields: [idUser], references: [id])
+  Address    Address[]
+  User       User       @relation(fields: [idUser], references: [id])
+  Resident   ResidentVisitor[]
 }
 
-model Resident {
-  id       Int     @id @default(autoincrement())
-  name     String
-  cpf      Int
-  address  String
-  license  String?
-  idUser   Int
-  User     User    @relation(fields: [idUser], references: [id])
-  visitors Visit[]
-}
-
-model Visit {
-  id         Int      @id @default(autoincrement())
-  visitorId  Int
-  residentId Int
-  resident   Resident @relation(fields: [residentId], references: [id])
-  visitor    Visitor  @relation(fields: [visitorId], references: [id])
+model ResidentVisitor {
+  id         Int @id @default(autoincrement())
+  residentId Int?
+  visitorId  Int?
+  resident   Resident? @relation(fields: [residentId], references: [id])
+  visitor    Visitor? @relation(fields: [visitorId], references: [id])
 }

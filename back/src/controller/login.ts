@@ -6,7 +6,7 @@ export const signIn = async (req:Request, res:Response)=>{
     try{
       
       const { cpf, password} = req.body;
-      const login = new Login(cpf, password)
+      const login = new Login(22222, password)
       const authenticate = await login.authenticateUser()
      // res.cookie('token', authenticate, { httpOnly: true }).json({ message: 'Autenticação bem-sucedida.' });
      console.log(authenticate)

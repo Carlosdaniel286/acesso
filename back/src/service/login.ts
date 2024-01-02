@@ -13,10 +13,10 @@ export class MeuErro extends Error {
   }
  export const meuCache = new NodeCache();
 export class Login {
-    private cpf:string=''
+    private cpf:number
     private password:string=''
 
- constructor(cpf:string,password:string){
+ constructor(cpf:number,password:string){
       this.cpf =cpf
       this.password = password
      

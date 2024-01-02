@@ -6,7 +6,18 @@ import { UserProvider } from '../../context/contetx'
 import { ShowModal } from '../../components/modal/showModal'
 import { Modal } from '../../components/modal/modal'
 import { useState } from 'react'
-export default function Mean() {
+export type project ={
+  name: string ,
+  cpf:number,
+  id:number
+}
+
+
+export type mean={
+  arry:project[]
+}
+
+export default function Mean({arry}:mean) {
   const[hidden,setHidden]=useState(false)
     return (
       
@@ -35,7 +46,9 @@ export default function Mean() {
             </div>
             
            <main className={on.main}>
-              <Scroll />
+              <Scroll 
+               arry={arry}
+              />
            </main>
           </div>
         

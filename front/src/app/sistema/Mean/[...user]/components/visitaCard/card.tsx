@@ -2,9 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import on from './style/card.module.css'
 import Image from 'next/image'
+import { project ,mean} from '../../main';
+type card={
+   cards:project
+}
 
-
-export default function CardVisita(){
+export default function CardVisita({cards}:card){
  
 return (
         <div className={on.bodyVisit}>
@@ -20,9 +23,14 @@ return (
             </div>
             <div className={on.content}>
             <ul >
-               <li>nome:</li>
-               <li>cpf:</li>
-               <li>codigo:</li>
+              
+                
+                <li>nome:{cards.name}</li>
+                <li>cpf:{cards.cpf}</li>
+                <li>codigo:{cards.id}</li>
+                
+              
+              
                <li className={on.linone}>atendente:</li>
             </ul>
              </div>

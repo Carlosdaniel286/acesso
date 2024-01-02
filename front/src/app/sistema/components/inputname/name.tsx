@@ -2,8 +2,8 @@ import { useState,useEffect, SetStateAction, Dispatch } from "react"
 import { useUser } from "../../context/contetx";
 
 export const InputName=({text}:{text:string})=>{
-  const {inputs ,setInputs}= useUser();
-  
+ 
+   const {inputs ,setInputs}= useUser();
    
  const handleNomeChange =(e: React.ChangeEvent<HTMLInputElement>)=>{
     const inputValue = e.target.value;

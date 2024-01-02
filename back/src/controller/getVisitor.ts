@@ -5,6 +5,7 @@ import { getVisitor } from "../service/getVisitor";
 export const getVisitors = async (req:Request, res:Response)=>{
     try{
      const visitor = await getVisitor()
+     console.log(visitor)
       res.status(200).send(visitor)
     
     }catch(err){
