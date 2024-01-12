@@ -3,12 +3,19 @@ import bcrypt from 'bcrypt';
 import { MeuErro } from './login';
 import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@prisma/client/runtime/library';
 import zxcvbn from 'zxcvbn';
+import {l} from './ds'
+//import cpf  from 'gerador-validador-cpf';
+const cpf = require('gerador-validador-cpf')
+import { CPF, CNPJ } from '@julioakira/cpf-cnpj-utils'
+
+
+
 export class User {
     private name:string =''
-    private cpf:number
+    private cpf:string =''
     private password:string =''
     
-    constructor(name:string,cpf:number,passworld:string){
+    constructor(name:string,cpf:string,passworld:string){
         this.cpf =cpf
         this.name =name
         this.password =passworld
@@ -17,11 +24,13 @@ export class User {
 
     async creatUser(){
         try{
+          const usres = await prisma.user.findMany({})
+          console.log(usres)
             if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
              await this.verifiquePassword(this.password)
              const hashedPassword = await bcrypt.hash(this.password, 10);
              await prisma.user.create({
-                data: { cpf:this.cpf, name:this.name, password:hashedPassword},
+                data: {cpf:this.cpf, name:this.name, password:hashedPassword},
               });
             return 'usuario criado com sucesso'
         }catch(err){
@@ -61,5 +70,73 @@ export class User {
         if(!verifque ) throw new MeuErro('senha esta faltando requistos')
        
       };
+
+}
+
+
+
+export const reqs = async()=>{
+//const address = await prisma.address.findMany({})
+const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
+  const arrys = string.split(' ').join('').split("\n")
+  //const newAddr= await prisma.address.findMany({})
+  
+ 
+  
+  for(let i =0;i<arrys.length;i++){
+    const ls = i
+    const cpfAleatorio = cpf.generate();
+    const formatted = CPF.Format(cpfAleatorio);
+
+
+ const newResident = await prisma.resident.create({
+      data:{
+        id:(ls+1),
+        name: arrys[i],
+        cpf: formatted,
+        Address:{
+            connect: {
+            id: (ls+1), // Utiliza o ID do endereço criado anteriormente
+          }
+        },
+        license: null ,
+        idUser: 1,
+      } 
+
+    })
+
+ 
+    
+  }
+  //console.log(Array(arry))
+  
+
+}
+
+
+export const reqe = async()=>{
+  //const address = await prisma.address.findMany({})
+  let arry =[]
+  for (let qd = 1; qd <= 20; qd++) {
+    for (let lt = 1; lt<= 20; lt++) {
+     arry.push({
+      id:arry.length+1,
+      qd,
+      lt
+     })
+    
+}
+    }
+    for (let i = 0; i <= arry.length; i++) {
+      const address = await prisma.address.create({
+        data:{
+          id:arry[i].id,
+          qd:arry[i].qd,
+          lt:arry[i].lt
+        }
+
+      })
+
+    }
 
 }

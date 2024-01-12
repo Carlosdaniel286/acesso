@@ -1,26 +1,54 @@
 // `app` directory
 import { redirect } from "next/navigation"
-import Mean, { project,mean } from "./main"
+import Mean from "./main"
+import { cookies} from 'next/headers'
+import dotenv from 'dotenv';
+dotenv.config();
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE
+const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT
 import axios from "axios"
+
+
+
 async function getProjects() {
-    const response = await axios(`http://localhost:3001/getvisitor/visits`)
+  try {
+    const cookieStore = cookies()
+    const token = cookieStore.get('token')
+    if(!token) return false
+    const kay = token.value
+   
+   const response = await axios.get(`${urlBase}/token`,{
+    withCredentials:true,
+    headers:{
+      'cookie': `token=${kay}`
+    }
+  })
+    const projects = response.status
+    if(projects===200) return true
     
-    const projects = response.data
-    console.log(projects)
-    
-    return projects
+}catch(err){
+ 
+ return false
+}
   }
    
   export default async function Dashboard() {
     const projects = await getProjects()
-   console.log(projects)
+    
    
-   return(
-        <>
-         <Mean
-          arry={projects}
-         />
-        </>
+   
+    if(!projects){
+     return (
+      redirect(`${UrlCient}/sistema/portaria/login`)
+     )
+    }else{
+      return(
+      <>
+       
+         <Mean/>
+       
+      </>
       )
+    }
     
   }

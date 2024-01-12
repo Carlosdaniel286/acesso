@@ -51,8 +51,7 @@ export const UserProvider = ({ children }:{children:ReactNode}) => {
     inputs,
     setInputs
     
-    
-  };
+};
 
   
   return (

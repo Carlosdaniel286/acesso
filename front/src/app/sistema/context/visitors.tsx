@@ -2,10 +2,7 @@
 
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
 
-type UserAddress = {
-  qd: string;
-  lt: string;
-};
+
 
 type UserVisitors = {
   name: string ,

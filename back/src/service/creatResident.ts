@@ -21,14 +21,14 @@ async setNewResident() {
        const newResident = await prisma.resident.create({
             data:{
               name: 'carlos',
-              cpf: 12312421424,
+              cpf: '000',
               Address:{
                   connect: {
                   id: newAddr?.id, // Utiliza o ID do endereço criado anteriormente
                 }
               },
               license: null ,
-              idUser: 1,
+              idUser: 2,
             } 
   
           })

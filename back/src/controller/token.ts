@@ -2,11 +2,10 @@ import {  Request,Response } from "express";
 import { Login} from "../service/login";
   
 
-export const signIn = async (req:Request, res:Response)=>{
+export const Token = async (req:Request, res:Response)=>{
     try{
       
-      const login = new Login(req)
-      await login.authenticateUser(res)
+      res.status(200).send('concluiado')
       
      }catch(err){
       const error = err as Error;
@@ -21,4 +20,3 @@ export const signIn = async (req:Request, res:Response)=>{
 
   //"carlosdaniiel286@gmail.com"
   
-

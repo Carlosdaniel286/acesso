@@ -1,16 +1,18 @@
 import {  Request,Response } from "express";
 import { getVisitor } from "../service/getVisitor";
+import { reqs,reqe } from "../service/user";
 
 
 export const getVisitors = async (req:Request, res:Response)=>{
     try{
      const visitor = await getVisitor()
-     console.log(visitor)
-      res.status(200).send(visitor)
+     res.status(200).send(visitor)
     
     }catch(err){
+      console.log(err)
       const error = err as Error;
-      res.status(200).send(error.message)
+      
+      res.status(400).send(error.message)
   };
   
   }

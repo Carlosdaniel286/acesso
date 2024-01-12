@@ -1,5 +1,4 @@
 'use client'
-import {  useState } from 'react';
 import on from './style.module.css'
 import Cadastros from '../../components/Form/form';
 import Image from 'next/image';
@@ -8,15 +7,19 @@ import InputPassword from '../../components/inputPassword/password';
 import {  useUser } from '../../context/contetx';
 import axios from 'axios';
 import { useRouter } from 'next/navigation'
-
-
+import dotenv from 'dotenv';
+dotenv.config();
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE
+const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT
 export default function Login () {
   const {inputs}= useUser();
   const router = useRouter()
 const Request = async() => {
-  const response = await axios.post('http://localhost:3001/login', {  cpf:inputs.cpf, password:inputs.password})
+  const response = await axios.post('/routes/login', {  cpf:inputs.cpf, password:inputs.password})
+  
+  const name = response.data
   if(response.status===200) 
-  router.push('http://localhost:3000/sistema/Mean/novo')
+  router.push(`${UrlCient}/sistema/Mean/${name}`)
   
   
 }

@@ -23,7 +23,7 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
               
                <div className={on.submit}>
                 {SelectButton==='1' && 
-                 <button className={on.loginButton} onClick={Onclik}>{'login'}</button>
+                 <button className={on.loginButton} onClick={Onclik}>{'enviar'}</button>
                    }
                    {SelectButton==='2' &&
                     <button className={on.CadastroButton }><Link style={{textDecoration: 'none'}} href="http://localhost:3000/sistema/portaria/login"> ja tenho conta </Link> </button>
@@ -31,7 +31,7 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
                     {SelectButton==='3' &&
                     <>
                      <button className={on.CadastroButton }><Link style={{color:'blue'}} href="http://localhost:3000/sistema/portaria/login"> ja tenho conta </Link> </button>
-                    <button className={on.loginButton} onClick={Onclik}>{'login'}</button>
+                    <button className={on.loginButton} onClick={Onclik}>{'enviar'}</button>
                     </>
                   }
 

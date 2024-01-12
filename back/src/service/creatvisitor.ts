@@ -1,18 +1,12 @@
 import prisma from "../database/prisma"
- 
+import { visitors } from "../types/vistors" 
      
   
 
-type visitor={
-       qd:number,
-        lt:number
-    
 
-}
 export class Visitor {
     private name=''
-    private idResident:number
-    private cpf:number=1
+    private cpf=''
     private address ={
       qd:0,
       lt:0
@@ -20,59 +14,64 @@ export class Visitor {
     private license =''
     private idUser:number
     
-  constructor(name:string,cpf:number,address:visitor,license:string,idResident:number,idUser:number){
-    this.name =name
-    this.cpf = cpf
-    this.address=address
-    this.license =license
-    this.idResident =idResident
-    this.idUser=idUser
+  constructor(msg:visitors){
+    this.name =msg.name
+    this.cpf = msg.cpf
+    this.address=msg.address
+    this.license =msg.license
+    this.idUser=msg.idUser
   }
    
   async setNewVisitor() {
     try{
+      
       const Address= await prisma.address.findFirst({
         where:{
             lt:this.address.lt,
             qd:this.address.qd,
-            
-        },
-        
-        
+            },
       })
 
-      console.log(Address)
+      console.log(this.cpf)
 
       if(Address ===null) return
       if(Address.idResident ===null) return
-       
+      
+      
      const newVisitor = await prisma.visitor.create({
         data: {
           name: this.name,
           cpf:this.cpf,
           Address:{
             connect: {
-            id: Address?.id, // Utiliza o ID do endereço criado anteriormente
+            id: Address.id, // Utiliza o ID do endereço criado anteriormente
           }
         },
           license: this.license ,
-          idResident: Address?.idResident ,
-          User: {
+          idResident: Address.idResident ,
+         
+         User: {
             connect: { 
               id:this.idUser
-            },  // Você precisa fornecer um idUser válido aqui
+            },  
           },
         },
         
       });
-      const ResidentVisitor = await prisma.residentVisitor.create({
-        data:{
-         visitorId:newVisitor.id,
-         residentId:newVisitor.idResident
-        }
-     })
-       
-      console.log(newVisitor)
+     const ResidentVisitor = await prisma.residentVisitor.create({
+       data:{
+        residentId:Address.idResident,
+        visitorId:newVisitor.id,
+        
+       }
+      });
+
+     
+      
+      
+
+      
+    console.log(newVisitor)
     }catch(error){
     console.log(error)
     }

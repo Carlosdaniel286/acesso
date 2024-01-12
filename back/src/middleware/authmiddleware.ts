@@ -5,47 +5,40 @@ import dotenv from 'dotenv';
 import { meuCache } from "../service/login";
 dotenv.config();
 
-type Token ={
-    userId: number
-    name:string
-}
+import { Token ,Id } from "../types/middleware";
 
-type Id ={
-    id: number
-}
 
-export function authMiddleware( req:Request, res: Response, next: NextFunction): void {
+export async function  authMiddleware ( req:Request, res: Response, next: NextFunction){
   try{
-      
-    
-
-
       const cookies =req.headers.cookie
-      if(!cookies) throw new MeuErro('sem cookies')
+     
+      
+      if(!cookies) return res.status(400).send('sem cookies')
       
       const auth = cookies.includes('token=')
-      if(!auth) throw new MeuErro('sem token ou token corrupido')
+      if(!auth) return res.status(400).send('sem token ou token corrompido')
       const token = cookies.split('=')[1]
-      
+     
       const secretKey = process.env.SECRET_KEY as string;
       const verique = jwt.verify(token, secretKey) as Token
-      const valor = meuCache.get(token) as Id
+      const valor = await meuCache.get(token) as Id
       
-      if(valor.id!==verique.userId) throw new MeuErro('usuario invalido')
-      console.log(verique)
+      //if(!valor) return res.status(400).send('o servidor caiu')
+      //if(valor.id!==verique.userId) return res.status(400).send('usuario invalido')
+      
       req.headers['user']=verique.userId.toString()
       req.headers['name']=verique.name
-       
+      
       next();
   }catch(err){
-    console.log(err)
+    
     if(err instanceof JsonWebTokenError){
-     res.send('token invalido')
-     return
+        return res.status(400).send('token invalido')
+     
     }
     
     const error= err as Error
-    res.send(error.message)
+    res.status(400).send(error.message)
     }
     
 }

@@ -9,18 +9,28 @@ import { project,mean } from '../../main'
 import axios from 'axios'
 import { useVisitors } from '@/app/sistema/context/visitors'
 import { useEffect } from 'react'
+import dotenv from 'dotenv';
+dotenv.config();
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE
+import { ConnectSoket } from '@/app/sistema/context/socket'
 
 
-export default  function  Scroll ({arry}:mean){
-    const {visitors ,setVisitors}= useVisitors();
-  const Request = async()=>{
-    const response = await axios.get(`http://localhost:3001/getvisitor/visits`)
-    const res = response.data as project[]
-    setVisitors([...res])
-  }
+
+export default  function  Scroll (){
+ const {socket} = ConnectSoket()
+    
+  const {visitors ,setVisitors}= useVisitors();
+    
     useEffect(()=>{
-       Request() 
-    },[])
+      if(socket){
+        socket.emit("getvisitor", "");
+        socket.on("getvisitors", (msg) => {
+          console.log(msg);
+          setVisitors([...msg])
+        })
+    }
+      
+    },[socket])
     
     return (
         <div className={on.bodyon}>

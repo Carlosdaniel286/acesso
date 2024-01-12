@@ -10,12 +10,9 @@ export const getVisitor= async()=>{
               id:true
             }
           })
-          console.log(allUsers)
-          const usersWithStrings = allUsers.map(user => ({
-            ...user,
-            cpf: Number(user.cpf.toString())
-        }));
-      return usersWithStrings
+          
+          
+      return allUsers
   }catch(err){
     throw new MeuErro('sem usuarios')
     }

@@ -3,6 +3,8 @@ import prisma from '../database/prisma';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import NodeCache from 'node-cache';
+import cookie from 'cookie';
+import { Response ,Request } from 'express';
 import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 dotenv.config();
 
@@ -12,14 +14,16 @@ export class MeuErro extends Error {
     }
   }
  export const meuCache = new NodeCache();
+
+
 export class Login {
-    private cpf:number
+    private cpf:string
     private password:string=''
 
- constructor(cpf:number,password:string){
-      this.cpf =cpf
-      this.password = password
-     
+ constructor(req:Request){
+      this.cpf = req.body.cpf
+      this.password = req.body.password
+      console.log(req.body.cpf)
     }
 
     async generateToken(userId:string,name:string){
@@ -34,9 +38,9 @@ export class Login {
         }
     }
 
-    async authenticateUser (){
+    async authenticateUser (res:Response){
     try{
-        console.log(this.password)
+        
         if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
         const user = await prisma.user.findUnique({ where: { cpf:this.cpf } })
         
@@ -45,13 +49,14 @@ export class Login {
         
         if(!authenticated) throw new MeuErro('senha incorreta')
          
-        //const token = await this.generateToken(user.id.toString(),user.name)
+        const token = await this.generateToken(user.id.toString(),user.name)
         
-         //if(!token)  throw new MeuErro('erro na geraçao de token')
-         // const indtifqueUser ={id:user.id.toString()}
+         if(!token)  throw new MeuErro('erro na geraçao de token')
+         const indtifqueUser ={id:user.id.toString()}
 
-         //meuCache.set(token, indtifqueUser, 2 * 60 * 60);
-        return true
+         meuCache.set(token, indtifqueUser, 2 * 60 * 60);
+         console.log(this.password)
+         res.setHeader('token',`${token}`).setHeader('name',user.name).status(200).send('login bem sucessedido')
     
     }catch(err){
        

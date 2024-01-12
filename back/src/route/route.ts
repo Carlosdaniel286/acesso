@@ -1,16 +1,16 @@
 import {  Router } from "express";
 import * as homer from '../controller/login'
-import * as Post from '../controller/publications'
 import * as User from '../controller/creatUser'
-import * as comments from '../controller/creatvisitor'
 import * as visitors from '../controller/getVisitor'
 import { authMiddleware } from "../middleware/authmiddleware";
+import { Token } from "../controller/token";
 export const router = Router()
 
 router.post('/',User.creatUsers)
 router.post('/login',homer.signIn)
-router.get('/getvisitor/visits',visitors.getVisitors)
-router.post('/visitors',comments.Visitors)
+router.get('/token',authMiddleware,Token)
+router.get('/getvisitor/visits',authMiddleware,visitors.getVisitors)
+
 
 
 module.exports = router;

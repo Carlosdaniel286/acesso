@@ -22,9 +22,9 @@ model Address {
 model Resident {
   id      Int       @id @default(autoincrement())
   name    String
-  cpf     BigInt
+  cpf     String    @unique
   license String?
-  idUser  Int
+  idUser  Int       
   Address Address[]
   User    User      @relation(fields: [idUser], references: [id])
   Visitor ResidentVisitor[]
@@ -32,7 +32,7 @@ model Resident {
 
 model User {
   id       Int        @id @default(autoincrement())
-  cpf      BigInt     @unique
+  cpf      String      @unique
   name     String
   password String
   Resident Resident[]
@@ -42,10 +42,10 @@ model User {
 model Visitor {
   id         Int        @id @default(autoincrement())
   name       String
-  cpf        BigInt
+  cpf        String     @unique 
   license    String?
-  idResident Int
-  idUser     Int
+  idResident Int      
+  idUser     Int        
   Address    Address[]
   User       User       @relation(fields: [idUser], references: [id])
   Resident   ResidentVisitor[]
@@ -53,8 +53,10 @@ model Visitor {
 
 model ResidentVisitor {
   id         Int @id @default(autoincrement())
-  residentId Int?
-  visitorId  Int?
-  resident   Resident? @relation(fields: [residentId], references: [id])
+  residentId Int 
+  visitorId  Int ? 
+  resident   Resident @relation(fields: [residentId], references: [id])
   visitor    Visitor? @relation(fields: [visitorId], references: [id])
+  
+ 
 }
