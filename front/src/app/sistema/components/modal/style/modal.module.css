@@ -5,7 +5,7 @@
 .bodyModal{
     width: 55%;
     background-color: rgb(20, 20, 20,0.9);
-    height: 700px;
+    height: 98vh;
     position: fixed;
     display: flex;
     top:1px;
@@ -22,7 +22,7 @@
 .Navs ul{
     display: flex;
     flex-direction: column;
-    height: 80%;
+    height: 70%;
     font-size: 20px;
 }
 .hiddenNav{
@@ -36,7 +36,19 @@
     text-align: center;
     cursor: pointer;
 }
+@media (max-width: 1120px) {
+    .bodyModal {
+        width: 35%;
+       }
+       
+    }
 
+    @media (min-width: 580px) and (max-width: 760px){
+        .bodyModal {
+            width: 45%;
+           }
+           
+        }
 
 @media (max-width: 580px) {
  .bodyModal {
@@ -52,3 +64,5 @@
        
        
      }
+
+   

@@ -5,7 +5,7 @@ import Nav from '../../components/navegador/nav'
 import { ShowModal } from '../../components/modal/showModal'
 import { Modal } from '../../components/modal/modal'
 import { useState } from 'react'
-
+import Seach from './components/serach/search'
 
 
 
@@ -15,7 +15,7 @@ export default function Mean() {
       
      
       <div className={on.body} >
-      <header className={on.seach}>
+      <header className=''>
           <div className={on.ClikModal} >
             <ShowModal
              setHidden={setHidden}
@@ -28,10 +28,11 @@ export default function Mean() {
             </div>
             }
           </div>
-          
-            <input type="text" 
-             placeholder='pequise e encontre'
-            />
+           <div className={on.seach}>
+           <Seach/>
+
+           </div>
+           
          </header>
          <div className={on.contentNav}>
                 <Nav/>

@@ -5,7 +5,7 @@ import nav from './style/nav.module.css'
 import Overlay from '../overlay/hidden'
 import VisitaCadastros from './components/cadastros/form'
 import { useState } from 'react'
-
+import Filtro from './components/filtro/filtro'
 ///sistema/visita/cadastros
 export default function Nav() {
    const[hidden ,setHidden]=useState(false)
@@ -25,6 +25,7 @@ export default function Nav() {
           />
           }
          <ul>
+           <Filtro/>
             <li 
             onClick={(()=>(setHidden(!hidden)))}
             >

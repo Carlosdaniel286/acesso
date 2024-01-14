@@ -3,18 +3,23 @@
      height: 100%;
     
   }
-.seach{
+  .body header {
     background-color: orangered;
     padding: 20px;
-    
     border-radius: 12px;
     display: flex;
+    margin-bottom: 10px;
+    
+  }
+.seach{
+   width: 600px;
+    
 }
 .seach input {
     border: 0;
     border-radius: 10px;
     padding: 12px;
-    width: 500px;
+    width: 100%;
     min-width: 10px;
     font-size: 1.2rem;
    
@@ -33,7 +38,7 @@
    height: 20%;
    display: flex;
    align-items: center;
-  
+   display: none;
    
 
   }
@@ -42,10 +47,11 @@
     display: flex;
     justify-content: cente;
     flex-direction: column;
+   
 
   }
   .ClikModal{
-    display: none;
+    displa: none;
   }
   
   
@@ -59,7 +65,7 @@
   
   @media (max-width: 760px) {
     .contentNav {
-      display: none;
+      displa: none;
       width: 70%;
     }
     .ClikModal {
@@ -69,7 +75,7 @@
     .ClikModal .bodyModal {
      width: 30%;
     }
-    .seach {
+    .body header {
       margin-bottom: 10px;
     }
     

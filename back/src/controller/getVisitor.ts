@@ -1,15 +1,15 @@
-import { Request, Response } from "express";
+
 import { getVisitor } from "../service/getVisitor";
 import { reqs, reqe } from "../service/creatUser";
+import {  Socket } from "socket.io";
 
-export const getVisitors = async (req: Request, res: Response) => {
-  try {
-    const visitor = await getVisitor();
-    res.status(200).send(visitor);
-  } catch (err) {
-    console.log(err);
-    const error = err as Error;
-
-    res.status(400).send(error.message);
-  }
+export const handleGetVisitorEvent = async ( socket: Socket) => {
+  socket.on("getvisitor", async (msg) => {
+    try {
+      const visitor = await getVisitor();
+      socket.emit("getvisitors", visitor);
+    } catch (err) {
+      socket.emit("getvisitors", err);
+    }
+  });
 };

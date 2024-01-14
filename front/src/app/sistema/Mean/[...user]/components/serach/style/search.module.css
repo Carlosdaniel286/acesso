@@ -1,0 +1,8 @@
+.serachbody {
+    display: flex;
+}
+.buttonSearch{
+    width: 90px;
+    display: flex;
+    justify-content: flex-end;
+}

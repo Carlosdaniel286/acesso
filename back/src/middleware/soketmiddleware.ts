@@ -1,6 +1,5 @@
-import { NextFunction,Request,Response } from "express";
-import { MeuErro } from "../service/login";
-import jwt, { JsonWebTokenError } from 'jsonwebtoken';
+
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { meuCache } from "../service/login";
 dotenv.config();
@@ -16,7 +15,7 @@ interface CustomSocket extends Socket<DefaultEventsMap, DefaultEventsMap, Defaul
 export async function socketAuthMiddleware(socket: CustomSocket, next: (err?: Error) => void) {
     try {
       const cookies = socket.handshake.headers.cookie;
-   //console.log(socket.handshake.headers)
+   
       if (!cookies) {
         return next(new Error('Sem cookies'));
       }

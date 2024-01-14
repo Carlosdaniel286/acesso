@@ -3,7 +3,7 @@ import express from 'express';
 const router = require('../route/route')
 import cookieParser from 'cookie-parser';
 import { createServer } from "node:http";
-import { Server ,Socket} from "socket.io";
+import { Server } from "socket.io";
 import { socketAuthMiddleware } from "../middleware/soketmiddleware";
 const cors = require('cors');
 const app = express();
@@ -11,6 +11,8 @@ const httpServer = createServer(app);
 import dotenv from 'dotenv';
 import { sockets } from './socket';
 dotenv.config();
+
+
 const port = process.env.PORT 
 const baseUrlClient = process.env.BASE_CLIENT as string;
 const opcoesCors = {
@@ -26,17 +28,9 @@ const io = new Server(httpServer, {
   
 });
 io.use(socketAuthMiddleware)
-
 sockets(io)
-
-//getvisitor
-
 app.use(cors(opcoesCors));
-
-
-
 app.use(cookieParser());
-
 app.use(express.json());
 app.use('/',router)
 

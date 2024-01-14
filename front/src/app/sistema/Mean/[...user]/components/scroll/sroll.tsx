@@ -25,7 +25,6 @@ export default  function  Scroll (){
         setVisitors([...msg])
         })
     }
-      
     },[socket])
     
     return (

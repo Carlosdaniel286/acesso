@@ -21,7 +21,7 @@ export class Visitor {
     this.license =msg.license
     this.idUser=id
   }
-   
+  
   async setNewVisitor() {
     try{
       
