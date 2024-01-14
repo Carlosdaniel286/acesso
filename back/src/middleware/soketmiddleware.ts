@@ -16,7 +16,7 @@ interface CustomSocket extends Socket<DefaultEventsMap, DefaultEventsMap, Defaul
 export async function socketAuthMiddleware(socket: CustomSocket, next: (err?: Error) => void) {
     try {
       const cookies = socket.handshake.headers.cookie;
-   console.log(socket.handshake.headers)
+   //console.log(socket.handshake.headers)
       if (!cookies) {
         return next(new Error('Sem cookies'));
       }
@@ -41,8 +41,9 @@ export async function socketAuthMiddleware(socket: CustomSocket, next: (err?: Er
       // }
   
       // Adicionando informações ao socket para uso posterior
-      socket.userId = verique.userId.toString();
-      socket.name = verique.name;
+      console.log(verique.userId)
+      socket.handshake.query.userId = verique.userId.toString();
+      socket.handshake.query.name = verique.name;
   
       next();
     } catch (err) {

@@ -14,12 +14,12 @@ export class Visitor {
     private license =''
     private idUser:number
     
-  constructor(msg:visitors){
+  constructor(msg:visitors, id:number){
     this.name =msg.name
     this.cpf = msg.cpf
     this.address=msg.address
     this.license =msg.license
-    this.idUser=msg.idUser
+    this.idUser=id
   }
    
   async setNewVisitor() {
@@ -32,10 +32,13 @@ export class Visitor {
             },
       })
 
-      console.log(this.cpf)
+      if (Address === null) {
+        return { success: false, message: 'Endereço não encontrado.' };
+      }
 
-      if(Address ===null) return
-      if(Address.idResident ===null) return
+      if (Address.idResident === null) {
+        return { success: false, message: 'Sem residente nesse endereço.' };
+      }
       
       
      const newVisitor = await prisma.visitor.create({
@@ -44,7 +47,7 @@ export class Visitor {
           cpf:this.cpf,
           Address:{
             connect: {
-            id: Address.id, // Utiliza o ID do endereço criado anteriormente
+            id: Address.id, 
           }
         },
           license: this.license ,
@@ -58,25 +61,19 @@ export class Visitor {
         },
         
       });
-     const ResidentVisitor = await prisma.residentVisitor.create({
+       await prisma.residentVisitor.create({
        data:{
         residentId:Address.idResident,
         visitorId:newVisitor.id,
         
        }
-      });
-
-     
-      
-      
-
-      
-    console.log(newVisitor)
-    }catch(error){
-    console.log(error)
+      })
+      return { success: true};
+     }catch(error){
+      console.error('Erro ao criar visitante:', error);
+      return { success: false, message: 'Falha ao criar o visitante.' };
+      }
     }
-  }
-  
-  
 
-}
+    
+  }

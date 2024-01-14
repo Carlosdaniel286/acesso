@@ -23,7 +23,6 @@
 .person{
     box-sizing: border-box;
     background-color: rgb(252, 250, 250);
-    background-colo: #00FF00;
     display: flex;
     align-items: center;
     justify-content: center;

@@ -1,64 +1,67 @@
 import prisma from '../database/prisma';
 import bcrypt from 'bcrypt';
-import { MeuErro } from './login';
 import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@prisma/client/runtime/library';
 import zxcvbn from 'zxcvbn';
 import {l} from './ds'
-//import cpf  from 'gerador-validador-cpf';
 const cpf = require('gerador-validador-cpf')
-import { CPF, CNPJ } from '@julioakira/cpf-cnpj-utils'
-
+import { CPF} from '@julioakira/cpf-cnpj-utils'
+import { Request ,Response } from 'express';
 
 
 export class User {
     private name:string =''
     private cpf:string =''
     private password:string =''
+    public res :Response
+    public req :Request
     
-    constructor(name:string,cpf:string,passworld:string){
+    constructor(req:Request,res:Response){
+      const { name, cpf, password } = req.body;
         this.cpf =cpf
         this.name =name
-        this.password =passworld
+        this.password =password
+        this.req=req
+        this.res=res
 
     }
 
     async creatUser(){
         try{
-          const usres = await prisma.user.findMany({})
-          console.log(usres)
-            if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
-             await this.verifiquePassword(this.password)
+          
+          
+            if(typeof this.password!=='string') return this.res.status(400).send('erro de tipo, senha deve conter caracters')
+             this.verifiqueCpf(this.cpf)
+             this.verifiquePassword(this.password)
              const hashedPassword = await bcrypt.hash(this.password, 10);
+            
              await prisma.user.create({
                 data: {cpf:this.cpf, name:this.name, password:hashedPassword},
               });
-            return 'usuario criado com sucesso'
-        }catch(err){
+            
+              return this.res.status(200).send('usuario criado com sucesso')
+        
+            }catch(err){
         
         if(err instanceof PrismaClientKnownRequestError){
-            if(err.code == 'P2002')  throw new MeuErro('esse email ja existe')
-            console.log(err.code)
-            throw new MeuErro('deu errado')
+            if(err.code == 'P2002')  return this.res.status(400).send('esse email ja existe')
+            
+            return this.res.status(400).send('falha no serviço')
           } 
           
           if(err instanceof PrismaClientValidationError){
             const message = err.message.toString().split('Argument')[1]
-            if(!message) throw new MeuErro('erro na validaçao')
-            throw new MeuErro(message)
+            if(!message) return this.res.status(400).send('erro na validaçao')
+            return this.res.status(400).send(message)
             }
            if( err instanceof Error){
             const error = err as Error;
-            console.log(error)
-            throw new MeuErro(error.message)
+            return this.res.status(400).send(error.message)
             }
     
-            throw new MeuErro('erro inseperado')
-        
-        
-        
-        }
+            return this.res.status(400).send('erro inseperado')
+          }
     }
-    async verifiquePassword(password:string){
+    verifiquePassword(password:string){
         const result = zxcvbn(password);
         const { score } = result;
         const containsLetters = /[a-zA-Z]/.test(password);
@@ -67,11 +70,27 @@ export class User {
         const isValidPassword = containsLetters && containsNumbers && containsSpecialCharacters;
         const verifque = isValidPassword && score > 2
         
-        if(!verifque ) throw new MeuErro('senha esta faltando requistos')
+        if(!verifque ) return this.res.status(400).send('senha esta faltando requistos')
+       
+      };
+       verifiqueCpf(cpf:string){
+        const verifiqueCpfs = CPF.Validate(cpf)
+        if(!verifiqueCpfs) return this.res.status(400).send('cpf invalido')
        
       };
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

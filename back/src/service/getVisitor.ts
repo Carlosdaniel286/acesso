@@ -7,7 +7,12 @@ export const getVisitor= async()=>{
             select: {
               name: true ,
               cpf:true,
-              id:true
+              id:true,
+              User:{
+                select:{
+                  name:true
+                }
+              }
             }
           })
           

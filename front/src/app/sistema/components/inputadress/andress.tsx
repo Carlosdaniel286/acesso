@@ -4,7 +4,7 @@ import { useUser } from "../../context/contetx";
 import style from './style/adress.module.css'
 
 
-export const InputAdress=({text}:{text:string})=>{
+export const InputAdress=()=>{
   const {inputs,setInputs} = useUser();
   const [addres, setAddres]=useState({
     qd: '',
@@ -12,7 +12,10 @@ export const InputAdress=({text}:{text:string})=>{
   })
    
   useEffect(()=>{
-    setInputs({...inputs,address:addres})
+    const qd= Number(addres.qd);
+    const lt= Number(addres.lt);
+    const clone ={...addres,qd,lt}
+    setInputs({...inputs,address:clone})
   },[addres,inputs])
 
 
@@ -24,9 +27,10 @@ export const InputAdress=({text}:{text:string})=>{
     if (!isNaN(Number(last)) || last === '0' || last ===undefined) {
      if(inputValue.length>3) return
        const join = inputValue.join('')
+       
        setAddres({...addres,qd:join})
       }
-
+      
       
 }
 
@@ -37,6 +41,7 @@ const handleLt =(e: React.ChangeEvent<HTMLInputElement>)=>{
     if (!isNaN(Number(last)) || last === '0' || last ===undefined) {
      if(inputValue.length>3) return
        const join = inputValue.join('')
+       const lt= Number(join);
        setAddres({...addres,lt:join})
       }
 
@@ -49,13 +54,13 @@ const handleLt =(e: React.ChangeEvent<HTMLInputElement>)=>{
         <input type="text" 
         placeholder={'qd'}
         onChange={handleQd}
-        value={inputs.address.qd}
+        value={addres.qd}
         />
 
         <input type="text" 
         placeholder={'lt'}
         onChange={handleLt}
-        value={inputs.address.lt}
+        value={addres.lt}
         />
         </div>
     )

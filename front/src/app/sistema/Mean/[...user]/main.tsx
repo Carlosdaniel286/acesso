@@ -7,16 +7,7 @@ import { Modal } from '../../components/modal/modal'
 import { useState } from 'react'
 
 
-export type project ={
-  name: string ,
-  cpf:number,
-  id:number
-}
 
-
-export type mean={
-  arry:project[]
-}
 
 export default function Mean() {
   const[hidden,setHidden]=useState(false)

@@ -1,9 +1,7 @@
 /* eslint-disable react/no-children-prop */
 'use client'
-import { useState,useEffect, SetStateAction, Dispatch } from "react"
-import Image from "next/image"
+import { SetStateAction, Dispatch } from "react"
 import style from './style/modal.module.css'
-import Overlay from "../overlay/hidden"
 import Nav from "../navegador/nav"
 
 type modal= {

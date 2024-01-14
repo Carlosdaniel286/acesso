@@ -1,28 +1,27 @@
 'use client'
 
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
+import { project } from '@/app/types/form';
 
 
 
-type UserVisitors = {
-  name: string ,
-  cpf:number,
-  id:number
-};
 
 interface UserContextProps {
-  visitors: UserVisitors[];
-  setVisitors: Dispatch<SetStateAction<UserVisitors[]>>;
+  visitors: project[];
+  setVisitors: Dispatch<SetStateAction<project[]>>;
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProviderVisitors = ({ children }: { children: ReactNode }) => {
-  const [visitors, setVisitors] = useState<UserVisitors[]>([
+  const [visitors, setVisitors] = useState<project[]>([
     {
       name: '' ,
        cpf:0,
-       id:0
+       id:0,
+       User:{
+        name:''
+       }
     }
   ]);
 

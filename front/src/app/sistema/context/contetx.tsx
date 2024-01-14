@@ -10,8 +10,8 @@ interface UserContextProps {
     name: string;
     password: string;
     address: {
-        qd: string;
-        lt: string;
+        qd: number
+        lt: number
     }
 }
 setInputs: React.Dispatch<React.SetStateAction<{
@@ -20,8 +20,8 @@ setInputs: React.Dispatch<React.SetStateAction<{
   name: string;
   password: string;
   address: {
-      qd: string;
-      lt: string;
+      qd: number
+      lt: number
     };
   }>>
 
@@ -39,8 +39,8 @@ export const UserProvider = ({ children }:{children:ReactNode}) => {
     name:'',
     password:'',
     address:{
-        qd:'',
-        lt:''
+        qd:0,
+        lt:0
     }
   })
   

@@ -1,6 +1,6 @@
 import { useUser } from "../../context/contetx"
 
-import { useState,useEffect, SetStateAction, Dispatch, ChangeEvent } from "react"
+import { ChangeEvent } from "react"
 
 
 export const InputCnh=()=>{

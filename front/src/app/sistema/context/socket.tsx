@@ -1,18 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react-hooks/rules-of-hooks */
+
 'use client'
 
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction, useEffect } from 'react';
 import { io ,Socket} from "socket.io-client";
 import dotenv from 'dotenv';
-import { project } from '../Mean/[...user]/main';
 dotenv.config();
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 interface SocketContextProps {
     socket: Socket | undefined
   }
-
-
 
 export const Sockets =  createContext<SocketContextProps | undefined>(undefined);
  
@@ -43,7 +40,7 @@ useEffect(()=>{
       });
     } 
   
-},[isConnect])
+},[socket,isConnect])
 
 
   return (
