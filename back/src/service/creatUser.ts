@@ -43,7 +43,7 @@ export class User {
             }catch(err){
         
         if(err instanceof PrismaClientKnownRequestError){
-            if(err.code == 'P2002')  return this.res.status(400).send('esse email ja existe')
+            if(err.code == 'P2002')  return this.res.status(400).send('esse cpf ja existe')
             
             return this.res.status(400).send('falha no serviço')
           } 
@@ -74,8 +74,10 @@ export class User {
        
       };
        verifiqueCpf(cpf:string){
+        console.log(cpf)
         const verifiqueCpfs = CPF.Validate(cpf)
-        if(!verifiqueCpfs) return this.res.status(400).send('cpf invalido')
+        console.log(verifiqueCpfs)
+       // if(!verifiqueCpfs) return this.res.status(400).send('cpf invalido')
        
       };
 

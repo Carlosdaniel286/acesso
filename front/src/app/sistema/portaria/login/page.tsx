@@ -46,14 +46,7 @@ export default function Login() {
           SelectButton="1"
         />
       </div>
-      <div className={on.imgbody}>
-        <div className={on.img}>
-          <div className={on.border}></div>
-          <div className={on.contentImg}>
-            <Image alt="" height={440} width={380} src={"/orange.png"} />
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 }
