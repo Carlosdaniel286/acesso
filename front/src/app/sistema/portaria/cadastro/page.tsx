@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
-const urlBase = process.env.NEXT_PUBLIC_URL_BASE;
-
+const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE
 export default function PortariaCadastro() {
   const { inputs, setInputs } = useUser();
   const [scores, setScores] = useState({
@@ -33,7 +33,7 @@ export default function PortariaCadastro() {
   useEffect(() => {
     if (status === 200) {
       setInputs({ ...inputs, name: "", password: "", cpf: "" });
-      redirect(`${urlBase}/sistema/portaria/login`)
+      redirect(`${urlClient}/sistema/portaria/login`)
     }
   }, [status]);
 

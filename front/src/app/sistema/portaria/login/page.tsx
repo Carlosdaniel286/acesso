@@ -11,12 +11,8 @@ import dotenv from "dotenv";
 dotenv.config();
 const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT;
 
-
-
-
-
 export default function Login() {
-  const { inputs } = useUser();
+  const { inputs ,setInputs} = useUser();
   const router = useRouter();
   const Request = async () => {
     const response = await axios.post("/routes/login", {
@@ -26,6 +22,7 @@ export default function Login() {
 
     const name = response.data;
     if (response.status === 200)
+    setInputs({ ...inputs, name: "", password: "", cpf: "" });
       router.push(`${UrlCient}/sistema/Mean/${name}`);
   };
 

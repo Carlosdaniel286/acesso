@@ -12,7 +12,7 @@ export default function Filtro() {
               width={60}
               height={60}
               src='/filtro.png'
-              style={{cursor:'pointer'}}
+              
               />
               <p>filtro</p>
            </div>

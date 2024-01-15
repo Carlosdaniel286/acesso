@@ -2,6 +2,8 @@
     height: 100%;
     width: 100%;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 .nav ul{
     display: flex;
@@ -13,7 +15,7 @@
     
 }
 .nav li {
-    margin-right: 20px;
+    margin-right: 0px;
     list-style: none;
     cursor: pointer;
     border-bottom: 2px solid transparent; /* Adicione uma linha de borda inferior */
@@ -21,7 +23,7 @@
     padding-top: 8px;
    
 }
-.nav li:hover {
+.nav li:hover  {
      /* Altere a cor de fundo conforme necessário */
     border-bottom: 2px solid #95cbdb; /* Adicione uma linha de borda inferior */
     padding-bottom: 8px; /* Ajuste conforme necessário para dar espaço para a linha */

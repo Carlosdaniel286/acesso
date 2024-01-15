@@ -3,7 +3,7 @@
     
 }
 .bodyModal{
-    width: 55%;
+    width: 310px;
     background-color: rgb(20, 20, 20,0.9);
     height: 98vh;
     position: fixed;
@@ -36,12 +36,13 @@
     text-align: center;
     cursor: pointer;
 }
-@media (max-width: 1120px) {
+@media (min-width: 800px) and (max-width: 950px) {
     .bodyModal {
         width: 35%;
        }
        
     }
+    
 
     @media (min-width: 580px) and (max-width: 760px){
         .bodyModal {
