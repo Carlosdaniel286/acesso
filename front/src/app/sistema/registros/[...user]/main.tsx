@@ -38,7 +38,7 @@ export default function Mean() {
                 <Nav/>
             </div>
             
-           <main className={on.main}>
+           <main key={'2'} className={on.main}>
               <Scroll />
            </main>
           </div>

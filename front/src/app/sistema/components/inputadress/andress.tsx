@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState,useEffect, SetStateAction, Dispatch } from "react"
+import { useState,useEffect } from "react"
 import { useUser } from "../../context/contetx";
 import style from './style/adress.module.css'
 
@@ -12,11 +12,14 @@ export const InputAdress=()=>{
   })
    
   useEffect(()=>{
+   
+  if(addres.lt!==''|| addres.qd!==''){
     const qd= Number(addres.qd);
     const lt= Number(addres.lt);
     const clone ={...addres,qd,lt}
     setInputs({...inputs,address:clone})
-  },[addres,inputs])
+    }
+  },[inputs])
 
 
 

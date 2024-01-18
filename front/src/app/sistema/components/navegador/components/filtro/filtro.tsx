@@ -2,11 +2,22 @@
 'use client'
 import Image from 'next/image'
 import style from './filtro.module.css'
-export default function Filtro() {
+import Options from './component/options/options'
+import { useState } from 'react'
 
+export default function Filtro() {
+ const[hidden , setHidden]=useState(false)
+   
+   //.filtroBody
    return(
-    <>
-        <div className={style.filtroBody} >
+    <div className={style.filtroBody}>
+      {hidden &&
+            <>
+             <Options/>
+             </> 
+             }
+        <div className={style.filtroConetnt} 
+         onClick={(()=>(setHidden(!hidden)))}>
              <Image
               alt='filtro'
               width={60}
@@ -16,6 +27,6 @@ export default function Filtro() {
               />
               <p>filtro</p>
            </div>
-    </>
+    </div>
    )
 }

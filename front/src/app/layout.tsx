@@ -13,7 +13,7 @@ export default function RootLayout({
       <head>
         <title>easyresgistercondominios</title>
       </head>
-      <body className={''}>
+      <body className={'bodys'} suppressHydrationWarning={true}>
        
           {children}
         

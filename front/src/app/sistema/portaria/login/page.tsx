@@ -23,7 +23,7 @@ export default function Login() {
     const name = response.data;
     if (response.status === 200)
     setInputs({ ...inputs, name: "", password: "", cpf: "" });
-      router.push(`${UrlCient}/sistema/Mean/${name}`);
+      router.push(`${UrlCient}/sistema/registros/${name}`);
   };
 
   return (

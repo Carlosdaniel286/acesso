@@ -18,7 +18,7 @@ import { useEffect } from "react";
 
 
 export default function VisitaCadastros({ setHidden }: Props) {
-  const { inputs } = useUser();
+  const { inputs,setInputs } = useUser();
   const { setVisitors } = useVisitors();
   const { socket } = ConnectSoket();
 
@@ -30,9 +30,10 @@ export default function VisitaCadastros({ setHidden }: Props) {
         cpf: inputs.cpf,
         cnh: inputs.cnh,
         address: inputs.address,
-        idUser: 1,
+       
       });
     }
+    setInputs({ ...inputs, name: "", password: "", cpf: "" });
   };
 
   useEffect(() => {

@@ -28,7 +28,7 @@ async function getProjects() {
     
 }catch(err){
  
- return false
+ return true
 }
   }
    

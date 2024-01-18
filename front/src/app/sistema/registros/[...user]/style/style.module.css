@@ -5,10 +5,10 @@
   }
   .body header {
     background-color: orangered;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 10px;
+    border-radius: 0px;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     
   }
 .seach{
@@ -31,7 +31,7 @@
   .body main {
     width: 100%;
     padding-top: 10px;
-    background-color: orangered;
+    background-colo: orangered;
   }
   .contentNav{
    width: 70%;

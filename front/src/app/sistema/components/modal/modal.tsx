@@ -18,7 +18,7 @@ export const Modal=({setHidden}:modal)=>{
          <div className={style.hiddenNav}
          onClick={(()=>(setHidden(false)))}
          >X</div>
-        <Nav/>
+         <Nav/>
        </div>
      </div> 
     </>

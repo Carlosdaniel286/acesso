@@ -65,13 +65,21 @@
     border-bottom: 0;
   }
   .form h1 {
+    text-align: center;
     margin: 5px;
-    padding: 0;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(250, 75, 12);
+   
+  }
+  .form header {
+   align-items: center;
+   text-align: center;
+   margin: 5px;
+   padding: 10;
+   color: white;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgb(250, 75, 12);
+   
   }
 
   .submit{
