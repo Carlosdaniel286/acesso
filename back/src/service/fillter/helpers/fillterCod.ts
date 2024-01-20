@@ -16,8 +16,20 @@ export class CodeFilter {
      try{
       const stringsFiltradas = await this.prisma.visitor.findUnique({
             where: {
-             id:this.code  
+             id:this.code  ,
+            
+            },
+            select: {
+              name: true ,
+              cpf:true,
+              id:true,
+              User:{
+                select:{
+                  name:true
+                }
+              }
             }
+            
           })
           if(stringsFiltradas==null)return ['']
           this.vistors.push(stringsFiltradas)

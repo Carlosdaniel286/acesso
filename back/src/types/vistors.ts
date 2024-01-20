@@ -15,8 +15,9 @@ export type visitorsType={
     id: number;
     name: string;
     cpf: string;
-    license: string | null;
-    idResident: number;
-    idUser: number;
+    User: {
+        name: string;
+    };
+
 } 
 

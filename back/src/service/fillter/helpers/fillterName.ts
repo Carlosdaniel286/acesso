@@ -17,6 +17,16 @@ export class NameFilter {
               name: {
                 startsWith: this.nameStart
               }
+            },
+            select: {
+              name: true ,
+              cpf:true,
+              id:true,
+              User:{
+                select:{
+                  name:true
+                }
+              }
             }
           });
       return stringsFiltradas

@@ -18,6 +18,16 @@ export class CpfFilter {
               cpf: {
                 startsWith: this.cpfStart
               }
+            },
+            select: {
+              name: true ,
+              cpf:true,
+              id:true,
+              User:{
+                select:{
+                  name:true
+                }
+              }
             }
           });
       return stringsFiltradas

@@ -2,26 +2,20 @@ import { PrismaClient } from "@prisma/client"
 import { NameFilter } from "./helpers/fillterName"
 import { CpfFilter } from "./helpers/fillterCpf"
 import { CodeFilter } from "./helpers/fillterCod"
+import { Datafilter } from "../../types/fillter"
 
-type Datafilter={
-  data:{
-    name:string|undefined,
-    code:number|undefined,
-    cpf:string|undefined,
-    prisma: PrismaClient
-     }
-}
 
 export class DataFilter {
-   private name? :string
-   private code?:number
-   private cpf?:string
+   private name:string | ' '
+   private code:number| ''
+   private cpf:string| ''
+   
    private prisma: PrismaClient
-    constructor ({data}:Datafilter){
+    constructor (data:Datafilter,prisma: PrismaClient){
      this.name=data.name
      this.code=data.code
      this.cpf=data.cpf
-     this.prisma=data.prisma
+     this.prisma=prisma
     }
     async HandleDataFilter(){
         try{
