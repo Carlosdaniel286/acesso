@@ -8,31 +8,32 @@ datasource db {
 }
 
 model Address {
-  id         Int      @id @default(autoincrement())
+  id         Int       @id @default(autoincrement())
   qd         Int
   lt         Int
-  idvisitor  Int?
+  idVisitor  Int? @unique
   idResident Int?
-  Resident   Resident? @relation(fields: [idResident], references: [id])
-  Visitor    Visitor?  @relation(fields: [idvisitor], references: [id])
+  Resident   Resident?  @relation(fields: [idResident], references: [id])
+  inside     Inside[]  @relation("AddressToInside")
+  outside    Outside[] @relation("AddressToOutside")
+  visitor    Visitor?  @relation(fields: [idVisitor], references: [id], map: "visitor")
 }
-
-
 
 model Resident {
   id      Int       @id @default(autoincrement())
   name    String
   cpf     String    @unique
   license String?
-  idUser  Int       
+  idUser  Int
   Address Address[]
+  inside  Inside[]
+  outside Outside[]
   User    User      @relation(fields: [idUser], references: [id])
-  Visitor ResidentVisitor[]
 }
 
 model User {
   id       Int        @id @default(autoincrement())
-  cpf      String      @unique
+  cpf      String     @unique
   name     String
   password String
   Resident Resident[]
@@ -40,23 +41,34 @@ model User {
 }
 
 model Visitor {
-  id         Int        @id @default(autoincrement())
-  name       String
-  cpf        String     @unique 
-  license    String?
-  idResident Int      
-  idUser     Int        
-  Address    Address[]
-  User       User       @relation(fields: [idUser], references: [id])
-  Resident   ResidentVisitor[]
+  id      Int       @id @default(autoincrement())
+  name    String
+  cpf     String    @unique
+  license String?
+  idUser  Int
+  inside  Inside[]
+  outside Outside[]
+  idAddress Int @unique
+  User    User      @relation(fields: [idUser], references: [id])
+  address Address?   
 }
 
-model ResidentVisitor {
-  id         Int @id @default(autoincrement())
-  residentId Int 
-  visitorId  Int ? 
-  resident   Resident @relation(fields: [residentId], references: [id])
-  visitor    Visitor? @relation(fields: [visitorId], references: [id])
-  
- 
+model Inside {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  residentId Int
+  visitorId  Int
+  resident   Resident  @relation(fields: [residentId], references: [id])
+  visitor    Visitor   @relation(fields: [visitorId], references: [id])
+  Address    Address[] @relation("AddressToInside")
+}
+
+model Outside {
+  id         Int       @id @default(autoincrement())
+  createdAt  DateTime  @default(now())
+  residentId Int
+  visitorId  Int
+  resident   Resident  @relation(fields: [residentId], references: [id])
+  visitor    Visitor   @relation(fields: [visitorId], references: [id])
+  Address    Address[] @relation("AddressToOutside")
 }

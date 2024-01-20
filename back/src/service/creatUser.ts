@@ -153,7 +153,9 @@ export const reqe = async()=>{
         data:{
           id:arry[i].id,
           qd:arry[i].qd,
-          lt:arry[i].lt
+          lt:arry[i].lt,
+          
+          
         }
 
       })

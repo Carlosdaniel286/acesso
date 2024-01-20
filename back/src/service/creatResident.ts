@@ -33,12 +33,7 @@ async setNewResident() {
   
           })
    
-        const ResidentVisitor = await prisma.residentVisitor.create({
-           data:{
-            visitorId:null,
-            residentId:newResident.id
-           }
-        })
+        
     
    
        

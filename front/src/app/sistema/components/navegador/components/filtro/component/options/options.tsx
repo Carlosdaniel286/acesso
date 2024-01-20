@@ -5,7 +5,7 @@ import style from './options.module.css'
 import { useEffect, useState } from 'react'
 import { Input, useChangeInput } from '@/app/sistema/context/changeInputs'
 
-export default function Options() {
+export default function Options({width}:{width:number}) {
     const{changeInput,setChangeInput}= useChangeInput()
  
   const options:Input[] = ['cpf', 'nome', 'codigo'];
@@ -17,7 +17,9 @@ export default function Options() {
   
   return(
         <div className={style.bodyOptions}>
-           <div className={style.options}>
+           <div className={style.options}
+          
+           >
            <>
              {
                

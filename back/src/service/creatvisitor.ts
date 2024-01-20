@@ -1,6 +1,6 @@
 import prisma from "../database/prisma"
 import { visitors } from "../types/vistors" 
-     
+import { Inside } from "./insideVisitor"    
   
 
 
@@ -39,37 +39,25 @@ export class Visitor {
       if (Address.idResident === null) {
         return { success: false, message: 'Sem residente nesse endereço.' };
       }
-      
-      
-     const newVisitor = await prisma.visitor.create({
+    const newVisitor = await prisma.visitor.create({
         data: {
           name: this.name,
           cpf:this.cpf,
-          Address:{
-            connect: {
-            id: Address.id, 
-          }
-        },
           license: this.license ,
-          idResident: Address.idResident ,
-         
-         User: {
+          idAddress:Address.id,
+          User: {
             connect: { 
               id:this.idUser
             },  
           },
         },
-        
       });
-       await prisma.residentVisitor.create({
-       data:{
-        residentId:Address.idResident,
-        visitorId:newVisitor.id,
-        
-       }
-      })
+      const inside = new Inside(newVisitor.id,Address.idResident,prisma)
+      await inside.visitorInside()
+      
       return { success: true};
-     }catch(error){
+     
+    }catch(error){
       console.error('Erro ao criar visitante:', error);
       return { success: false, message: 'Falha ao criar o visitante.' };
       }

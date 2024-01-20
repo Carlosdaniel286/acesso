@@ -8,9 +8,13 @@
   .filtroConetnt{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items:center;
     flex-direction: column;
     cursor: pointer;
+   
+
+   
+   
     
   }
   .filtroConetnt p{
@@ -24,3 +28,13 @@
    padding-bottom: 8px; /* Ajuste conforme necessário para dar espaço para a linha */
  }
 
+ .filtroBody{
+  display: flex;
+  justify-content:center ;
+  width: 100%;
+  margin-left: 4px;
+  
+ }
+
+
+ 
