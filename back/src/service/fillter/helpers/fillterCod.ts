@@ -31,13 +31,13 @@ export class CodeFilter {
             }
             
           })
-          if(stringsFiltradas==null)return ['']
+          if(stringsFiltradas==null)return []
           this.vistors.push(stringsFiltradas)
           return this.vistors
     
     }catch(erro){
        console.log(erro)
-       return ['']
+       return []
      }
    }
   

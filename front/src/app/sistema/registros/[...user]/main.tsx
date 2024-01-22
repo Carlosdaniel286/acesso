@@ -4,41 +4,34 @@ import Scroll from './components/scroll/sroll'
 import Nav from '../../components/navegador/nav'
 import { ShowModal } from '../../components/modal/showModal'
 import { Modal } from '../../components/modal/modal'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Seach from './components/serach/search'
-
+import { useContextHiddent } from '../../context/hiddeNav'
 
 
 export default function Mean() {
-  const[hidden,setHidden]=useState(false)
+  const {hiddeNav} = useContextHiddent()
+  
+  
     return (
-      
-     
-      <div className={on.body} >
+      <div className={on.body}>
       <header className=''>
           <div className={on.ClikModal} >
-            <ShowModal
-             setHidden={setHidden}
-            />
-            {hidden && 
+            <ShowModal/>
+            {hiddeNav && 
             <div className={on.contentModal}>
-              <Modal
-               setHidden={setHidden}
-              />
+              <Modal/>
             </div>
             }
           </div>
            <div className={on.seach}>
-           <Seach/>
+          <Seach/>
+           
 
            </div>
            
          </header>
-         <div className={on.contentNav}>
-                <Nav/>
-            </div>
-            
-           <main key={'2'} className={on.main}>
+         <main key={'2'} className={on.main}>
               <Scroll />
            </main>
           </div>

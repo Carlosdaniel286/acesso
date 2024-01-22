@@ -9,8 +9,9 @@ import Filtro from './components/filtro/filtro'
 ///sistema/visita/cadastros
 export default function Nav() {
    const[hidden ,setHidden]=useState(false)
-    
+  
     return (
+     
       <nav className={nav.nav} >
         {hidden &&
           <Overlay 
@@ -38,6 +39,7 @@ export default function Nav() {
          </ul>
         
       </nav>
+      
     )
   }
   

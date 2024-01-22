@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, ReactNode, Dispatch, SetSta
 
 
 
-export type Input = 'cpf' | 'nome' | 'codigo';
+export type Input = 'cpf' | 'nome' | 'codigo'|null;
 
 interface UserContextProps {
     changeInput: Input;
@@ -28,7 +28,7 @@ export const useChangeInput = () => {
   const context = useContext(ChangeInput);
 
   if (!context) {
-    throw new Error('useVisitors deve ser usado dentro de um UserProviderVisitors');
+    throw new Error('ChangeInput deve ser usado dentro de um UserProviderVisitors');
   }
 
   return context;

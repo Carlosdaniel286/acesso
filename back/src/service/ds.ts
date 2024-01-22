@@ -397,4 +397,5 @@ export const l =
     <li>Warley Gomes Marques</li>
     <li>Warley Lopes Moreira</li>
     <li>Wdison Cesar Barbosa</li>
-    <li>Weberth Ferreira Sabino</li>`
+    <li>Weberth Ferreira Sabino</li>
+    <li>Carlos Daniel de Souza Rodirgues</li>`

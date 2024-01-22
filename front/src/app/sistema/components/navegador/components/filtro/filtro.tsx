@@ -5,6 +5,7 @@ import style from './filtro.module.css'
 import Options from './component/options/options'
 import { useRef, useState ,useEffect} from 'react'
 
+
 export default function Filtro() {
  const[hidden , setHidden]=useState(false)
  const divRef = useRef<HTMLDivElement>(null);
@@ -45,9 +46,12 @@ useEffect(() => {
            </div>
            {hidden &&
             <>
+            
              <Options
               width={width}
+
              />
+            
              </> 
              }
     </div>

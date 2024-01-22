@@ -96,15 +96,13 @@ export class User {
 
 
 
-export const reqs = async()=>{
+export const creatResdents= async()=>{
 //const address = await prisma.address.findMany({})
 const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
   const arrys = string.split(' ').join('').split("\n")
   //const newAddr= await prisma.address.findMany({})
   
- 
-  
-  for(let i =0;i<arrys.length;i++){
+ for(let i =0;i<arrys.length;i++){
     const ls = i
     const cpfAleatorio = cpf.generate();
     const formatted = CPF.Format(cpfAleatorio);
@@ -135,7 +133,7 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
 }
 
 
-export const reqe = async()=>{
+export const creatAddres = async()=>{
   //const address = await prisma.address.findMany({})
   let arry =[]
   for (let qd = 1; qd <= 20; qd++) {

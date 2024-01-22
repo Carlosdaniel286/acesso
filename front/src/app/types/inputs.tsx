@@ -4,7 +4,7 @@ export type Inputs ={
     name: string;
     password: string;
     address: {
-        qd: number
-        lt: number
+        qd: number | ''
+        lt: number | ''
     }
 }

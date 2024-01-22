@@ -33,7 +33,7 @@ export class NameFilter {
     
     }catch(erro){
      console.log(erro)
-     return ['']
+     return []
      }
    }
   

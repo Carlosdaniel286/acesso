@@ -4,7 +4,7 @@
 'use client'
 
 import on from '../scroll/style/scroll.module.css'
-import Card from '../visitaCard/card'
+import Card from '../vistors/visitaCard/card'
 import { useVisitors } from '@/app/sistema/context/visitors'
 import { useEffect } from 'react'
 import dotenv from 'dotenv';
@@ -21,7 +21,8 @@ export default  function  Scroll (){
     useEffect(()=>{
       if(socket){
         socket.emit("getvisitor", "");
-        socket.on("getvisitors", (msg:project[]) => {
+        socket.on("getvisitors", (msg:project[]|[]) => {
+            console.log(msg)
         setVisitors([...msg])
         })
     }
@@ -33,7 +34,9 @@ export default  function  Scroll (){
             {visitors && 
             <>
              {visitors.map((item)=>(
-            <div  key={item.id} className={on.cards}>
+                
+               <div  key={item.id} className={on.cards}>
+                
                 <Card 
              cards={
                 {

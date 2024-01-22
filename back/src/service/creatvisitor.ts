@@ -18,7 +18,7 @@ export class Visitor {
     this.name =msg.name
     this.cpf = msg.cpf
     this.address=msg.address
-    this.license =msg.license
+    this.license =msg.cnh
     this.idUser=id
   }
   

@@ -2,10 +2,12 @@
 import { useState,useEffect, SetStateAction, Dispatch } from "react"
 import Image from "next/image"
 import style from './style/modal.module.css'
+import { useContextHiddent } from "../../context/hiddeNav"
 type modal= {
    setHidden: Dispatch<SetStateAction<boolean>>
    }
-export const ShowModal=({setHidden}:modal)=>{
+export const ShowModal=()=>{
+  const {setHiddeNav} = useContextHiddent()
    return(
     <>
       <div className={style.bodyModalShow}>
@@ -16,7 +18,7 @@ export const ShowModal=({setHidden}:modal)=>{
            width={50}
            alt=""
            style={{cursor:'pointer'}}
-           onClick={(()=>(setHidden(true)))}
+           onClick={(()=>(setHiddeNav(true)))}
 
           />
         </div>

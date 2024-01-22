@@ -5,8 +5,9 @@ import { getVisitor } from "../service/getVisitor";
 
 export const handleCreateVisitorEvent = (io: Server, socket: Socket) => {
   const userId = Number(socket.handshake.query.userId as string)
-  socket.on("visitors", async (newVisitor: visitors) => {
+  socket.on("visitors", async (newVisitor:visitors) => {
     try {
+      console.log(newVisitor)
       const creatVistors = new Visitor(newVisitor, userId);
       const response = await creatVistors.setNewVisitor();
 

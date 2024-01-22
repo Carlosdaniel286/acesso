@@ -1,25 +1,33 @@
+import { UserChangeInput } from './context/changeInputs'
 import { UserProvider } from './context/contetx'
 import { UserProviderVisitors } from './context/visitors'
 import style from './styleLayout/style.module.css'
-import { UserChangeInput} from './context/changeInputs'
+import { UserProviderHidden } from './context/hiddeNav'
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  
   return (
      <>
        <div className={style.ons}>
-        <UserChangeInput>
+        <UserProviderHidden>
+       <UserChangeInput>
         <UserProviderVisitors>
         <UserProvider>
            {children}
         </UserProvider>
       </UserProviderVisitors>
       </UserChangeInput>
+      </UserProviderHidden>
         </div>
       </>
     
   )
 }
+function setHiddeNav(arg0: boolean) {
+  throw new Error('Function not implemented.')
+}
+

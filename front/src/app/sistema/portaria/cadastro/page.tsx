@@ -3,16 +3,16 @@
 import on from "./style/style.module.css";
 import { redirect } from "next/navigation";
 import Cadastros from "../../components/Form/cadastros";
-import { Inputcpf } from "../../components/inputcpf/cpf";
+import { Inputcpf } from "../../components/inputs/inputcpf/cpf";
 import { useUser } from "../../context/contetx";
-import { InputName } from "../../components/inputname/name";
+import { InputName } from "../../components/inputs/inputname/name";
 import { checkPasswordStrength } from "./helps/helps";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
-const urlBase = process.env.NEXT_PUBLIC_URL_BASE
+const urlBase = process.env.NEXT_PUBLIC_URL_BASE;
 export default function PortariaCadastro() {
   const { inputs, setInputs } = useUser();
   const [scores, setScores] = useState({
@@ -33,7 +33,7 @@ export default function PortariaCadastro() {
   useEffect(() => {
     if (status === 200) {
       setInputs({ ...inputs, name: "", password: "", cpf: "" });
-      redirect(`${urlClient}/sistema/portaria/login`)
+      redirect(`${urlClient}/sistema/portaria/login`);
     }
   }, [status]);
 

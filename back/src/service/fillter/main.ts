@@ -35,11 +35,11 @@ export class DataFilter {
         return code
        }
       
-       return ['']
+       return []
     
     }catch(err){
       console.log(err)
-      return ['']
+      return []
     }
 
        

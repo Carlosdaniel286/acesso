@@ -1,7 +1,8 @@
 'use client'
 
+import { types } from 'joi';
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-
+import { Inputs } from '@/app/types/inputs';
 // Defina o formato do contexto
 interface UserContextProps {
   inputs: {
@@ -10,18 +11,20 @@ interface UserContextProps {
     name: string;
     password: string;
     address: {
-        qd: number
-        lt: number
+        qd: number | ''
+        lt: number | ''
     }
 }
+
+
 setInputs: React.Dispatch<React.SetStateAction<{
   cpf: string;
   cnh: string;
   name: string;
   password: string;
   address: {
-      qd: number
-      lt: number
+      qd: number | ''
+      lt: number | ''
     };
   }>>
 
@@ -33,14 +36,14 @@ const UserContext = createContext<UserContextProps | undefined>(undefined);
 // Crie um provedor que será usado para envolver seus componentes
 export const UserProvider = ({ children }:{children:ReactNode}) => {
  
-  const [inputs, setInputs]=useState({
+  const [inputs, setInputs]=useState<Inputs>({
     cpf:'',
     cnh:'',
     name:'',
     password:'',
     address:{
-        qd:0,
-        lt:0
+        qd:'' ,
+        lt:''
     }
   })
   

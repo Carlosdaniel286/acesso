@@ -34,7 +34,7 @@ export class CpfFilter {
     
     }catch(erro){
      console.log(erro)
-     return ['']
+     return []
      }
    }
   
