@@ -11,7 +11,7 @@ setHidden: Dispatch<SetStateAction<boolean>>
 }
 
 export const Modal=()=>{
-  const {setHiddeNav} = useContextHiddent()
+  const {setHiddeNav,hiddeNav} = useContextHiddent()
   
 
 
@@ -20,14 +20,14 @@ export const Modal=()=>{
      <div className={style.bodyModal}>
        <div  className={style.Navs}>
           <div className={style.hiddenNav}
-         onClick={(()=>(setHiddeNav(false)))}
+         onClick={(()=>(setHiddeNav({...hiddeNav,modal:!hiddeNav.modal})))}
          >X</div>
          <Nav/>
        </div>
      </div>
      <div  className={style.hiddenModal}
       onClick={(()=>{
-        setHiddeNav(false)
+        setHiddeNav({...hiddeNav,modal:!hiddeNav.modal})
       })}
      ></div>
     </>

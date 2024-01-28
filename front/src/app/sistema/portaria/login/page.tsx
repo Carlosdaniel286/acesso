@@ -1,19 +1,27 @@
 "use client";
 import on from "./style.module.css";
 import Cadastros from "../../components/Form/cadastros";
-import Image from "next/image";
 import { Inputcpf } from "../../components/inputs/inputcpf/cpf";
 import InputPassword from "../../components/inputs/inputPassword/password";
-import { useUser } from "../../context/contetx";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import dotenv from "dotenv";
+import { useState } from "react";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
 dotenv.config();
 const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT;
 
 export default function Login() {
-  const { inputs, setInputs } = useUser();
+  const [inputs ,setInputs]=useState(UtilisInputs)
   const router = useRouter();
+  const setValueOfCpf =(cpf:string)=>{
+    setInputs({...inputs,cpf})
+   }
+   const setValueOfPassworld =(password:string)=>{
+     setInputs({...inputs,password})
+   }
+ 
+ 
   const Request = async () => {
     const response = await axios.post("/routes/login", {
       cpf: inputs.cpf,
@@ -33,9 +41,14 @@ export default function Login() {
           // eslint-disable-next-line react/no-children-prop
           children={
             <>
-              <Inputcpf />
+              <Inputcpf 
+               getValueOfCpf={setValueOfCpf}
+              />
 
-              <InputPassword />
+              <InputPassword 
+               getValueOfPassword={setValueOfPassworld}
+              />
+              
             </>
           }
           Onclik={Request}

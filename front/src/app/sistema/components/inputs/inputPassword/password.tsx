@@ -1,14 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 "use client";
+import { useEffect, useState } from "react";
 import on from "./style/style.module.css";
-import { useUser } from "../../../context/contetx";
-
-export default function InputPassword() {
-  const { inputs, setInputs } = useUser();
-
-  const signUp = (ev: React.ChangeEvent<HTMLInputElement>) => {
+export type passwords ={
+  getValueOfPassword:((passwords:string)=>void)
+}
+export default function InputPassword({getValueOfPassword}:passwords) {
+ const[password ,setPassword] =useState('')
+  
+  useEffect(()=>{
+  getValueOfPassword(password)
+  },[password])
+ 
+ const signUp = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const password = ev.target.value; // Assuming signIn is an object with a password property
-    setInputs({ ...inputs, password });
+    setPassword(password)
   };
 
   return (
@@ -18,7 +25,7 @@ export default function InputPassword() {
           type="password"
           placeholder="senha"
           onChange={(ev) => signUp(ev)}
-          value={inputs.password}
+          value={password}
         />
       </div>
     </>

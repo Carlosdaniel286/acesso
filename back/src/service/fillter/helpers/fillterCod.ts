@@ -17,12 +17,12 @@ export class CodeFilter {
       const stringsFiltradas = await this.prisma.visitor.findUnique({
             where: {
              id:this.code  ,
-            
             },
             select: {
               name: true ,
               cpf:true,
               id:true,
+              license:true,
               User:{
                 select:{
                   name:true

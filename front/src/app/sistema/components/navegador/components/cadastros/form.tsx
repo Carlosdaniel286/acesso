@@ -6,26 +6,44 @@ import Cadastros from "../../../Form/cadastros";
 import { Inputcpf } from "../../../inputs/inputcpf/cpf";
 import { InputCnh } from "../../../inputs/inputCnh/cnh";
 import { InputName } from "../../../inputs/inputname/name";
-import { useUser } from "@/app/sistema/context/contetx";
-import { InputAdress } from "../../../inputs/inputadress/andress";
+
+import { InputAdressMain } from "../../../inputs/inputadress/mainAddress";
 import { useVisitors } from "@/app/sistema/context/visitors";
 import { ConnectSoket } from "@/app/sistema/context/socket";
 import { project, Props } from "@/app/types/form";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useChangeInput } from "@/app/sistema/context/changeInputs";
 import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
+import { addressValue, Inputs } from "@/app/types/inputs";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
 
 export default function VisitaCadastros({ setHidden }: Props) {
-  const { inputs, setInputs } = useUser();
   const { setVisitors } = useVisitors();
   const { socket } = ConnectSoket();
   const { setChangeInput } = useChangeInput();
-  const {setHiddeNav} = useContextHiddent()
+  const {setHiddeNav,hiddeNav} = useContextHiddent()
+const [inputs, setInputs]=useState(UtilisInputs)
+  
+const setValueOfAddress=(value:addressValue[])=>{
+  setInputs({...inputs,address:value})
+  
+  }
+  const setValueOfCnh=(cnh:string)=>{
+    setInputs({...inputs,cnh})
+}
+const setValueOfCpf=(cpf:string)=>{
+  setInputs({...inputs,cpf})
+}
+const setValueOfName=(name:string)=>{
+  setInputs({...inputs,name})
+}
   
   const Requests = async () => {
     setHidden(false);
-    setChangeInput("nome");
+    console.log(inputs)
+    //setChangeInput("nome");
     if (socket) {
+      //visitors
       socket.emit("visitors", {
         name: inputs.name,
         cpf: inputs.cpf,
@@ -36,15 +54,17 @@ export default function VisitaCadastros({ setHidden }: Props) {
     setInputs({
       ...inputs,
       name: "",
-      password: "",
+     
       cpf: "",
-      address: { lt: '', qd: ''},
+      address: [{ lt: '', qd: ''}],
+      
     });
-    setHiddeNav(false)
+    setHiddeNav({...hiddeNav,modal:true})
   };
+  
 
   useEffect(() => {
-    setChangeInput(null);
+   setChangeInput(null);
     if (!socket) return;
     socket.on("getvisitors", (msg: project[]) => {
       console.log(msg);
@@ -60,12 +80,16 @@ export default function VisitaCadastros({ setHidden }: Props) {
           // eslint-disable-next-line react/no-children-prop
           children={
             <>
-              <InputName text="name" />
-              <Inputcpf />
-
-              <InputAdress />
-
-              <InputCnh />
+              <InputName getValueOfName={setValueOfName}/>
+              <Inputcpf 
+              getValueOfCpf={setValueOfCpf}
+              />
+              <InputAdressMain
+              setValueOfAddress={setValueOfAddress}
+              />
+              <InputCnh 
+              getValueOfCnh={setValueOfCnh}
+              />
             </>
           }
           Onclik={Requests}

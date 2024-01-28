@@ -1,6 +1,4 @@
-
-
-  @font-face {
+ @font-face {
     font-family: 'MinhaFonte';
     src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
     /* Adicione outros formatos de fonte se necessário */
@@ -8,8 +6,23 @@
 
   .bodyEnter{
     position: absolute;
-    background-color: rgb(94, 94, 150);
-    height: 200px;
+    background-color:white;
+    height: 530px;
     display: flex;
     flex-direction: column;
+  }
+  .Infomation{
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+    max-height: 350px;
+    justify-content: space-between;
+    overflow-y: scroll;
+  }
+  .Infomation p{
+    margin-left: 20px;
+
+  }
+  .move{
+    height: 300px;
   }

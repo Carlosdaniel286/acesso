@@ -7,7 +7,7 @@ type modal= {
    setHidden: Dispatch<SetStateAction<boolean>>
    }
 export const ShowModal=()=>{
-  const {setHiddeNav} = useContextHiddent()
+  const {setHiddeNav,hiddeNav} = useContextHiddent()
    return(
     <>
       <div className={style.bodyModalShow}>
@@ -18,7 +18,7 @@ export const ShowModal=()=>{
            width={50}
            alt=""
            style={{cursor:'pointer'}}
-           onClick={(()=>(setHiddeNav(true)))}
+           onClick={(()=>(setHiddeNav({...hiddeNav,modal:!hiddeNav.modal})))}
 
           />
         </div>

@@ -4,11 +4,13 @@ import Link from 'next/link'
 import nav from './style/nav.module.css'
 import Overlay from '../overlay/hidden'
 import VisitaCadastros from './components/cadastros/form'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Filtro from './components/filtro/filtro'
-///sistema/visita/cadastros
+
+
 export default function Nav() {
    const[hidden ,setHidden]=useState(false)
+   
   
     return (
      
@@ -16,19 +18,23 @@ export default function Nav() {
         {hidden &&
           <Overlay 
           children={
-            <>
+            <div className={nav.limit}>
               <VisitaCadastros
                setHidden={setHidden}
               />
-             </>
+             </div>
             }
-            setHidden={setHidden}
+           value={true}
           />
           }
          <ul>
            <Filtro/>
             <li 
-            onClick={(()=>(setHidden(!hidden)))}
+            onClick={(()=>{
+              setHidden(!hidden)
+
+              
+            })}
             >
             cadastro de visitantes
             

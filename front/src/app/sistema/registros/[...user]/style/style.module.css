@@ -31,7 +31,7 @@
   .body main {
     width: 100%;
     padding-top: 10px;
-    background-colo: orangered;
+   
   }
   .contentNav{
    width: 70%;
@@ -50,10 +50,7 @@
    
 
   }
-  .ClikModal{
-    displa: none;
-  }
-  
+ 
   
   
   
@@ -65,7 +62,7 @@
   
   @media (max-width: 760px) {
     .contentNav {
-      displa: none;
+     
       width: 70%;
     }
     .ClikModal {

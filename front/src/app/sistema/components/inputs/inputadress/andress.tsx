@@ -1,21 +1,42 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { useUser } from "../../../context/contetx";
-import style from "./style/adress.module.css";
 
-export const InputAdress = () => {
-  const { inputs, setInputs } = useUser();
+import style from "./style/adress.module.css";
+import Image from "next/image";
+export type address ={
+  getValueOfAddress:((value:{qd:number,lt:number})=>void)
+}
+
+
+export const InputAdress = ({getValueOfAddress}:address) => {
+ 
   const [addres, setAddres] = useState({
-    qd: "",
-    lt: "",
+    qd: '',
+    lt: '',
   });
+
+  
 
   useEffect(() => {
     if (addres.lt !== "" || addres.qd !== "") {
       const qd = Number(addres.qd);
       const lt = Number(addres.lt);
+      
       const clone = { ...addres, qd, lt };
-      setInputs({ ...inputs, address: clone });
+       if(lt && qd){
+        getValueOfAddress({qd, lt})
+       // setInputs({...inputs,address:[clone] })
+       
+       //
+       return
+      }
+    
+      //let arry = inputs.address
+      //arry.push(clone)
+      //setInputs({...inputs,address:arry});
+      
+     
+      
     }
   }, [addres]);
 
@@ -25,39 +46,52 @@ export const InputAdress = () => {
 
     if (!isNaN(Number(last)) || last === "0" || last === undefined) {
       if (inputValue.length > 3) return;
-      const join = inputValue.join("");
-
-      setAddres({ ...addres, qd: join });
+      const qd = inputValue.join("");
+      if(Number(qd)>20) {
+        alert('maior do que 20')
+        setAddres({ ...addres, qd:"" });
+        return
+        }
+        
+       setAddres({ ...addres, qd });
     }
   };
 
   const handleLt = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value.split("");
     const last = inputValue[inputValue.length - 1];
-
-    if (!isNaN(Number(last)) || last === "0" || last === undefined) {
+  if (!isNaN(Number(last)) || last === "0" || last === undefined) {
       if (inputValue.length > 3) return;
-      const join = inputValue.join("");
-      const lt = Number(join);
-      setAddres({ ...addres, lt: join });
+      let lt = inputValue.join("");
+      if(Number(lt)>20) {
+        alert('maior do que 20')
+
+        setAddres({ ...addres, lt:""});
+         return
+       }
+      setAddres({ ...addres, lt });
     }
   };
 
   return (
     <div className={style.adress}>
+      
       <input
         type="text"
-        placeholder={"qd"}
+        placeholder={"qd: max 20"}
         onChange={handleQd}
         value={addres.qd}
       />
-
-      <input
+ 
+   
+     <input
         type="text"
-        placeholder={"lt"}
+        placeholder={"lt: max 20"}
         onChange={handleLt}
         value={addres.lt}
       />
+       
+     
     </div>
-  );
+  )
 };

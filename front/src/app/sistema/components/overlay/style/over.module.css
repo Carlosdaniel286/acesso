@@ -1,41 +1,14 @@
-
-  /* styles/Overlay.module.css */
+/* styles/Overlay.module.css */
 .overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7); /* Cor de fundo com transparência */
+  background-color: rgba(0, 0, 0, 0.3); /* Cor de fundo com transparência */
   z-index: 1000; /* Certifique-se de que está acima de outros elementos na página */
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
-.hidden{
-  width: 55%;
-  height: 95vh;
-}
-
-
-@media (max-width: 1024px) {
-  .hidden {
-    width: 60%;
-   }
-
-}
-
-@media (max-width: 900px) {
-  .hidden {
-    width: 70%;;
-   }
-   
-}
-
-@media (max-width: 754px) {
-  .hidden {
-    width: 85%;
-   }
-   
 }

@@ -7,18 +7,19 @@ import { project } from '@/app/types/form';
 
 
 interface UserContextProps {
-  visitors: project[];
+  visitors: project[]|[];
   setVisitors: Dispatch<SetStateAction<project[]>>;
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
 export const UserProviderVisitors = ({ children }: { children: ReactNode }) => {
-  const [visitors, setVisitors] = useState<project[]>([
+  const [visitors, setVisitors] = useState<project[]|[]>([
     {
       name: '' ,
-       cpf:0,
+       cpf:'',
        id:0,
+       license:'',
        User:{
         name:''
        }

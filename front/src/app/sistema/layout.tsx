@@ -1,5 +1,4 @@
 import { UserChangeInput } from './context/changeInputs'
-import { UserProvider } from './context/contetx'
 import { UserProviderVisitors } from './context/visitors'
 import style from './styleLayout/style.module.css'
 import { UserProviderHidden } from './context/hiddeNav'
@@ -16,9 +15,9 @@ export default function RootLayout({
         <UserProviderHidden>
        <UserChangeInput>
         <UserProviderVisitors>
-        <UserProvider>
+       
            {children}
-        </UserProvider>
+        
       </UserProviderVisitors>
       </UserChangeInput>
       </UserProviderHidden>

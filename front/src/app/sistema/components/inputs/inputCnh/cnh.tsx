@@ -1,23 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
-import { useUser } from "../../../context/contetx";
 
-import { ChangeEvent } from "react";
 
-export const InputCnh = () => {
-  const { inputs, setInputs } = useUser();
+import { ChangeEvent, useEffect, useState } from "react";
+export type cnh ={
+  getValueOfCnh:((cnh:string)=>void)
+}
 
+export const InputCnh = ({getValueOfCnh}:cnh) => {
+ const[cnh ,setCnh]=useState('')
+ 
+ useEffect(()=>{
+  getValueOfCnh(cnh)
+ },[cnh])
+ 
   const handleCnhChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;
     const regex = /^\d+$/;
     const containerNumber = regex.test(text);
 
     if (text == "") {
-      setInputs({ ...inputs, cnh: text });
+      setCnh(text);
     }
     if (!containerNumber) return;
     if (text.split("").length > 11) return;
     //console.log(inputs.address)
-    return setInputs({ ...inputs, cnh: text });
+    return setCnh(text)
   };
 
   return (
@@ -26,7 +34,7 @@ export const InputCnh = () => {
         type="text"
         placeholder={"cnh"}
         onChange={handleCnhChange}
-        value={inputs.cnh}
+        value={cnh}
       />
     </>
   );

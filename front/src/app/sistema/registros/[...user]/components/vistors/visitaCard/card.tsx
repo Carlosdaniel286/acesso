@@ -1,54 +1,70 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
-'use client'
+"use client";
 
-import on from './style/card.module.css'
-import { card } from '@/app/types/cards';
-import Image from 'next/image';
-import NewEntry from '../../vistors/newEnter/newEnter'
-import { useState } from 'react';
-export default function CardVisita({cards}:card){
-const [hidden, setHidden]=useState(false)
-return (
-        <div className={on.bodyVisit}>
-          <div className={on.person} >
-            <div className={on.visitimg} >
-              <Image
-                 src={'/user.jpg'}
-                  alt="Descrição da imagem"
-                  width={100}
-                  height={100}
-                  style={{borderRadius:'50%'}}
-                />
-            </div>
-            <div className={on.content}>
-            <ul >
-              {hidden && 
-            <> <NewEntry
-             key={cards.id}
-                 name={cards.name}
-                 cpf={cards.cpf}
-                 id={cards.id}
-                 User={cards.User}
-                 />
-                </>
-                }
-                <li>nome:{cards.name}</li>
-                <li>cpf:{cards.cpf}</li>
-                <li>codigo:{cards.id}</li>
-                <li className={on.linone}>atendente:{cards.User.name}</li>
-            </ul>
-             </div>
-          </div>
-          <div className={on.button}>
-            
-              <button className={on.inside}
-               onClick={(()=>{
-                setHidden(!hidden)
-               })}
-              >entrer</button>
-              <button className={on.outside}>saida</button>
-              <button className={on.info}>info</button>
-            </div>
+import on from "./style/card.module.css";
+import { card } from "@/app/types/cards";
+import Image from "next/image";
+import NewEntry from "../newEnter/component/newEnter";
+import { useEffect, useState } from "react";
+import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
+import { useChangeInput } from "@/app/sistema/context/changeInputs";
+
+import { project } from "@/app/types/form";
+
+export default function CardVisita({ name, id, cpf, User, license }: project) {
+  const { setChangeInput } = useChangeInput();
+  
+  
+  const { setHiddeNav, hiddeNav } = useContextHiddent();
+  useEffect(()=>{
+  console.log(User)
+  },[User])
+  return (
+    <div className={on.bodyVisit}>
+      <div className={on.person}>
+        <div className={on.visitimg}>
+          <Image
+            src={"/user.jpg"}
+            alt="Descrição da imagem"
+            width={100}
+            height={100}
+            style={{ borderRadius: "50%" }}
+          />
         </div>
-    )
+        <div className={on.content}>
+          <ul>
+            <li>nome:{name}</li>
+            <li>cpf:{cpf}</li>
+            <li>codigo:{id}</li>
+            <li className={on.linone}>atendente:{''}</li>
+          </ul>
+        </div>
+      </div>
+      <div className={on.button}>
+        <button
+          className={on.inside}
+          onClick={() => {
+            setChangeInput(null);
+            //setName(name)
+            //console.log("card.name")
+           
+            // console.log(name)
+            setHiddeNav({ ...hiddeNav, overflow: true });
+          }}
+        >
+          entrer
+        </button>
+        <button
+          className={on.outside}
+          onClick={() => {
+            setHiddeNav({ ...hiddeNav, overflow: false });
+          }}
+        >
+          saida
+        </button>
+        <button className={on.info}>info</button>
+      </div>
+    </div>
+  );
 }

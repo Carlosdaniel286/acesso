@@ -4,8 +4,14 @@
 import {  Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react"
 
 interface UserContextProps {
-    hiddeNav: boolean,
-    setHiddeNav:Dispatch<SetStateAction<boolean>>
+    hiddeNav: {
+        overflow: boolean;
+        modal: boolean;
+    }
+    setHiddeNav: Dispatch<SetStateAction<{
+        overflow: boolean;
+        modal: boolean;
+    }>>
 }
 
 
@@ -13,7 +19,10 @@ const UserContextHidden = createContext<UserContextProps | undefined>(undefined)
 
 
 export const UserProviderHidden = ({ children }:{children:ReactNode}) => {
-    const[hiddeNav, setHiddeNav]= useState(false)
+    const[hiddeNav, setHiddeNav]= useState({
+        overflow:false,
+        modal:false
+    })
 
     const contextValue: UserContextProps = {
         hiddeNav,

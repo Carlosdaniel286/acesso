@@ -1,8 +1,26 @@
 .adress{
     display: flex;
-    max-width: 95%;
-    justify-content: space-around;
+    max-width: 100%;
+    justify-content: space-between;
+    background-colo:blue ;
 }
 .adress input {
-    width: 45%;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.addressAdd{
+    display: flex;
+    max-width: 100%;
+    align-items: center;
+}
+.imgAddress{
+    display: inline;
+    align-items:flex-start;
+    margin-left:30px ;
+    background-colo: brown;
+    height: 100%;
+}
+.addressArry{
+    display: flex;
+    flex-direction: column;
 }

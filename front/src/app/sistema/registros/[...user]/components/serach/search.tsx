@@ -8,25 +8,35 @@ import Image from "next/image";
 import { InputName } from "@/app/sistema/components/inputs/inputname/name";
 import { Inputcpf } from "@/app/sistema/components/inputs/inputcpf/cpf";
 import { useChangeInput } from "@/app/sistema/context/changeInputs";
-import { useUser } from "@/app/sistema/context/contetx";
 import { handleCodigo } from "./help/help";
 import { FillterThis } from "./help/fillter";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
 
 export default function Seach() {
   const [input, setInput] = useState("");
   const { socket } = ConnectSoket();
   const { changeInput } = useChangeInput();
-  const { inputs } = useUser();
+  const [inputs ,setInputs]=useState(UtilisInputs)
+  
+  const setValueOfCpf =(cpf:string)=>{
+    setInputs({...inputs,cpf})
+   }
+   const setValueOfName =(name:string)=>{
+     setInputs({...inputs,name})
+   }
   useEffect(() => {
     if (changeInput == null) return;
     console.log(changeInput);
+
     FillterThis(socket, input, inputs);
   }, [inputs.name, inputs.cpf, input, changeInput]);
 
   return (
     <div className={style.serachbody}>
-      {changeInput === "cpf" && <Inputcpf />}
-      {changeInput === "nome" && <InputName text="digite um nome" />}
+      {changeInput === "cpf" && <Inputcpf 
+      getValueOfCpf={setValueOfCpf}
+      />}
+      {changeInput === "nome" && <InputName getValueOfName={setValueOfName} />}
       {changeInput === "codigo" && (
         <>
           <input

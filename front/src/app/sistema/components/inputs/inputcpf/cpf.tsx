@@ -1,34 +1,46 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useUser } from "../../../context/contetx";
+import { useEffect, useState } from "react";
+export type cpf ={
+  getValueOfCpf:((cpf:string)=>void)
+}
 
-export const Inputcpf = () => {
-  const { inputs, setInputs } = useUser();
-
-  const setCpf = (ev: React.ChangeEvent<HTMLInputElement>) => {
+export const Inputcpf = ({getValueOfCpf}:cpf) => {
+ 
+  const [cpf, setCpfs]=useState('')
+  
+   useEffect(()=>{
+   getValueOfCpf(cpf)
+   },[cpf])
+  
+  
+   const setCpf = (ev: React.ChangeEvent<HTMLInputElement>) => {
     let keys = ev.target.value.split("");
     const limit = keys.length;
     const last = keys[keys.length - 1];
     const regex = /^[.-]+$/;
     const ponto = regex.test(last);
-    console.log(last);
+    
     if (!isNaN(Number(last)) || last === "0" || last === undefined) {
       if (limit > 14) return;
       if (limit === 4) {
-        keys = [inputs.cpf, ".", last];
+        keys = [cpf, ".", last];
       }
       if (limit === 8) {
-        keys = [inputs.cpf, ".", last];
+        keys = [cpf, ".", last];
       }
       if (limit === 12) {
-        keys = [inputs.cpf, "-", last];
+        keys = [cpf, "-", last];
       }
-      setInputs({ ...inputs, cpf: keys.join("") });
+      const cpfFormat = keys.join("") 
+      setCpfs(cpfFormat)
     } else if (ponto) {
-      const newarry = inputs.cpf.split("");
+      const newarry = cpf.split("");
       newarry.pop();
-
-      setInputs({ ...inputs, cpf: newarry.join("") });
+      const cpfFormat =  newarry.join("") 
+      setCpfs(cpfFormat)
+      
     }
   };
   return (
@@ -37,7 +49,7 @@ export const Inputcpf = () => {
         type="text"
         placeholder="cpf"
         onChange={(ev) => setCpf(ev)}
-        value={inputs.cpf}
+        value={cpf}
       />
     </>
   );

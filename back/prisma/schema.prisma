@@ -11,12 +11,10 @@ model Address {
   id         Int       @id @default(autoincrement())
   qd         Int
   lt         Int
-  idVisitor  Int? @unique
   idResident Int?
-  Resident   Resident?  @relation(fields: [idResident], references: [id])
-  inside     Inside[]  @relation("AddressToInside")
-  outside    Outside[] @relation("AddressToOutside")
-  visitor    Visitor?  @relation(fields: [idVisitor], references: [id], map: "visitor")
+  Resident   Resident? @relation(fields: [idResident], references: [id])
+  Inside     Inside[]  
+  Outside    Outside[] 
 }
 
 model Resident {
@@ -41,16 +39,14 @@ model User {
 }
 
 model Visitor {
-  id      Int       @id @default(autoincrement())
-  name    String
-  cpf     String    @unique
-  license String?
-  idUser  Int
-  inside  Inside[]
-  outside Outside[]
-  idAddress Int @unique
-  User    User      @relation(fields: [idUser], references: [id])
-  address Address?   
+  id        Int       @id @default(autoincrement())
+  name      String
+  cpf       String    @unique
+  license   String?
+  idUser    Int
+  inside    Inside[]
+  outside   Outside[]
+  User      User      @relation(fields: [idUser], references: [id])
 }
 
 model Inside {
@@ -58,17 +54,19 @@ model Inside {
   createdAt  DateTime  @default(now())
   residentId Int
   visitorId  Int
+  idAddress  Int
   resident   Resident  @relation(fields: [residentId], references: [id])
   visitor    Visitor   @relation(fields: [visitorId], references: [id])
-  Address    Address[] @relation("AddressToInside")
+  Address    Address   @relation(fields: [idAddress], references: [id])
 }
 
 model Outside {
   id         Int       @id @default(autoincrement())
   createdAt  DateTime  @default(now())
   residentId Int
+  idAddress  Int
   visitorId  Int
   resident   Resident  @relation(fields: [residentId], references: [id])
   visitor    Visitor   @relation(fields: [visitorId], references: [id])
-  Address    Address[] @relation("AddressToOutside")
+  Address    Address   @relation(fields: [idAddress], references: [id])
 }

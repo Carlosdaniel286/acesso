@@ -22,6 +22,7 @@ export class NameFilter {
               name: true ,
               cpf:true,
               id:true,
+              license:true,
               User:{
                 select:{
                   name:true

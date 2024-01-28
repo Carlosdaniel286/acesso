@@ -1,5 +1,5 @@
 import prisma from "../database/prisma"
-import { visitors } from "../types/vistors" 
+import { visitors ,ArrysAddress} from "../types/vistors" 
 import { Inside } from "./insideVisitor"    
   
 
@@ -7,10 +7,10 @@ import { Inside } from "./insideVisitor"
 export class Visitor {
     private name=''
     private cpf=''
-    private address ={
+    private address =[{
       qd:0,
       lt:0
-    }
+    }]
     private license =''
     private idUser:number
     
@@ -24,27 +24,33 @@ export class Visitor {
   
   async setNewVisitor() {
     try{
+      let address:ArrysAddress[]=[]
       
-      const Address= await prisma.address.findFirst({
-        where:{
-            lt:this.address.lt,
-            qd:this.address.qd,
-            },
+      this.address.forEach(async(item)=>{
+        const Address= await prisma.address.findFirst({
+          where:{
+              lt:item.lt,
+              qd:item.qd,
+              },
+        })
+        
+        if (Address === null) {
+          return { success: false, message: 'Endereço não encontrado.' };
+        }
+        if (Address.idResident === null) {
+          return { success: false, message: 'Sem residente nesse endereço.' };
+        }
+        
+          address.push(Address)
+        
+        
+  
       })
-
-      if (Address === null) {
-        return { success: false, message: 'Endereço não encontrado.' };
-      }
-
-      if (Address.idResident === null) {
-        return { success: false, message: 'Sem residente nesse endereço.' };
-      }
     const newVisitor = await prisma.visitor.create({
         data: {
           name: this.name,
           cpf:this.cpf,
           license: this.license ,
-          idAddress:Address.id,
           User: {
             connect: { 
               id:this.idUser
@@ -52,9 +58,12 @@ export class Visitor {
           },
         },
       });
-      const inside = new Inside(newVisitor.id,Address.idResident,prisma)
+      console.log(address)
+      address.forEach(async(item)=>{
+      if(!item.idResident) return
+      const inside = new Inside(newVisitor.id,item.idResident,item.id,prisma)
       await inside.visitorInside()
-      
+    })
       return { success: true};
      
     }catch(error){

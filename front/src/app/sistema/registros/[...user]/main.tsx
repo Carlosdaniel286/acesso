@@ -18,7 +18,7 @@ export default function Mean() {
       <header className=''>
           <div className={on.ClikModal} >
             <ShowModal/>
-            {hiddeNav && 
+            {hiddeNav.modal && 
             <div className={on.contentModal}>
               <Modal/>
             </div>

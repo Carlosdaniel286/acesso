@@ -8,7 +8,23 @@ export const getVisitor= async()=>{
               name: true ,
               cpf:true,
               id:true,
-              User:{
+              license:true,
+              inside:{
+               select:{
+                Address:{
+                  select:{
+                    qd:true,
+                    lt:true
+                  }
+                },
+                resident:true,
+                residentId:true
+                
+               },
+               
+              },
+              
+             User:{
                 select:{
                   name:true
                 }
@@ -16,7 +32,7 @@ export const getVisitor= async()=>{
             }
           })
           
-          
+          console.log(allUsers)
       return allUsers
   }catch(err){
     throw new MeuErro('sem usuarios')

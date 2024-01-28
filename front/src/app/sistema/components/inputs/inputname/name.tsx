@@ -1,16 +1,27 @@
-import { useState, useEffect, SetStateAction, Dispatch } from "react";
-import { useUser } from "../../../context/contetx";
+/* eslint-disable react-hooks/exhaustive-deps */
 
-export const InputName = ({ text }: { text: string }) => {
-  const { inputs, setInputs } = useUser();
+import { useEffect, useState } from "react";
 
+export type Names ={
+  getValueOfName:((name:string)=>void)
+
+}
+export const InputName = ({getValueOfName}:Names) => {
+  const[name , setName] =useState('')
+  
+  useEffect(()=>{
+    if(name=='') return
+     getValueOfName(name)
+  },[name])
+  
   const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
     const regex = /^[a-zA-Z\s]*$/;
     const isValidInput = regex.test(inputValue);
-
+   
     if (isValidInput) {
-      setInputs({ ...inputs, name: inputValue });
+      const name = inputValue
+      setName(name)
     }
   };
 
@@ -18,9 +29,9 @@ export const InputName = ({ text }: { text: string }) => {
     <>
       <input
         type="text"
-        placeholder={text}
+        placeholder={'digite um nome'}
         onChange={handleNomeChange}
-        value={inputs.name}
+        value={name}
       />
     </>
   );

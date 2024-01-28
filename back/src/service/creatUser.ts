@@ -135,6 +135,7 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
 
 export const creatAddres = async()=>{
   //const address = await prisma.address.findMany({})
+  try{
   let arry =[]
   for (let qd = 1; qd <= 20; qd++) {
     for (let lt = 1; lt<= 20; lt++) {
@@ -146,6 +147,7 @@ export const creatAddres = async()=>{
     
 }
     }
+    console.log(arry)
     for (let i = 0; i <= arry.length; i++) {
       const address = await prisma.address.create({
         data:{
@@ -157,7 +159,10 @@ export const creatAddres = async()=>{
         }
 
       })
-
+      console.log(address)
     }
-
+    
+  }catch(err){
+   console.log(err)
+  }
 }

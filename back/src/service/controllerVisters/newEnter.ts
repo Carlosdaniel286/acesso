@@ -7,9 +7,9 @@ export class newEntry {
     private   prisma:PrismaClient
    
    constructor(visitorId:number, addressResident:visitorAddres,prisma:PrismaClient){
-    this.addressResident=addressResident,
-    this.visitorId =visitorId
-    this.prisma =prisma
+      this.addressResident=addressResident,
+      this.visitorId =visitorId
+      this.prisma =prisma
     }
     
     async NewEntry(){
@@ -22,8 +22,8 @@ export class newEntry {
         })
         if(!address) return  
         if(!address.idResident) return 
-        if(!address.idVisitor) return 
-        const inside = new Inside(address.idVisitor,address.idResident,this.prisma)
+       
+        const inside = new Inside(this.visitorId,address.idResident,1,this.prisma)
         await inside.visitorInside()
     }catch(err){
 

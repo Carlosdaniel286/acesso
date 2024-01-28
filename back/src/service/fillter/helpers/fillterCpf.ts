@@ -23,6 +23,7 @@ export class CpfFilter {
               name: true ,
               cpf:true,
               id:true,
+              license:true,
               User:{
                 select:{
                   name:true

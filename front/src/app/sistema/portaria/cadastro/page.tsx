@@ -4,7 +4,7 @@ import on from "./style/style.module.css";
 import { redirect } from "next/navigation";
 import Cadastros from "../../components/Form/cadastros";
 import { Inputcpf } from "../../components/inputs/inputcpf/cpf";
-import { useUser } from "../../context/contetx";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import { InputName } from "../../components/inputs/inputname/name";
 import { checkPasswordStrength } from "./helps/helps";
 import { useEffect, useState } from "react";
@@ -14,13 +14,22 @@ dotenv.config();
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE;
 export default function PortariaCadastro() {
-  const { inputs, setInputs } = useUser();
+  const [inputs ,setInputs]=useState(UtilisInputs)
   const [scores, setScores] = useState({
     score: 0,
     texts: "",
   });
   const [status, setSatus] = useState(0);
-
+  
+  const setValueOfCpf =(cpf:string)=>{
+   setInputs({...inputs,cpf})
+  }
+  const setValueOfName =(name:string)=>{
+    setInputs({...inputs,name})
+  }
+  
+  
+  
   const signUp = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const password = ev.target.value;
     // Assuming signIn is an object with a password property
@@ -74,8 +83,8 @@ export default function PortariaCadastro() {
           // eslint-disable-next-line react/no-children-prop
           children={
             <>
-              <InputName text="name" />
-              <Inputcpf />
+              <InputName getValueOfName={setValueOfName}/>
+              <Inputcpf  getValueOfCpf={setValueOfCpf}/>
 
               <div className={on.password}>
                 <input
