@@ -13,7 +13,7 @@ import { sockets } from './socket';
 dotenv.config();
 
 
-const port = process.env.PORT 
+const port = process.env.PORT
 const baseUrlClient = process.env.BASE_CLIENT as string;
 const opcoesCors = {
   origin: baseUrlClient, // Substitua pela origem permitida

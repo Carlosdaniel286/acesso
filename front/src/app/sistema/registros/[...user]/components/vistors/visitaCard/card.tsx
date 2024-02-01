@@ -14,11 +14,9 @@ import { project } from "@/app/types/form";
 
 export default function CardVisita({ name, id, cpf, User, license }: project) {
   const { setChangeInput } = useChangeInput();
-  
-  
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   useEffect(()=>{
-  console.log(User)
+  //console.log(User)
   },[User])
   return (
     <div className={on.bodyVisit}>
@@ -34,35 +32,14 @@ export default function CardVisita({ name, id, cpf, User, license }: project) {
         </div>
         <div className={on.content}>
           <ul>
-            <li>nome:{name}</li>
-            <li>cpf:{cpf}</li>
-            <li>codigo:{id}</li>
-            <li className={on.linone}>atendente:{''}</li>
+            <li>nome: {name}</li>
+            <li>cpf: {cpf}</li>
+            <li>codigo: {id}</li>
+            <li className={on.linone}>atendente: {User.name}</li>
           </ul>
         </div>
       </div>
       <div className={on.button}>
-        <button
-          className={on.inside}
-          onClick={() => {
-            setChangeInput(null);
-            //setName(name)
-            //console.log("card.name")
-           
-            // console.log(name)
-            setHiddeNav({ ...hiddeNav, overflow: true });
-          }}
-        >
-          entrer
-        </button>
-        <button
-          className={on.outside}
-          onClick={() => {
-            setHiddeNav({ ...hiddeNav, overflow: false });
-          }}
-        >
-          saida
-        </button>
         <button className={on.info}>info</button>
       </div>
     </div>

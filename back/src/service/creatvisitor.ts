@@ -58,13 +58,21 @@ export class Visitor {
           },
         },
       });
-      console.log(address)
-      address.forEach(async(item)=>{
-      if(!item.idResident) return
-      const inside = new Inside(newVisitor.id,item.idResident,item.id,prisma)
-      await inside.visitorInside()
-    })
-      return { success: true};
+     
+     
+      
+      for (const item of address) {
+        if (!item.idResident) continue;
+      
+        const inside = new Inside(newVisitor.id, item.idResident, item.id, prisma);
+        await inside.visitorInside();
+      
+        if (item === address[address.length - 1]) {
+          return { success: true };
+        }
+      }
+      
+    //return { success: false, message: 'Sem residente nesse endereço.' };
      
     }catch(error){
       console.error('Erro ao criar visitante:', error);

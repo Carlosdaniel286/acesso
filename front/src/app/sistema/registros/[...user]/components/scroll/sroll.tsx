@@ -14,19 +14,14 @@ import { project } from "@/app/types/form";
 import Entry from "../vistors/newEnter/main";
 import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
 import { useChangeInput } from "@/app/sistema/context/changeInputs";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { HandlerChanger } from "@/app/utils/changer/changer";
+
 
 export default function Scroll() {
   const { socket } = ConnectSoket();
   const { visitors, setVisitors } = useVisitors();
-  const [changer, setChanger] = useState({
-    name: "",
-    id: 1,
-    cpf: "",
-    license: "",
-    User: {
-      name: "",
-    },
-  });
+  const [changer, setChanger] = useState(HandlerChanger);
   const { setChangeInput } = useChangeInput();
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   useEffect(() => {
@@ -63,7 +58,9 @@ export default function Scroll() {
                   id: item.id,
                   cpf: item.cpf,
                   license: item.license,
-                  User:item.User
+                  User:item.User,
+                  inside:item.inside,
+                  
                 });
               }}
               key={item.id}
@@ -75,6 +72,7 @@ export default function Scroll() {
                 cpf={item.cpf}
                 license={item.license}
                 User={item.User}
+                inside={item.inside}
               />
             </div>
           ))}
@@ -84,6 +82,7 @@ export default function Scroll() {
              { hiddeNav.overflow && changer.name && 
              <Entry
               cards={changer}
+              
              />
              
              }

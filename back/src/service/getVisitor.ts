@@ -1,9 +1,74 @@
+
+
 import prisma from "../database/prisma"
 import { MeuErro } from "./login"
+import { format } from 'date-fns';
+
+const dateCompare ={
+  inside: '',
+  outside:''
+}
+
+const compares =()=>{
+  const hora1 = new Date(dateCompare.inside);
+  const hora2 = new Date(dateCompare.outside);
+}
+
+
+
+
+const Fomart =(allUsers:any[])=>{
+  
+  const allUsersFormatted = allUsers.map((user) => {
+      
+    return{
+       ...user,
+       outside:user.outside.map((item:any)=>{
+        if(user.outside[user.outside.length-1].createdAt==item.createdAt){
+            dateCompare.outside=item.createdAt
+        }
+        
+         return{
+           ...item,
+           createdAt:format(new Date(item.createdAt), "MM/dd/yyyy HH:mm:ss")
+         }
+       }),
+       inside:user.inside.map((item:any)=>{
+        if(user.inside[user.inside.length-1].createdAt==item.createdAt){
+          dateCompare.inside=item.createdAt
+      }
+         return{
+           ...item,
+           createdAt:format(new Date(item.createdAt), "MM/dd/yyyy HH:mm:ss")
+          
+         }
+         
+       
+         
+       }),
+       
+       controll:''
+       
+     }
+     
+   })
+
+   return allUsersFormatted
+}
+
+
+
+
+
+
+
+
+
 
 export const getVisitor= async()=>{
     try{
         const allUsers = await prisma.visitor.findMany({
+          
             select: {
               name: true ,
               cpf:true,
@@ -15,13 +80,19 @@ export const getVisitor= async()=>{
                   select:{
                     qd:true,
                     lt:true
-                  }
-                },
+                  },
+                  },
                 resident:true,
-                residentId:true
-                
+                residentId:true,
+                createdAt:true
                },
                
+               
+              },
+              outside:{
+               select:{
+                createdAt:true
+               }
               },
               
              User:{
@@ -31,9 +102,11 @@ export const getVisitor= async()=>{
               }
             }
           })
-          
-          console.log(allUsers)
-      return allUsers
+         
+         const allUsersFormatted = Fomart(allUsers)
+          console.log(allUsersFormatted)
+          console.log(dateCompare)
+      return allUsersFormatted
   }catch(err){
     throw new MeuErro('sem usuarios')
     }

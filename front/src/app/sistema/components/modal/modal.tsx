@@ -6,9 +6,7 @@ import style from './style/modal.module.css'
 import Nav from "../navegador/nav"
 import { useContextHiddent } from "../../context/hiddeNav"
 
-type modal= {
-setHidden: Dispatch<SetStateAction<boolean>>
-}
+
 
 export const Modal=()=>{
   const {setHiddeNav,hiddeNav} = useContextHiddent()

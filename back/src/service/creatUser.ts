@@ -1,6 +1,6 @@
 import prisma from '../database/prisma';
 import bcrypt from 'bcrypt';
-import { PrismaClientKnownRequestError, PrismaClientValidationError } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 import zxcvbn from 'zxcvbn';
 import {l} from './ds'
 const cpf = require('gerador-validador-cpf')
@@ -42,13 +42,13 @@ export class User {
         
             }catch(err){
         
-        if(err instanceof PrismaClientKnownRequestError){
+        if(err instanceof Prisma.PrismaClientKnownRequestError){
             if(err.code == 'P2002')  return this.res.status(400).send('esse cpf ja existe')
             
             return this.res.status(400).send('falha no serviço')
           } 
           
-          if(err instanceof PrismaClientValidationError){
+          if(err instanceof Prisma.PrismaClientValidationError){
             const message = err.message.toString().split('Argument')[1]
             if(!message) return this.res.status(400).send('erro na validaçao')
             return this.res.status(400).send(message)
@@ -99,14 +99,14 @@ export class User {
 export const creatResdents= async()=>{
 //const address = await prisma.address.findMany({})
 const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
-  const arrys = string.split(' ').join('').split("\n")
+  const arrys = string.split('').join('').split("\n")
   //const newAddr= await prisma.address.findMany({})
-  
+  console.log(arrys)
  for(let i =0;i<arrys.length;i++){
     const ls = i
     const cpfAleatorio = cpf.generate();
     const formatted = CPF.Format(cpfAleatorio);
-
+ 
 
  const newResident = await prisma.resident.create({
       data:{
@@ -131,6 +131,8 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
   
 
 }
+
+ 
 
 
 export const creatAddres = async()=>{
@@ -166,3 +168,4 @@ export const creatAddres = async()=>{
    console.log(err)
   }
 }
+ 

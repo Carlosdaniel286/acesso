@@ -3,9 +3,8 @@ import prisma from '../database/prisma';
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import NodeCache from 'node-cache';
-import cookie from 'cookie';
 import { Response ,Request } from 'express';
-import { PrismaClientValidationError } from '@prisma/client/runtime/library';
+//import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 dotenv.config();
 
 export class MeuErro extends Error {
@@ -60,11 +59,7 @@ export class Login {
     
     }catch(err){
        
-        if(err instanceof PrismaClientValidationError){
-            const message = err.message.toString().split('Argument')[1]
-            if(!message) throw new MeuErro('erro na validaçao')
-            throw new MeuErro(message)
-            }
+       
             
         if( err instanceof Error){
             const error = err as Error;
