@@ -2,14 +2,15 @@
 
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
 import { project } from '@/app/types/form';
+import { addressValue } from '@/app/types/inputs'
 
-
-
+const Address:addressValue={qd:'',lt:''}
 
 interface UserContextProps {
   visitors: project[]|[];
   setVisitors: Dispatch<SetStateAction<project[]>>;
 }
+
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);
 
@@ -20,6 +21,7 @@ export const UserProviderVisitors = ({ children }: { children: ReactNode }) => {
        cpf:'',
        id:0,
        license:'',
+       inside:[{Address}],
        User:{
         name:''
        }

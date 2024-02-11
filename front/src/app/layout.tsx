@@ -1,6 +1,6 @@
 
 import './globals.css'
-import { UserProvider } from './sistema/context/contetx'
+
 
 
 export default function RootLayout({
