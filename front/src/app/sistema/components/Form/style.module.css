@@ -1,111 +1,101 @@
-
 @font-face {
-    font-family: 'fonte';
-    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
-    /* Adicione outros formatos de fonte se necessário */
-  }
-
-.Cadbody{
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-   
-    
+  font-family: "fonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
+  /* Adicione outros formatos de fonte se necessário */
 }
 
+.Cadbody {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+}
 
 .Cadbody main {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    width: 100%;
-    background-color: orangered;
-    background-color: white;
-  }
-.form{
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    padding-left: 0%;
-    border-radius: 3px;
-    justify-content: space-between;
-  }
+  height: 100%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: orangered;
+  background-color: white;
+  border-radius: 20px;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  padding-left: 0%;
+  border-radius: 3px;
+  justify-content: space-between;
+  border-radius: 10px;
+}
 .form input {
-    background-color:transparent;
-    border: 0px;
-    max-width: 90%;
-    margin-top: 20px;
-    margin-left: 20px;
-    border-bottom: 1px solid rgba(116, 114, 114, 0.7);;
-    font-size: 1rem;
-    font-family: 'fonte';
-    text-transform: capitalize;
-    color: rgb(15, 15, 15);
-    
-    
+  background-color: transparent;
+  border: 0px;
+  max-width: 90%;
+  margin-top: 20px;
+  margin-left: 20px;
+  border-bottom: 1px solid rgba(116, 114, 114, 0.7);
+  font-size: 1rem;
+  font-family: "fonte";
+  text-transform: capitalize;
+  color: rgb(15, 15, 15);
 }
 
 .form input:focus {
-    outline: none; /* Remove a borda de foco padrão (efeito de toque) */
-    /* Adicione outros estilos desejados para o input focado, se necessário */
-  }
+  outline: none; /* Remove a borda de foco padrão (efeito de toque) */
+  /* Adicione outros estilos desejados para o input focado, se necessário */
+}
 
-  .form input::placeholder {
-    color: #bebaba; /* Cor desejada para o placeholder */
-  }
-  
-  
-  .image input{
-    border-bottom: 0;
-  }
-  .form h1 {
-    text-align: center;
-    margin: 5px;
-   
-  }
-  .form header {
-   align-items: center;
-   text-align: center;
-   margin: 5px;
-   padding: 10;
-   color: white;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: rgb(250, 75, 12);
-   
-  }
+.form input::placeholder {
+  color: #bebaba; /* Cor desejada para o placeholder */
+}
 
-  .submit{
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-   
-  }
-  .submit button {
-    border: 0ch;
-    padding: 6px;
-    color: rgb(255, 255, 255);
-    font-family: 'fonte';
-    font-size: 1.2rem;
-    border-radius: 6px;
-    cursor: pointer;
-    width: 40%;
-  }
-  .loginButton {
-   margin-right: 20px;
-   background-color: rgb(250, 75, 12);
-  }
-  .CadastroButton {
-    margin-right: 20px;
-    background-color:rgb(228, 129, 129);
-  }
-  
-  
+.image input {
+  border-bottom: 0;
+}
+.form h1 {
+  text-align: center;
+  margin: 5px;
+}
+.form header {
+  align-items: center;
+  text-align: center;
+  margin: 5px;
+  padding: 10;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(250, 75, 12);
+}
+
+.submit {
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.submit button {
+  border: 0ch;
+  padding: 6px;
+  color: rgb(255, 255, 255);
+  font-family: "fonte";
+  font-size: 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 40%;
+}
+.loginButton {
+  margin-right: 20px;
+  background-color: rgb(250, 75, 12);
+}
+.CadastroButton {
+  margin-right: 20px;
+  background-color: rgb(228, 129, 129);
+}

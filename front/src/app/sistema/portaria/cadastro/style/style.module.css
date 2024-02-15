@@ -11,8 +11,8 @@
     background-color: orangered;
   }
  .port{
-    height: 90%;
-    width: 50%;
+    height: 80%;
+    width: 30%;
   }
   .password{
     width: 100%;
@@ -35,13 +35,12 @@
   
   @media screen and (min-width: 100px) and (max-width: 800px) {
     .port{
-     
-      width: 96%;
+     width: 80%;
     }
   }
 
   @media screen and (min-width: 800px) and (max-width: 960px) {
     .port{
-     width: 70%;
+     width: 50%;
     }
   }
