@@ -9,10 +9,7 @@ const dateCompare ={
   outside:''
 }
 
-const compares =()=>{
-  const hora1 = new Date(dateCompare.inside);
-  const hora2 = new Date(dateCompare.outside);
-}
+
 
 
 
@@ -67,7 +64,10 @@ const Fomart =(allUsers:any[])=>{
 
 export const getVisitor= async()=>{
     try{
-        const allUsers = await prisma.visitor.findMany({
+        
+      const connect = await prisma
+       if(!connect) return
+      const allUsers = await connect.visitor.findMany({
           
             select: {
               name: true ,

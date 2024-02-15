@@ -1,10 +1,7 @@
-import prisma from "../database/prisma"
+import { PrismaClient } from "@prisma/client"
 import { visitors ,ArrysAddress} from "../types/vistors" 
 import { Inside } from "./insideVisitor"    
-  
-
-
-export class Visitor {
+  export class Visitor {
     private name=''
     private cpf=''
     private address =[{
@@ -13,13 +10,15 @@ export class Visitor {
     }]
     private license =''
     private idUser:number
+    private prisma:PrismaClient
     
-  constructor(msg:visitors, id:number){
+  constructor(msg:visitors, id:number,prisma:PrismaClient){
     this.name =msg.name
     this.cpf = msg.cpf
     this.address=msg.address
     this.license =msg.cnh
     this.idUser=id
+    this.prisma =prisma
   }
   
   async setNewVisitor() {
@@ -27,7 +26,7 @@ export class Visitor {
       let address:ArrysAddress[]=[]
       
       this.address.forEach(async(item)=>{
-        const Address= await prisma.address.findFirst({
+        const Address= await this.prisma.address.findFirst({
           where:{
               lt:item.lt,
               qd:item.qd,
@@ -46,7 +45,7 @@ export class Visitor {
         
   
       })
-    const newVisitor = await prisma.visitor.create({
+    const newVisitor = await this.prisma.visitor.create({
         data: {
           name: this.name,
           cpf:this.cpf,
@@ -64,7 +63,7 @@ export class Visitor {
       for (const item of address) {
         if (!item.idResident) continue;
       
-        const inside = new Inside(newVisitor.id, item.idResident, item.id, prisma);
+        const inside = new Inside(newVisitor.id, item.idResident, item.id, this.prisma);
         await inside.visitorInside();
       
         if (item === address[address.length - 1]) {

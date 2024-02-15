@@ -1,9 +1,10 @@
 import jwt from 'jsonwebtoken';
-import prisma from '../database/prisma';
+
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import NodeCache from 'node-cache';
 import { Response ,Request } from 'express';
+import { PrismaClient } from '@prisma/client';
 //import { PrismaClientValidationError } from '@prisma/client/runtime/library';
 dotenv.config();
 
@@ -18,11 +19,13 @@ export class MeuErro extends Error {
 export class Login {
     private cpf:string
     private password:string=''
+    private prisma :PrismaClient
 
- constructor(req:Request){
+ constructor(req:Request,prisma :PrismaClient){
       this.cpf = req.body.cpf
       this.password = req.body.password
-      console.log(req.body.cpf)
+      this.prisma =prisma
+     
     }
 
     async generateToken(userId:string,name:string){
@@ -41,7 +44,7 @@ export class Login {
     try{
         
         if(typeof this.password!=='string') throw new MeuErro('erro de tipo, senha deve conter caracters')
-        const user = await prisma.user.findUnique({ where: { cpf:this.cpf } })
+        const user = await this.prisma.user.findUnique({ where: { cpf:this.cpf } })
         
         if(!user) throw new MeuErro('email incorreto')
         const authenticated =  await bcrypt.compare(this.password, user.password)

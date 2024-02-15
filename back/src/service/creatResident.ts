@@ -9,8 +9,9 @@ export class Residents {
 async setNewResident() {
    
     try{
-       
-     const newAddr= await prisma.address.findFirst({
+       const connect = await prisma
+       if(!connect) return
+     const newAddr= await connect?.address.findFirst({
             where:{
                 lt:1,
                 qd:2
@@ -18,7 +19,7 @@ async setNewResident() {
           })
 
 
-       const newResident = await prisma.resident.create({
+       const newResident = await connect.resident.create({
             data:{
               name: 'carlos',
               cpf: '000',

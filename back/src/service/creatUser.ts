@@ -28,13 +28,14 @@ export class User {
     async creatUser(){
         try{
           
-          
+          //const connect = await prisma
             if(typeof this.password!=='string') return this.res.status(400).send('erro de tipo, senha deve conter caracters')
              this.verifiqueCpf(this.cpf)
              this.verifiquePassword(this.password)
              const hashedPassword = await bcrypt.hash(this.password, 10);
-            
-             await prisma.user.create({
+            const connect = await prisma
+            if(!connect) return
+             await connect.user.create({
                 data: {cpf:this.cpf, name:this.name, password:hashedPassword},
               });
             
@@ -98,6 +99,8 @@ export class User {
 
 export const creatResdents= async()=>{
 //const address = await prisma.address.findMany({})
+const connect = await prisma
+if(!connect) return
 const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
   const arrys = string.split('').join('').split("\n")
   //const newAddr= await prisma.address.findMany({})
@@ -108,7 +111,7 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
     const formatted = CPF.Format(cpfAleatorio);
  
 
- const newResident = await prisma.resident.create({
+ const newResident = await connect.resident.create({
       data:{
         id:(ls+1),
         name: arrys[i],
@@ -137,6 +140,8 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
 
 export const creatAddres = async()=>{
   //const address = await prisma.address.findMany({})
+  const connect = await prisma
+if(!connect) return
   try{
   let arry =[]
   for (let qd = 1; qd <= 20; qd++) {
@@ -151,7 +156,7 @@ export const creatAddres = async()=>{
     }
     console.log(arry)
     for (let i = 0; i <= arry.length; i++) {
-      const address = await prisma.address.create({
+      const address = await connect.address.create({
         data:{
           id:arry[i].id,
           qd:arry[i].qd,

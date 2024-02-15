@@ -6,10 +6,11 @@ import prisma from "../database/prisma";
 export const fillterVistors = async ( socket: Socket) => {
   socket.on("filltervisitor", async (fillter:Datafilter) => {
     try {
-      console.log(fillter)
-      const dataFilter = new DataFilter(fillter,prisma)
+      const conect = await prisma
+      if(!conect) return socket.emit("getvisitors", []);
+      const dataFilter = new DataFilter(fillter,conect)
       const fillters = await dataFilter.HandleDataFilter()
-      console.log(fillters)
+      
 
       socket.emit("getvisitors", fillters);
     } catch (err) {
