@@ -7,10 +7,11 @@
 .bodyEnter {
   position: absolute;
   background-color: white;
-  height: 480px;
-  width: 600px;
+  height: 600px;
+  width: 500px;
   display: flex;
   flex-direction: column;
+  margin: 2px;
 }
 .Infomation {
   display: flex;
@@ -20,12 +21,17 @@
   justify-content: space-between;
   overflow-y: scroll;
   background-colo: aquamarine;
+  margin-bottom: 50px;
+}
+.Infomation input {
+  height: 34px;
+  border: 0cap;
 }
 .Infomation p {
   margin-left: 20px;
 }
 .move {
-  height: 300px;
+  height: 100%;
 }
 .maps {
   display: flex;
@@ -36,6 +42,28 @@
   margin-left: 20px;
   margin-bottom: 3px;
 }
-.continerMap{
+.continerMap {
   margin-left: 20px;
+}
+
+@media screen and (max-width: 580px) {
+  .move {
+    width: 100%;
+    background-color: orangered;
+    display: flex;
+    flex-direction: column;
+  }
+  .Infomation p {
+    font-size: 1.2rem;
+  }
+  .Infomation {
+   width: 80%;
+  }
+  .Infomation input{
+    width: 80%;
+   }
+   .bodyEnter {
+    background-color: antiquewhite;
+    width:98% ;
+   }
 }

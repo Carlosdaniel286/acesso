@@ -1,17 +1,18 @@
 import { PrismaClient } from "@prisma/client"
-import { visitors ,ArrysAddress} from "../types/vistors" 
-import { Inside } from "./insideVisitor"    
+import { visitors ,ArrysAddress ,visitorAddres} from "../types/vistors" 
+import { Inside } from "./insideVisitor"
+  
   export class Visitor {
     private name=''
     private cpf=''
-    private address =[{
-      qd:0,
+    private address:visitorAddres[] =[{
+      qd:0 ,
       lt:0
     }]
     private license =''
     private idUser:number
     private prisma:PrismaClient
-    
+    private Address:ArrysAddress[]=[]
   constructor(msg:visitors, id:number,prisma:PrismaClient){
     this.name =msg.name
     this.cpf = msg.cpf
@@ -19,33 +20,42 @@ import { Inside } from "./insideVisitor"
     this.license =msg.cnh
     this.idUser=id
     this.prisma =prisma
+    
   }
   
   async setNewVisitor() {
     try{
-      let address:ArrysAddress[]=[]
       
-      this.address.forEach(async(item)=>{
-        const Address= await this.prisma.address.findFirst({
-          where:{
-              lt:item.lt,
-              qd:item.qd,
-              },
-        })
-        
+      console.log(this.address)
+      for (const item of this.address) {
+        if (item.lt == '') return { success: false, message: 'Endereço não encontrado.' };
+        if (item.qd == '') return { success: false, message: 'Endereço não encontrado.' };
+      
+        const Address = await this.prisma.address.findFirst({
+          where: {
+            lt: item.lt,
+            qd: item.qd,
+          },
+        });
+      
+        console.log(Address);
+      
         if (Address === null) {
           return { success: false, message: 'Endereço não encontrado.' };
         }
+      
         if (Address.idResident === null) {
           return { success: false, message: 'Sem residente nesse endereço.' };
         }
-        
-          address.push(Address)
-        
-        
-  
-      })
-    const newVisitor = await this.prisma.visitor.create({
+      
+        this.Address.push(Address);
+      }
+      
+      if (this.Address.length === 0) {
+        return { success: false, message: 'vazio' };
+      }
+      
+        const newVisitor = await this.prisma.visitor.create({
         data: {
           name: this.name,
           cpf:this.cpf,
@@ -59,19 +69,21 @@ import { Inside } from "./insideVisitor"
       });
      
      
-      
-      for (const item of address) {
-        if (!item.idResident) continue;
-      
+      console.log( this.Address)
+      for (let i = 0; i <  this.Address.length; i++) {
+        const item =  this.Address[i];
+        console.log('oi')
+        if (!item.idResident) return { success: false };
         const inside = new Inside(newVisitor.id, item.idResident, item.id, this.prisma);
-        await inside.visitorInside();
-      
-        if (item === address[address.length - 1]) {
+        const insides = await inside.visitorInside();
+        console.log(insides);
+        if (i ===  this.Address.length - 1) {
           return { success: true };
         }
       }
       
-    //return { success: false, message: 'Sem residente nesse endereço.' };
+      
+    //return { success: true, message:  '' };
      
     }catch(error){
       console.error('Erro ao criar visitante:', error);

@@ -103,10 +103,9 @@ export const getVisitor= async()=>{
             }
           })
          
-         const allUsersFormatted = Fomart(allUsers)
-          console.log(allUsersFormatted)
-          console.log(dateCompare)
-      return allUsersFormatted
+         //const allUsersFormatted = Fomart(allUsers)
+          
+      return allUsers
   }catch(err){
     throw new MeuErro('sem usuarios')
     }

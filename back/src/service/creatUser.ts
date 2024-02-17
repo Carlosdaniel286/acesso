@@ -116,6 +116,7 @@ const string = l.replace(/<li>/g, '').replace(/<\/li>/g, ',');
         id:(ls+1),
         name: arrys[i],
         cpf: formatted,
+      
         Address:{
             connect: {
             id: (ls+1), // Utiliza o ID do endereço criado anteriormente
@@ -161,7 +162,6 @@ if(!connect) return
           id:arry[i].id,
           qd:arry[i].qd,
           lt:arry[i].lt,
-          
           
         }
 

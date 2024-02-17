@@ -51,7 +51,7 @@ export default function NewEntry({ cards }: card) {
           }
           Onclik={(()=>{})}
           header="cadastro de visitantes"
-          SelectButton="1"
+          SelectButton="4"
         />
       </div>
     </div>

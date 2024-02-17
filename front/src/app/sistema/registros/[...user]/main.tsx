@@ -33,6 +33,7 @@ export default function Mean() {
          </header>
          <main key={'2'} className={on.main}>
               <Scroll />
+              
            </main>
           </div>
         

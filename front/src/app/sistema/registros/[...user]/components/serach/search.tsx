@@ -24,12 +24,17 @@ export default function Seach() {
    const setValueOfName =(name:string)=>{
      setInputs({...inputs,name})
    }
-  useEffect(() => {
-    if (changeInput == null) return;
-    console.log(changeInput);
+   
 
-    FillterThis(socket, input, inputs);
+  useEffect(() => {
+   //console.log(input)
+      FillterThis(socket, input, inputs);
   }, [inputs.name, inputs.cpf, input, changeInput]);
+
+  useEffect(() => {
+    console.log('oiiiiiii');
+    
+  }, [inputs.name]);
 
   return (
     <div className={style.serachbody}>

@@ -89,7 +89,7 @@ export default function PortariaCadastro() {
               <div className={on.password}>
                 <input
                   type="password"
-                  placeholder="deve contem letras, numeros , caracteris e ser forte"
+                  placeholder="senha"
                   onChange={(ev) => signUp(ev)}
                   value={inputs.password}
                 />

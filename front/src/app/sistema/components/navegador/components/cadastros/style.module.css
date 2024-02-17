@@ -1,23 +1,51 @@
-
 @font-face {
-    font-family: 'fonte';
-    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
-    /* Adicione outros formatos de fonte se necessário */
-  }
-
-.Cadbodys{
-    height: 100%;
-    width: 100%;
-    display: inline-flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 0px;
-   
-    
-    
+  font-family: "fonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
+  /* Adicione outros formatos de fonte se necessário */
 }
-.main{
+
+.Cadbodys {
   height: 100%;
   width: 100%;
- }
+  display: inline-flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px;
+  
+}
+.main {
+  height: 600px;
+  width: 500px;
+  background-color: white;
+}
+.cad_inputs input {
+  width: 100%;
+}
+.cad_inputs {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+ 
+}
+
+@media screen and (max-width:640px) {
+  .main {
+    width: 100vw;
+    height: 100%;
+    background-color:orangered;
+  }
+  .cad_inputs input {
+    width: 100%;
+    height: 35px;
+    border: 0ch;
+  }
+}
+@media screen and (min-height: 1000px) {
+  .main {
+    height: 80%;
+    width: 650px;
+  }
+}

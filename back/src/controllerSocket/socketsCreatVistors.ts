@@ -9,13 +9,16 @@ export const handleCreateVisitorEvent = (io: Server, socket: Socket) => {
     try {
       const connect = await prisma
       if(!connect) return
+      //console.log(newVisitor.address)
       const creatVistors = new Visitor(newVisitor, userId,connect);
       const response = await creatVistors.setNewVisitor();
+      console.log(response)
       if(response==undefined)  return 
       if (!response.success) {
         return io.emit("getvisitors", response.message);
       }
       const visitor = await getVisitor();
+      console.log(visitor)
       io.emit("getvisitors", visitor);
     
     } catch (error) {

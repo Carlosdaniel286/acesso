@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, ReactNode, Dispatch, SetSta
 
 
 
-export type Input = 'cpf' | 'nome' | 'codigo'|null;
+export type Input = 'cpf' | 'nome' | 'codigo';
 
 interface UserContextProps {
     changeInput: Input;

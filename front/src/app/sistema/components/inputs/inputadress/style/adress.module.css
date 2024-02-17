@@ -1,26 +1,30 @@
-.adress{
-    display: flex;
-    max-width: 100%;
-    justify-content: space-between;
-    background-colo:blue ;
+.adress {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
 }
 .adress input {
-    width: 100%;
-    margin-bottom: 8px;
+  max-width: 43%;
+  margin-bottom: 8px;
 }
-.addressAdd{
-    display: flex;
-    max-width: 100%;
-    align-items: center;
+.lt_inputs {
+  margin-right: 10px;
 }
-.imgAddress{
-    display: inline;
-    align-items:flex-start;
-    margin-left:30px ;
-    background-colo: brown;
-    height: 100%;
+.addressAdd {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
-.addressArry{
-    display: flex;
-    flex-direction: column;
+.imgAddress {
+  display: inline;
+  align-items: flex-start;
+  margin-left: 30px;
+  height: 100%;
+ 
+}
+.addressArry {
+  display: flex;
+  flex-direction: column;
 }

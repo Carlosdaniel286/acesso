@@ -2,8 +2,8 @@
 
 
 export type visitorAddres={
-    qd:number,
-     lt:number
+    qd:number | "",
+     lt:number | ""
  }
 export type visitors ={
     name:string,

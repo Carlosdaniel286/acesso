@@ -32,7 +32,7 @@ export default function Scroll() {
     if (socket) {
       socket.emit("getvisitor", "");
       socket.on("getvisitors", (msg: project[] | []) => {
-        console.log(msg);
+       
         setVisitors([...msg]);
       });
     }
@@ -49,7 +49,7 @@ export default function Scroll() {
           visitors.map((item) => (
             <div
               onClick={() => {
-                setChangeInput(null);
+               // setChangeInput(null);
                 console.log(item.name);
                 setHiddeNav({ ...hiddeNav, overflow: !hiddeNav.overflow });
                 setChanger({

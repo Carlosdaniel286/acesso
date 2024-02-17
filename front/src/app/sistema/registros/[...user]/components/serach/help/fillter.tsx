@@ -2,19 +2,21 @@
 'use client'
 import { Socket } from "socket.io-client";
 import { Inputs } from "@/app/types/inputs";
-import { project } from "@/app/types/form";
+
 export const FillterThis=(
     socket: Socket | undefined ,
     codes:string,
     inputs:Inputs,
     
     )=>{
-        
-    if(inputs.name=='' && inputs.cpf=='' && inputs.cnh=='') {
+       
+       
+    if(inputs.name=='' && inputs.cpf=='' && codes=='') {
        if(!socket) return
-        socket.emit("getvisitor", "");
+       socket.emit("getvisitor", "");
         return
     }
+    
     if(!socket) return
        let code:Number |"" = 0
        const {cpf , name}=inputs
@@ -23,5 +25,6 @@ export const FillterThis=(
     }else{
        code = Number(codes)
     }
+    console.log(code)
     socket.emit("filltervisitor",{cpf , name , code})
    }

@@ -1,17 +1,41 @@
 @font-face {
-  font-family: 'MinhaFonte';
-  src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
+  font-family: "MinhaFonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
   /* Adicione outros formatos de fonte se necessário */
 }
 
+body {
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin: 0%;
+  padding: 0%;
+  font-family: "MinhaFonte";
+}
+footer li {
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+}
+footer span {
+  margin-left: 8px;
+  
+}
+footer ul {
+  margin: 0%;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: rgb(234, 240, 238);
+  width: 100%;
+}
 
-body{
-    overflow-x: hidden;
-    box-sizing: border-box;
-    margin: 0%;
-    padding: 0%;
-    font-family:'MinhaFonte' ;
-    
-  }
-
-
+footer {
+  margin-top: 0px;
+  display: flex;
+  height: 150px;
+  background-color: orangered;
+  width: 100%;
+  padding: 0px;
+  
+}

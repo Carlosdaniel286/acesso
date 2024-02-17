@@ -1,46 +1,54 @@
 @font-face {
-    font-family: 'fonte';
-    src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
-    /* Adicione outros formatos de fonte se necessário */
-  }
-  .portBody{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: orangered;
-  }
- .port{
-    height: 80%;
-    width: 30%;
-  }
-  .password{
-    width: 100%;
-    
-  }
-  .password input {
-    width: 100%;
-  }
-  .text{
-    margin-left: 20px;
-    margin-top: 10px;
-  
-  }
-  .text span {
-    font-size: 0.8rem;
-    color: rgb(155, 150, 150);
-  }
-  
-  
-  
-  @media screen and (min-width: 100px) and (max-width: 800px) {
-    .port{
-     width: 80%;
-    }
-  }
+  font-family: "fonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
+  /* Adicione outros formatos de fonte se necessário */
+}
+.portBody {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: orangered;
+}
+.port {
+  height: 600px;
+  width: 500px;
+  background-color: white;
+}
+.port input {
+  width: 100%;
+  background-color: white;
+}
+.password {
+  border: 0px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.password input {
+  width: 90%;
+}
+.text {
+  margin-top: 10px;
+  width: 90%;
+}
+.text span {
+  font-size: 0.8rem;
+  color: white;
+}
 
-  @media screen and (min-width: 800px) and (max-width: 960px) {
-    .port{
-     width: 50%;
-    }
+@media screen and (max-width: 900px) {
+  .port {
+    width: 100%;
+    background-color: orangered;
+    height: 80%;
   }
+  .port input {
+    border: 0px;
+    width: 100%;
+    background-color: white;
+    height: 50px;
+  }
+}

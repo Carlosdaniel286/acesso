@@ -40,8 +40,7 @@ const setValueOfName=(name:string)=>{
   
   const Requests = async () => {
     setHidden(false);
-    console.log(inputs)
-    //setChangeInput("nome");
+   
     if (socket) {
       //visitors
       socket.emit("visitors", {
@@ -64,7 +63,7 @@ const setValueOfName=(name:string)=>{
   
 
   useEffect(() => {
-   setChangeInput(null);
+   ///setChangeInput(null);
     if (!socket) return;
     socket.on("getvisitors", (msg: project[]) => {
       console.log(msg);
@@ -79,7 +78,7 @@ const setValueOfName=(name:string)=>{
         <Cadastros
           // eslint-disable-next-line react/no-children-prop
           children={
-            <>
+            <div className={on.cad_inputs}>
               <InputName getValueOfName={setValueOfName}/>
               <Inputcpf 
               getValueOfCpf={setValueOfCpf}
@@ -90,11 +89,11 @@ const setValueOfName=(name:string)=>{
               <InputCnh 
               getValueOfCnh={setValueOfCnh}
               />
-            </>
+            </div>
           }
           Onclik={Requests}
           header="cadastro de vistantes"
-          SelectButton="1"
+          SelectButton="4"
         />
       </div>
     </div>

@@ -77,6 +77,7 @@ export const InputAdress = ({getValueOfAddress}:address) => {
     <div className={style.adress}>
       
       <input
+       className={style.lt_inputs}
         type="text"
         placeholder={"qd: max 20"}
         onChange={handleQd}

@@ -10,7 +10,7 @@ export const InputName = ({getValueOfName}:Names) => {
   const[name , setName] =useState('')
   
   useEffect(()=>{
-    if(name=='') return
+    //if(name=='') return
      getValueOfName(name)
   },[name])
   

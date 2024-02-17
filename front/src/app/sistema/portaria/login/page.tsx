@@ -40,7 +40,7 @@ export default function Login() {
         <Cadastros
           // eslint-disable-next-line react/no-children-prop
           children={
-            <>
+            <div className={on.login_inputs}>
               <Inputcpf 
                getValueOfCpf={setValueOfCpf}
               />
@@ -49,7 +49,7 @@ export default function Login() {
                getValueOfPassword={setValueOfPassworld}
               />
               
-            </>
+            </div>
           }
           Onclik={Request}
           header="login"

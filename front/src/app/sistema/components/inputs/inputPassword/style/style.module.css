@@ -4,58 +4,15 @@
     src: url('/pro/SF-Compact-Rounded-Semibold.ttf') format('truetype');
     /* Adicione outros formatos de fonte se necessário */
   }
-  .Loginbody{
-    height: 100vh;
-    background-color: rgb(190, 88, 88);
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    
-    
-    
-}
-.login{
-    width: 53%;
-    height: 100%;
-    position: relative;
-   
-}
-.img{
-  width: 100%;
-  height: 93%;
-  display: flex;
-  align-items: center;
-  justify-content:center;
-  background-color: rgb(214, 57, 57);
-  background-color: orangered;
- padding: 0px;
-  right: 0;
-  left: 40%;
   
-}
-.contentImg{
-background-color: white;
 
-width: 400px;
-height: 420px;
-display: flex;
-align-items: center;
-justify-content:center;
-border-radius: 20%;
-padding: 17px;
-margin-left: 10%;
-}
-.imgbody{
-background-color: orangered;
-height: 100%;
-width: 50%;
-display: flex;
-align-items: center;
-justify-content:center;
-}
+
+
 .password{
   width: 100%;
-  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .password input {
   width: 100%;
@@ -63,11 +20,11 @@ justify-content:center;
 .text{
   margin-left: 20px;
   margin-top: 10px;
-
+  color: white;
 }
 .text span {
   font-size: 0.8rem;
-  color: rgb(155, 150, 150);
+  color: white;
 }
 
 

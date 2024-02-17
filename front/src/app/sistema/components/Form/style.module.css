@@ -19,27 +19,26 @@
   display: flex;
   align-items: center;
   width: 100%;
-  background-color: orangered;
-  background-color: white;
   border-radius: 20px;
 }
 .form {
   display: flex;
   flex-direction: column;
-  background-color: white;
   height: 100%;
   width: 100%;
-  padding-left: 0%;
+  padding-lef: 0%;
   border-radius: 3px;
   justify-content: space-between;
+  align-items: center;
   border-radius: 10px;
+  box-sizing: border-box;
+  text-transform: capitalize;
 }
 .form input {
   background-color: transparent;
   border: 0px;
   max-width: 90%;
   margin-top: 20px;
-  margin-left: 20px;
   border-bottom: 1px solid rgba(116, 114, 114, 0.7);
   font-size: 1rem;
   font-family: "fonte";
@@ -69,6 +68,7 @@
   margin: 5px;
   padding: 10;
   color: white;
+  width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,8 +78,27 @@
 .submit {
   height: 30%;
   display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 90%;
+}
+.value {
+  display: flex;
+  height: 50px;
+  width: 50px;
+  border-radiu: 50%;
+  background-colo: rgb(167, 164, 160);
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+.value button {
+  background-color: rgb(112, 98, 194);
+  margin: 0%;
+  padding: 0px;
+  font-size: 25px;
+  color: blue;
 }
 .submit button {
   border: 0ch;
@@ -89,13 +108,34 @@
   font-size: 1.2rem;
   border-radius: 6px;
   cursor: pointer;
-  width: 40%;
+  width: 100%;
 }
 .loginButton {
-  margin-right: 20px;
+  margin-right: 0px;
   background-color: rgb(250, 75, 12);
 }
+.loginButton4 {
+  margin-right: 0px;
+  background-color: rgb(172, 167, 165);
+}
 .CadastroButton {
-  margin-right: 20px;
-  background-color: rgb(228, 129, 129);
+  margin-top: 0px;
+}
+
+@media screen and (max-width: 900px) {
+  .loginButton {
+    width: 100%;
+    background-color: rgb(172, 167, 165);
+    height: 50px;
+  }
+  .submit {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .form header {
+    background-color: transparent;
+  }
+  .form input {
+    background-color: white;
+  }
 }
