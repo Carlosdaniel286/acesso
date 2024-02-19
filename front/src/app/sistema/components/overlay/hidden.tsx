@@ -5,9 +5,9 @@ import { useContextHiddent } from '../../context/hiddeNav';
 import { useChangeInput } from '../../context/changeInputs';
 interface Props {
     children: ReactNode;
-    value:boolean| null
+    
   }
-export default function Overlay({children, value}:Props) {
+export default function Overlay({children}:Props) {
   const {setHiddeNav,hiddeNav} = useContextHiddent()
   const {setChangeInput} =useChangeInput()
     const refPai = useRef<HTMLDivElement>(null);

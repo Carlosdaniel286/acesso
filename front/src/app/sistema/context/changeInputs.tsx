@@ -28,7 +28,7 @@ export const useChangeInput = () => {
   const context = useContext(ChangeInput);
 
   if (!context) {
-    throw new Error('ChangeInput deve ser usado dentro de um UserProviderVisitors');
+    throw new Error('ChangeInput deve ser usado dentro de um ChangeInput');
   }
 
   return context;

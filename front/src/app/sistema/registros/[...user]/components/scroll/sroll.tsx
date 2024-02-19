@@ -22,7 +22,7 @@ export default function Scroll() {
   const { socket } = ConnectSoket();
   const { visitors, setVisitors } = useVisitors();
   const [changer, setChanger] = useState(HandlerChanger);
-  const { setChangeInput } = useChangeInput();
+  
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   useEffect(() => {
     console.log(visitors);

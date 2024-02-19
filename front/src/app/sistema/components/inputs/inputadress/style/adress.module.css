@@ -11,20 +11,39 @@
 .lt_inputs {
   margin-right: 10px;
 }
+.inputsOver {
+  color: black;
+  display: flex;
+}
+.clean {
+  min-height: 100%;
+  display: flex;
+  align-items:flex-end;
+}
+.index {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+}
 .addressAdd {
   display: flex;
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 0px;
+  
 }
 .imgAddress {
   display: inline;
   align-items: flex-start;
-  margin-left: 30px;
+  margin-left: 0px;
   height: 100%;
- 
 }
 .addressArry {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding: 5px;
+  margin-bottom: 3px;
 }
+

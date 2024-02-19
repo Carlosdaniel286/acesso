@@ -14,6 +14,8 @@ export class newEntry {
     
     async NewEntry(){
         try{
+        if(this.addressResident.qd=='') return
+        if(this.addressResident.lt=='') return
         const address = await this.prisma.address.findFirst({
             where:{
                 qd:this.addressResident.qd,

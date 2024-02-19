@@ -1,7 +1,8 @@
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-
+import { UserChangeInput } from './sistema/context/changeInputs'
+import { UserProviderHidden } from './sistema/context/hiddeNav'
 export default function RootLayout({
   children,
 }: {
@@ -13,7 +14,9 @@ export default function RootLayout({
         <title>easyresgistercondominios</title>
       </head>
       <body className={"bodys"} suppressHydrationWarning={true}>
+        <UserProviderHidden >
         {children}
+      </UserProviderHidden >
         <footer>
           <ul>
             <li>

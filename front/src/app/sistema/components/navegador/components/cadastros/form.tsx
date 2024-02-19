@@ -83,10 +83,12 @@ const setValueOfName=(name:string)=>{
               <Inputcpf 
               getValueOfCpf={setValueOfCpf}
               />
+              <div className={on.addAdress_main}>
               <InputAdressMain
               setValueOfAddress={setValueOfAddress}
               />
-              <InputCnh 
+              </div>
+             <InputCnh 
               getValueOfCnh={setValueOfCnh}
               />
             </div>

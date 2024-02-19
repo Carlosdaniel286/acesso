@@ -24,7 +24,7 @@ export default function Nav() {
               />
              </div>
             }
-           value={true}
+          
           />
           }
          <ul>

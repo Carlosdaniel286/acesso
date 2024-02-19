@@ -13,9 +13,14 @@ const urlBaseClient = process.env.NEXT_PUBLIC_URL_CLIENT
 export default function Cadastros({children,Onclik,header,SelectButton}:CadastrosProps) {
  const [value, setvalue]=useState('')
   const {setHiddeNav,hiddeNav} = useContextHiddent()
+  const[heightSubmit, setheightSubmit] =useState(20)
   useEffect(()=>{
     if(SelectButton==='4'){
       setvalue('sair')
+    
+    }
+    if(SelectButton==='1' || SelectButton ==='3'){
+      setheightSubmit(30)
     }
   },[SelectButton])
 
@@ -29,7 +34,7 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
           
                 {children}
               
-               <div className={on.submit}>
+               <div style={{height:`${heightSubmit}%`}} className={on.submit}>
                 {SelectButton==='1' && 
                 <>
                  <button className={on.loginButton} onClick={Onclik}>{'enviar'}</button>
