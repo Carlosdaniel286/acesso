@@ -1,53 +1,74 @@
+/* eslint-disable react/jsx-no-undef */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/no-children-prop */
-
 'use client';
-
 import style from '../style/enter.module.css';
 import Cadastros from '@/app/sistema/components/Form/cadastros';
 import { useEffect, useState } from 'react';
 import { card } from '@/app/types/cards';
 import { addressValue } from '@/app/types/inputs';
 import Address from './addAdress';
-import { isTypedArray } from 'util/types';
+import { ConnectSoket } from '@/app/sistema/context/socket';
+import RenderAddress from './RenderAddress/getAddress';
+import Image from 'next/image';
+import { UserProviderHidden, useContextHiddent } from '@/app/sistema/context/hiddeNav';
+
+type newEnters={
+  address:addressValue[],
+  visitorId: number,
+ }
 
 export default function NewEntry({ cards }: card) {
+  const{setHiddeNav,hiddeNav }=useContextHiddent()
+  const {socket}= ConnectSoket()
   const [valueOfAddress, setValueOfAddress] = useState<addressValue[]>([{
-    lt:'',
-    qd:''
+    lt: '',
+    qd: ''
   }]);
   const [valueOfAddressClone, setValueOfAddresClone] = useState<addressValue[]>([{
-    lt:'',
-    qd:''
+    lt: '',
+    qd: ''
   }]);
-   
-  useEffect(()=>{
-   console.log(valueOfAddressClone)
-   },[valueOfAddressClone])
+  const [AddAddres, setAddress] = useState(false);
+  const [renderAddress, setRenderAddress] = useState(false);
+  useEffect(() => {
+    console.log(valueOfAddressClone)
+  }, [valueOfAddressClone]);
+  
+  const newEnter =()=>{
+    
+    const newVisitor:newEnters ={
+      address:valueOfAddressClone,
+      visitorId:cards.id
+    }
+   socket?.emit('visitorsEnter',newVisitor)
+   setHiddeNav({... hiddeNav,overflow:false})
+  }
+  
   
   const getValueOfAddress = (value: addressValue[]) => {
     setValueOfAddress(value);
   };
- const [AddAddres, setAddress] = useState(false);
- 
- const setValue = (value:boolean) => {
-   setAddress(value)
-};
+  
+  
+  const setValue = (value: boolean) => {
+    setAddress(value);
+  };
+  const handleAddress = () => {
+    setRenderAddress(!renderAddress)
+  };
 
   return (
     <div className={style.bodyEnter}>
       {AddAddres && 
         <div className={style.conent_address}>
           <Address 
-          getValueOfAddress={getValueOfAddress} 
-          setValue={setValue}
-         setValueOfAddresClone={setValueOfAddresClone}
-          valueOfAddressClone={valueOfAddressClone}
-          valueOfAddress={valueOfAddress}
-
+            getValueOfAddress={getValueOfAddress} 
+            setValue={setValue}
+            setValueOfAddresClone={setValueOfAddresClone}
+            valueOfAddressClone={valueOfAddressClone}
+            valueOfAddress={valueOfAddress}
           />
-          
-        
         </div>
       }
       <div className={style.move}>
@@ -67,35 +88,39 @@ export default function NewEntry({ cards }: card) {
               </div>
                
               <div className={style.continerMap}>
-                Enderço
-                {cards.inside.map((item,id)=>(
-                  <div className={style.maps} key={id}>
-                    <p key={id}>
-                      qd: {item.Address.qd}
-                    </p>
-                    <p key={id+1}>
-                      lt: {item.Address.lt}
-                    </p>
-                    
-                  </div>
-                ))}
+                <div className={style.continer_RenderAddress}>
+                   <Image
+                    src={"/local.png"}
+                    alt="Descrição da imagem"
+                    width={60}
+                     height={60}
+                    style={{ borderRadius: "50%" }}
+                    onClick={(()=>{setRenderAddress(true)})}
+          /></div>
+                {renderAddress && <>
+                <RenderAddress
+                cards={{cards}}
+                handlerOverlay={handleAddress}
+                />
+                </>
+                }
                 <div>
-                <p>adiconados</p>
-                  {valueOfAddressClone.map((item ,id)=>(
-                   <div className={style.maps} key={id}>
-                    {item.qd!=='' && item.lt!=='' && <>
-                <p key={id}>
-                   qd: {item.qd}
-                 </p>
-                 <p key={id+1}>
-                   lt: {item.lt}
-                 </p>
-                 </>
-                 }
-               </div>
-                  
+                 
+                  {valueOfAddressClone.map((item, id) => (
+                    <div className={style.maps} key={id}>
+                      {item.qd !== '' && item.lt !== '' && <>
+                        <p key={id}>
+                          qd: {item.qd}
+                        </p>
+                        <p key={id + 1}>
+                          lt: {item.lt}
+                        </p>
+                        <p>dd</p>
+                      </>
+                      }
+                    </div>
                   ))
-                   }
+                  }
                 </div>
               </div>
               
@@ -104,7 +129,7 @@ export default function NewEntry({ cards }: card) {
               </div>
             </div>
           }
-          Onclik={() => {}}
+          Onclik={newEnter}
           header="cadastro de visitantes"
           SelectButton="4"
         />

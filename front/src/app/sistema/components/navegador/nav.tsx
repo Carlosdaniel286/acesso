@@ -17,6 +17,7 @@ export default function Nav() {
       <nav className={nav.nav} >
         {hidden &&
           <Overlay 
+          handleOverlayVisibility={'default'}
           children={
             <div className={nav.limit}>
               <VisitaCadastros

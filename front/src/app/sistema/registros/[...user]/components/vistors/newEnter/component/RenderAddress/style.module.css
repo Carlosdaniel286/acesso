@@ -1,0 +1,103 @@
+
+   .RenderAddress{
+     background-color: white;
+     display: flex;
+     flex-direction: column;
+     overflow-y: auto;
+     width: 580px;
+     min-height: 100px;
+     max-height: 500px;
+     
+   }
+   .maps {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3px;
+    padding: 10px;
+    width: 90%;
+    word-break: break-all;
+    
+    
+  }
+  .maps p {
+    margin: 0px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+  }
+  .date{
+    font-size:0.9rem;
+    color: rgb(168, 178, 179);
+  }
+  .dateNow{
+    font-size: 1.1rem;
+    color: black;
+  }
+
+  .RenderAddress::-webkit-scrollbar {
+    width: 3px; /* Largura da barra de rolagem */
+   
+  }
+  .RenderAddress::-webkit-scrollbar-track {
+    background: #fcf9f9; /* Cor do fundo da barra de rolagem */
+    max-height: 5px;
+  }
+  .RenderAddress::-webkit-scrollbar-thumb {
+    background:rgb(236, 40, 40); /* Cor do indicador da barra de rolagem */
+    max-height: 5px;
+  }
+  .contanier_Address{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    }
+.container_button button{
+    background-color: rgba(221, 44, 53, 0.6);
+    text-transform: capitalize;
+    border: 0cap;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    font-family: "MinhaFonte";
+    display: none;
+    }
+
+  @media screen and (max-width:650px) {
+    .RenderAddress{
+        width: 100%;
+        max-height: 450px;
+        min-height: 400px;
+        overflow-x: hidden;
+        
+    }
+    .maps {
+        height: 25px;
+        padding: 10px;
+        padding-right: 0px;
+      
+        width: 100%;
+        justify-content:space-around;
+    }
+    .maps p {
+        font-size: 1rem;
+        padding: 0px;
+        margin: 0%;
+    }
+    .contanier_Address{
+        padding: 4px;
+        width: 93%;
+        
+    }
+   
+  }
+  @media screen and (max-width:830px) {
+    .container_button button{
+        display: block;
+    }
+  }

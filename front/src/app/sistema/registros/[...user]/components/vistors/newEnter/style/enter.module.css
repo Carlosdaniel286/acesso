@@ -8,7 +8,7 @@
   position: absolute;
   background-color: white;
   height: 600px;
-  width: 600px;
+  width: 500px;
   display: flex;
   flex-direction: column;
   margin: 2px;
@@ -20,9 +20,10 @@
   max-height: 350px;
   justify-content: space-between;
   margin-bottom: 50px;
-  width: 550px;
+  width: 450px;
+  
 }
-.conent_address{
+.content_address{
   display: flex;
   background-color: white;
   max-height: 300px;
@@ -32,7 +33,8 @@
   padding-bottom: 40px;
   
 }
-.adress_color{
+
+.address_color{
   background-color: rgb(189, 84, 84);
   background-color: white;
   padding: 30px;
@@ -42,24 +44,26 @@
   justify-content: center;
   border-radius: 8px;
   }
-.conent_address::-webkit-scrollbar {
+
+.content_address::-webkit-scrollbar {
   width: 3px; /* Largura da barra de rolagem */
   height: 10px;
 }
-.conent_address::-webkit-scrollbar-track {
+.content_address::-webkit-scrollbar-track {
   background: #b33d3d; /* Cor do fundo da barra de rolagem */
   max-height: 5px;
 }
-.conent_address::-webkit-scrollbar-thumb {
-  background:rgb(168, 158, 158)8; /* Cor do indicador da barra de rolagem */
+.content_address::-webkit-scrollbar-thumb {
+  background:rgb(168, 158, 158); /* Cor do indicador da barra de rolagem */
   max-height: 5px;
 }
-.AddAddres_button{
+
+.AddAddress_button{
   height: 100px;
   display: flex;
   align-items: flex-end;
 }
-.AddAddres_button button{
+.AddAddress_button button{
   background-color: rgb(134, 127, 230,0.6);
   text-transform: capitalize;
   border: 0cap;
@@ -70,7 +74,7 @@
   font-family: "MinhaFonte";
 }
 
-.conent_address input {
+.content_address input {
   border: 0pc;
   border-bottom: 1px solid rgb(131, 131, 134);
   height: 40px;
@@ -90,12 +94,13 @@
   
 }
 .p_Infomation{
-  margin-top: 10px;
- margin-bottom: 10px;
- display: flex;
- justify-content:space-between;
- width: 400px;
-
+   margin-top: 10px;
+   margin-bottom: 10px;
+   display: flex;
+   align-items: center;
+   justify-content:space-between;
+   width: 90%;
+   background-color: aliceblue;
 }
 #cod_p{
   width: 190px;
@@ -117,10 +122,26 @@
 }
 .continerMap {
  overflow-y: auto;
-  width: 500px;
+  width: 400px;
   min-height: 50px;
   max-height: 200px;
+  display: flex;
+  
+  
 }
+
+.continer_RenderAddress{
+  display: inline-flex;
+  background-color: orangered;
+  text-transform:capitalize;
+  border: 0cap;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "MinhaFonte";
+}
+
 .button button {
   background-color: rgb(134, 127, 230,0.6);
   text-transform: capitalize;
@@ -144,6 +165,10 @@
   cursor: pointer;
   font-family: "MinhaFonte";
 }
+.date{
+  font-size: 0.2rem;
+  color: rgb(185, 196, 196);
+}
 
 @media screen and (max-width: 580px) {
   .move {
@@ -165,30 +190,39 @@
   }
   
 }
+@media screen and (max-width: 605px) {
+  .p_Infomation p{
+    display: flex;
+    font-size: 1rem;
+    
+  }
+  #cod_p{
+    width: 170px;
+  }
+}
 
 @media screen and (max-width: 650px) {
-  .adress_color{
+  .address_color{
     width: 90%;
     padding: 10px;
   }
-  .conent_address{
+  .content_address{
     width: 100%;
     padding: 10px;
   }
-  .conent_address input {
+  .content_address input {
     width: 90%;
   }
   .p_Infomation{
     display: flex;
-    flex-direction: column;
-    width: 200px;
+    width: 100%;
+    background-color: aliceblue;
     
   }
   .Infomation {
-    width: 300px;
+    width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    
   }
   .bodyEnter {
     align-items: center;
@@ -203,4 +237,15 @@
     
   }
   
+}
+@media screen and (max-width: 540px) {
+  .p_Infomation{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100%;
+    background-color: aliceblue;
+    
+  }
 }

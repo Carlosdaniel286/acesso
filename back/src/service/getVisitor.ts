@@ -27,7 +27,7 @@ const Fomart =(allUsers:any[])=>{
         
          return{
            ...item,
-           createdAt:format(new Date(item.createdAt), "MM/dd/yyyy HH:mm:ss")
+           createdAt:format(new Date(item.createdAt), "dd/MM/yyyy HH:mm")
          }
        }),
        inside:user.inside.map((item:any)=>{
@@ -36,7 +36,7 @@ const Fomart =(allUsers:any[])=>{
       }
          return{
            ...item,
-           createdAt:format(new Date(item.createdAt), "MM/dd/yyyy HH:mm:ss")
+           createdAt:format(new Date(item.createdAt), "dd/MM/yyyy HH:mm")
           
          }
          
@@ -44,7 +44,7 @@ const Fomart =(allUsers:any[])=>{
          
        }),
        
-       controll:''
+       
        
      }
      
@@ -103,9 +103,9 @@ export const getVisitor= async()=>{
             }
           })
          
-         //const allUsersFormatted = Fomart(allUsers)
+         const allUsersFormatted = Fomart(allUsers)
           
-      return allUsers
+      return allUsersFormatted
   }catch(err){
     throw new MeuErro('sem usuarios')
     }

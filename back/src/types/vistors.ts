@@ -5,7 +5,7 @@ export type visitorAddres={
     qd:number | "",
      lt:number | ""
  }
-export type visitors ={
+export type VisitorInfo ={
     name:string,
     cpf:string,
     address:visitorAddres[],
@@ -25,10 +25,12 @@ export type visitorsType={
 
 } 
 
-export type ArrysAddress={
+export type AddressInfo={
     id: number;
     qd: number;
     lt: number;
     idResident: number | null
 }
 
+
+ 

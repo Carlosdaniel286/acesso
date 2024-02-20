@@ -14,6 +14,7 @@ export default function Entry({cards}:card){
          /> 
         </>
        }
+       handleOverlayVisibility={'default'}
        
      />
     </>

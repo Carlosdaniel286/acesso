@@ -24,8 +24,8 @@ export default function Login() {
  
   const Request = async () => {
     const response = await axios.post("/routes/login", {
-      cpf: inputs.cpf,
-      password: inputs.password,
+      cpf:'111.111.111-11',
+      password:'Logaste1%',
     });
 
     const name = response.data;
@@ -37,10 +37,15 @@ export default function Login() {
   return (
     <div className={on.Loginbody}>
       <div className={on.login}>
+        
         <Cadastros
+       
           // eslint-disable-next-line react/no-children-prop
+          children={<></>}
+          /*
           children={
             <div className={on.login_inputs}>
+              
               <Inputcpf 
                getValueOfCpf={setValueOfCpf}
               />
@@ -51,6 +56,7 @@ export default function Login() {
               
             </div>
           }
+          */
           Onclik={Request}
           header="login"
           SelectButton="1"

@@ -37,8 +37,10 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
                <div style={{height:`${heightSubmit}%`}} className={on.submit}>
                 {SelectButton==='1' && 
                 <>
-                 <button className={on.loginButton} onClick={Onclik}>{'enviar'}</button>
-                 <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/`}> retorna ao cadastro </Link> </span>
+                 <button className={on.loginButton} onClick={Onclik}>{'click para entrar'}</button>
+                 {
+                // <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/`}> retorna ao cadastro </Link> </span>
+                 }                 
                  </>
                    }
                    {SelectButton==='4' && 

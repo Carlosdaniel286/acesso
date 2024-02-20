@@ -27,7 +27,5 @@ export default function RootLayout({
     
   )
 }
-function setHiddeNav(arg0: boolean) {
-  throw new Error('Function not implemented.')
-}
+
 

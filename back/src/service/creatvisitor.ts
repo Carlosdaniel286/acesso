@@ -1,95 +1,81 @@
 import { PrismaClient } from "@prisma/client"
-import { visitors ,ArrysAddress ,visitorAddres} from "../types/vistors" 
+import { visitorAddres} from "../types/vistors" 
 import { Inside } from "./insideVisitor"
-  
-  export class Visitor {
-    private name=''
-    private cpf=''
-    private address:visitorAddres[] =[{
-      qd:0 ,
-      lt:0
-    }]
-    private license =''
-    private idUser:number
-    private prisma:PrismaClient
-    private Address:ArrysAddress[]=[]
-  constructor(msg:visitors, id:number,prisma:PrismaClient){
-    this.name =msg.name
-    this.cpf = msg.cpf
-    this.address=msg.address
-    this.license =msg.cnh
-    this.idUser=id
-    this.prisma =prisma
-    
+import { VisitorInfo, AddressInfo } from "../types/vistors";
+
+
+export class Visitor {
+  private name = '';
+  private cpf = '';
+  private addresses: visitorAddres[] = [];
+  private license = '';
+  private idUser: number;
+  private prisma: PrismaClient;
+  private addressList: AddressInfo[] = [];
+
+  constructor(visitorInfo:VisitorInfo, userId: number, prismaClient: PrismaClient) {
+    this.name = visitorInfo.name;
+    this.cpf = visitorInfo.cpf;
+    this.addresses = visitorInfo.address;
+    this.license = visitorInfo.cnh;
+    this.idUser = userId;
+    this.prisma = prismaClient;
   }
-  
+
   async setNewVisitor() {
-    try{
-      
-      console.log(this.address)
-      for (const item of this.address) {
-        if (item.lt == '') return { success: false, message: 'Endereço não encontrado.' };
-        if (item.qd == '') return { success: false, message: 'Endereço não encontrado.' };
-      
-        const Address = await this.prisma.address.findFirst({
+    try {
+      console.log(this.addresses);
+      for (const address of this.addresses) {
+        if (address.lt === '') return { success: false, message: 'Endereço não encontrado.' };
+        if (address.qd === '') return { success: false, message: 'Endereço não encontrado.' };
+
+        const foundAddress = await this.prisma.address.findFirst({
           where: {
-            lt: item.lt,
-            qd: item.qd,
+            lt: address.lt,
+            qd: address.qd,
           },
         });
-      
-        console.log(Address);
-      
-        if (Address === null) {
+
+        if (!foundAddress) {
           return { success: false, message: 'Endereço não encontrado.' };
         }
-      
-        if (Address.idResident === null) {
+
+        if (!foundAddress.idResident) {
           return { success: false, message: 'Sem residente nesse endereço.' };
         }
-      
-        this.Address.push(Address);
+
+        this.addressList.push(foundAddress);
       }
-      
-      if (this.Address.length === 0) {
-        return { success: false, message: 'vazio' };
+
+      if (this.addressList.length === 0) {
+        return { success: false, message: 'Lista de endereços vazia.' };
       }
-      
-        const newVisitor = await this.prisma.visitor.create({
+
+      const newVisitor = await this.prisma.visitor.create({
         data: {
           name: this.name,
-          cpf:this.cpf,
-          license: this.license ,
+          cpf: this.cpf,
+          license: this.license,
           User: {
-            connect: { 
-              id:this.idUser
-            },  
+            connect: { id: this.idUser },
           },
         },
       });
-     
-     
-      console.log( this.Address)
-      for (let i = 0; i <  this.Address.length; i++) {
-        const item =  this.Address[i];
-        console.log('oi')
+
+      console.log(this.addressList);
+      for (let i = 0; i < this.addressList.length; i++) {
+        const item = this.addressList[i];
         if (!item.idResident) return { success: false };
         const inside = new Inside(newVisitor.id, item.idResident, item.id, this.prisma);
-        const insides = await inside.visitorInside();
-        console.log(insides);
-        if (i ===  this.Address.length - 1) {
+        await inside.visitorInside();
+
+        if (i === this.addressList.length - 1) {
           return { success: true };
         }
       }
-      
-      
-    //return { success: true, message:  '' };
-     
-    }catch(error){
+    } catch (error) {
       console.error('Erro ao criar visitante:', error);
       return { success: false, message: 'Falha ao criar o visitante.' };
-      }
     }
-
-    
   }
+}

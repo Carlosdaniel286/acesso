@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 import { addressValue } from "./inputs";
-
+//resident: {…}, residentId: 85, createdAt:
 export type inside ={
  Address:addressValue,
+ createdAt:string
  
 }
 export type project = {
