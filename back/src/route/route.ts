@@ -8,8 +8,4 @@ export const router = Router()
 router.post('/',User.creatUsers)
 router.post('/login',homer.signIn)
 router.get('/token',authMiddleware,Token)
-
-
-
-
 module.exports = router;

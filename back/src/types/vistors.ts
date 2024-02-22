@@ -31,6 +31,35 @@ export type AddressInfo={
     lt: number;
     idResident: number | null
 }
+export type typeOfgetVistors ={
+    id: number;
+      inside: {
+          Address: {
+              qd: number;
+              lt: number;
+          };
+          createdAt: Date | string;
+          residentId: number;
+          resident: {
+              id: number;
+              name: string;
+              cpf: string;
+              license: string | null;
+              idUser: number;
+          };
+      }[];
+      name: string;
+      cpf: string;
+      license: string | null;
+     
+      outside: {
+        createdAt: Date | string
+        }[];
+     
+        User: {
+        name: string
+       };
+  }
 
 
  

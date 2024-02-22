@@ -21,7 +21,7 @@ export const UserProviderVisitors = ({ children }: { children: ReactNode }) => {
        cpf:'',
        id:0,
        license:'',
-       inside:[{Address ,createdAt:''}],
+       inside:[{Address ,createdAt:'',day:0,month:0,years:0,visitorId:0,residentId:0}],
        User:{
         name:''
        }

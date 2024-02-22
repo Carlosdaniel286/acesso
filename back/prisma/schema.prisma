@@ -52,6 +52,10 @@ model Visitor {
 model Inside {
   id         Int       @id @default(autoincrement())
   createdAt  DateTime  @default(now())
+  day        Int
+  years      Int
+  month      Int
+  hours      Int
   residentId Int
   visitorId  Int
   idAddress  Int
@@ -63,6 +67,10 @@ model Inside {
 model Outside {
   id         Int       @id @default(autoincrement())
   createdAt  DateTime  @default(now())
+  day        Int
+  years      Int
+  month      Int
+  hours      Int
   residentId Int
   idAddress  Int
   visitorId  Int

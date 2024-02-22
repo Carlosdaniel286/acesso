@@ -1,0 +1,77 @@
+/* eslint-disable react/no-children-prop */
+"use client";
+import on from "./style.module.css";
+import Cadastros from "../../sistema/components/Form/cadastros";
+import { Inputcpf } from "../../sistema/components/inputs/inputcpf/cpf";
+import InputPassword from "../../sistema/components/inputs/inputPassword/password";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import dotenv from "dotenv";
+import { useState } from "react";
+import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { AxiosError } from "axios";
+dotenv.config();
+const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT;
+
+export default function Login() {
+  const [inputs ,setInputs]=useState(UtilisInputs)
+  const router = useRouter();
+  const setValueOfCpf =(cpf:string)=>{
+    setInputs({...inputs,cpf})
+   }
+   const setValueOfPassworld =(password:string)=>{
+     setInputs({...inputs,password})
+   }
+ 
+ 
+  const Request = async () => {
+    try{
+    const response = await axios.post("/routes/login", {
+      cpf:inputs.cpf,
+      password:inputs.password,
+    });
+
+    if (response.status === 200){
+      const user = response.data
+      setInputs({ ...inputs, name: "", password: "", cpf: "" });
+     router.push(`${UrlCient}/sistema/registros/todos/${user}`);
+    }
+  }catch(err){
+    console.log(err)
+    if(err instanceof AxiosError){
+      alert(err.response?.data)
+    }
+  }
+  };
+
+  return (
+    <div className={on.Loginbody}>
+      <div className={on.login}>
+        
+        <Cadastros
+       
+          // eslint-disable-next-line react/no-children-prop
+          //children={<></>}
+          
+          children={
+            <div className={on.login_inputs}>
+              
+              <Inputcpf 
+               getValueOfCpf={setValueOfCpf}
+              />
+
+              <InputPassword 
+               getValueOfPassword={setValueOfPassworld}
+              />
+              
+            </div>
+          }
+          
+          Onclik={Request}
+          header="login"
+          SelectButton="1"
+        />
+      </div>
+    </div>
+  );
+}

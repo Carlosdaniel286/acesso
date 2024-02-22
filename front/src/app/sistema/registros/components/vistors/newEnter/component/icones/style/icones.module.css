@@ -1,0 +1,25 @@
+.icone{
+    margin-right: 10px;
+}
+.continer_RenderAddress{
+    display: inline-flex;
+    background-color: orangered;
+    text-transform:capitalize;
+    border: 0cap;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "MinhaFonte";
+  }
+
+  .button{
+    background-color: rgb(134, 127, 230,0.6);
+    text-transform: capitalize;
+    border: 0cap;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: "MinhaFonte";
+  }

@@ -10,10 +10,9 @@ const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 interface SocketContextProps {
     socket: Socket | undefined
   }
-
-export const Sockets =  createContext<SocketContextProps | undefined>(undefined);
+ const Sockets =  createContext<SocketContextProps | undefined>(undefined);
  
-export default function SocketProvider({children}: {children: React.ReactNode}) {
+export function SocketProvider({children}: {children: React.ReactNode}) {
 const [socket, setSocket] = useState<Socket>();
 const [isConnect, setIsConnect] = useState<boolean>(false);
 

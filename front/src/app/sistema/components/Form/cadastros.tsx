@@ -39,7 +39,7 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
                 <>
                  <button className={on.loginButton} onClick={Onclik}>{'click para entrar'}</button>
                  {
-                // <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/`}> retorna ao cadastro </Link> </span>
+                 <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/portaria/cadastro`}>cadastro </Link> </span>
                  }                 
                  </>
                    }
@@ -53,12 +53,12 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
                  </>
                    }
                    {SelectButton==='2' &&
-                    <button className={on.CadastroButton }><Link style={{textDecoration: 'none'}} href={`${urlBaseClient}/sistema/portaria/login`}> ja tenho conta </Link> </button>
+                    <button className={on.CadastroButton }><Link style={{textDecoration: 'none'}} href={`${urlBaseClient}/portaria/login`}> ja tenho conta </Link> </button>
                   }
                     {SelectButton==='3' &&
                     <>
                     <button className={on.loginButton} onClick={Onclik}>{'enviar'}</button>
-                    <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/sistema/portaria/login`}> ja tenho conta </Link> </span>
+                    <span className={on.CadastroButton }><Link style={{color:'blue',fontSize:'20px'}} href={`${urlBaseClient}/portaria/login`}> ja tenho conta </Link> </span>
                     </>
                   }
 

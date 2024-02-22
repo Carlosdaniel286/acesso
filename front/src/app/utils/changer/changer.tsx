@@ -1,5 +1,6 @@
 import { project } from "@/app/types/form";
 import { addressValue } from "@/app/types/inputs";
+import { initInside } from "../inside/main";
 const Address: addressValue = {
     lt: "",
     qd: ""
@@ -12,5 +13,5 @@ export const HandlerChanger:project={
     User:{
         name:""
     },
-    inside:[{Address,createdAt:''}]
+    inside:[initInside]
 }
