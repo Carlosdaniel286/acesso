@@ -83,8 +83,9 @@ export class Visitor {
           return { success: true };
         }
       }
+      return { success: true,message:"sucesso"};
     } catch (error) {
-      console.error("Erro ao criar visitante:", error);
+      //console.error("Erro ao criar visitante:", error);
       return { success: false, message: "Falha ao criar o visitante." };
     }
   }

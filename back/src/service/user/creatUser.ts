@@ -25,7 +25,7 @@ export class User {
 
   async creatUser() {
     try {
-      //const connect = await prisma
+      
       if (typeof this.password !== "string" || this.password == "")
         return this.res
           .status(400)

@@ -4,18 +4,26 @@
 import { useEffect, useState } from "react";
 export type cpf ={
   getValueOfCpf:((cpf:string)=>void)
+  value?:'clean' 
+  update?:string
 }
 
-export const Inputcpf = ({getValueOfCpf}:cpf) => {
+export const Inputcpf = ({getValueOfCpf,value,update}:cpf) => {
  
   const [cpf, setCpfs]=useState('')
-  
    useEffect(()=>{
    getValueOfCpf(cpf)
    },[cpf])
+
+   useEffect(()=>{
+    if(value) setCpfs('')
+    console.log(update)
+    if(update) setCpfs(update) 
+    },[value,update])
   
   
    const setCpf = (ev: React.ChangeEvent<HTMLInputElement>) => {
+   
     let keys = ev.target.value.split("");
     const limit = keys.length;
     const last = keys[keys.length - 1];

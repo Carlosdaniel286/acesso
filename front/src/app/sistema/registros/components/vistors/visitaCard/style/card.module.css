@@ -36,11 +36,13 @@
 .content{
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
   }
 .content ul {
     box-sizing: border-box;
     width: 100%;
-    height: 85%;
+    height: 70%;
     margin: 0%;
     padding: 0px;
     padding-left: 0.8rem;
@@ -52,7 +54,8 @@
 }
 .content ul li {
     list-style: none;
-    
+    display: flex;
+    align-items: center;
 
 }
 .visitimg{
@@ -113,11 +116,7 @@
  
 
   @media (max-width: 1000px) {
-    .inside ,.outside {
-     displa:none;
-     
-      
-    }
+    
     .linone{
         display:none;  
     }

@@ -10,12 +10,20 @@ import dotenv from "dotenv";
 import { useState } from "react";
 import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import { AxiosError } from "axios";
+import Swal from 'sweetalert2';
 dotenv.config();
+
 const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT;
+
+
+
 
 export default function Login() {
   const [inputs ,setInputs]=useState(UtilisInputs)
   const router = useRouter();
+  
+  
+  
   const setValueOfCpf =(cpf:string)=>{
     setInputs({...inputs,cpf})
    }
@@ -39,21 +47,23 @@ export default function Login() {
   }catch(err){
     console.log(err)
     if(err instanceof AxiosError){
-      alert(err.response?.data)
+      //setResponse(err.response?.data)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text:  err.response?.data,
+        
+      });
     }
   }
   };
 
   return (
     <div className={on.Loginbody}>
+     
       <div className={on.login}>
-        
         <Cadastros
-       
-          // eslint-disable-next-line react/no-children-prop
-          //children={<></>}
-          
-          children={
+             children={
             <div className={on.login_inputs}>
               
               <Inputcpf 

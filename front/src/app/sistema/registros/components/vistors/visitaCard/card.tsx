@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 "use client";
-
 import on from "./style/card.module.css";
-import { card } from "@/app/types/cards";
+import IconeUser from "../newEnter/component/icones/iconeUser";
+import IconeDrive from "../newEnter/component/icones/iconeDrive";
 import Image from "next/image";
-
-
 import { project } from "@/app/types/form";
-
-export default function CardVisita({ name, id, cpf, User, license }: project) {
+import IconeCod from "../newEnter/component/icones/iconeCod";
+import IconeAttend from "../newEnter/component/icones/iconeAttend";
+export default function CardVisita({ name, id, User, license }: project) {
  
   return (
     <div className={on.bodyVisit}>
@@ -25,10 +23,9 @@ export default function CardVisita({ name, id, cpf, User, license }: project) {
         </div>
         <div className={on.content}>
           <ul>
-            <li>nome: {name}</li>
-            <li>cpf: {cpf}</li>
-            <li>codigo: {id}</li>
-            <li className={on.linone}>atendente: </li>
+            <li><IconeUser/> {name}</li>
+            <li><IconeCod/> {id}</li>
+             
           </ul>
         </div>
       </div>

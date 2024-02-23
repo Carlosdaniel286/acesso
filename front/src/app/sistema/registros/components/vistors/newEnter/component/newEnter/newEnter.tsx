@@ -4,7 +4,7 @@
 "use client";
 import style from "../../style/enter.module.css";
 import Cadastros from "@/app/sistema/components/Form/cadastros";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { card } from "@/app/types/cards";
 import { addressValue } from "@/app/types/inputs";
 import Address from "../addAdress/addAdress";
@@ -16,7 +16,9 @@ import IconeDrive from "../icones/iconeDrive";
 import IconeID from "../icones/iconeID";
 import IconeCod from "../icones/iconeCod";
 import IconeLocal from "../icones/iconeLocal";
-import IconeAddLocal from "../icones/iconeAddLocal";
+import IconeAttend from "../icones/iconeAttend";
+import Swal from 'sweetalert2';
+
 
 type newEnters = {
   address: addressValue[];
@@ -32,32 +34,44 @@ export default function NewEntry({ cards }: card) {
       qd: "",
     },
   ]);
-  const [valueOfAddressClone, setValueOfAddresClone] = useState<addressValue[]>(
-    [
-      {
-        lt: "",
-        qd: "",
-      },
-    ]
-  );
   const [renderAddAddres, setRenderAddAddress] = useState(false);
   const [renderAddress, setRenderAddress] = useState(false);
   
 
-  const newEnter = () => {
+  const newEnter = async () => {
+    const filterAddress = valueOfAddress.filter((item)=>{
+      return item.lt!==''&& item.qd!==''
+    })
+    
+    if(filterAddress.length===0){
+      await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Sem Endereço Para Adicionar ',
+        showConfirmButton: true,
+      });
+      return
+    }
     const newVisitor: newEnters = {
-      address: valueOfAddressClone,
+      address: filterAddress,
       visitorId: cards.id,
     };
     socket?.emit("visitorsEnter", newVisitor);
-    setHiddeNav({ ...hiddeNav, overflow: false });
+    Swal.fire({
+      icon: 'success',
+      title: 'Ok!',
+      showConfirmButton: false, // Não mostrar botão de confirmação
+      timer: 700 // Tempo em milissegundos (2 segundos)
+    });
+    //setHiddeNav({ ...hiddeNav, overflow: false });
+   
   };
 
   const getValueOfAddress = (value: addressValue[]) => {
     setValueOfAddress(value);
   };
 
-  const setValue = () => {
+  const setDisplayAddAddress = () => {
     setRenderAddAddress(!renderAddAddres);
   };
   const handleAddress = () => {
@@ -70,11 +84,8 @@ export default function NewEntry({ cards }: card) {
         <div className={style.conent_address}>
           <Address
             getValueOfAddress={getValueOfAddress}
-            setValue={setValue}
-            setValueOfAddresClone={setValueOfAddresClone}
-            valueOfAddressClone={valueOfAddressClone}
-            valueOfAddress={valueOfAddress}
-          />
+            setDisplayAddAddress={setDisplayAddAddress}
+            handleNewEnter={newEnter}          />
         </div>
       )}
       <div className={style.move}>
@@ -82,24 +93,25 @@ export default function NewEntry({ cards }: card) {
           children={
             <div className={style.Infomation}>
               <div className={style.p_Infomation}>
-                <p> <IconeUser/> {cards.name}</p>
-                <p> <IconeID/> {cards.cpf}</p>
+                <div className={style.iconesInfo}> <IconeUser/> {cards.name}</div>
+                <div className={style.iconesInfo}> <IconeID/> {cards.cpf}</div>
               </div>
-
               <div className={style.p_Infomation}>
-                <p><IconeDrive/> {cards.license}</p>
-                <div id={style.cod_p}>
-                  <p><IconeCod/> {cards.id}</p>
-                </div>
+              <div className={style.iconesInfo}><IconeDrive/> {cards.license}</div>
+                   <div id={style.cod_p}>
+                   <div className={style.iconesInfo}><IconeCod/> {cards.id}</div>
+                  </div>
+              </div>
+               <span>atendente</span>
+              <div className={style.p_Infomation}>
+              <div className={style.iconesInfo}> <IconeAttend/> {cards.User.name}</div>
               </div>
 
               <div className={style.clickRenderAddress }>
                <IconeLocal
                setRenderAddress={handleAddress}
                />
-              <IconeAddLocal
-               setRenderAddAddress={setValue}
-              />
+              
                 {renderAddress && (
                   <>
                     <RenderAddress
@@ -110,26 +122,10 @@ export default function NewEntry({ cards }: card) {
                 )}
                 
               </div>
-               {valueOfAddressClone[0].lt!=='' && <>
-              <div className={style.container_NewAddress}>
-                 {valueOfAddressClone.map((item, id) => (
-                    <div className={style.maps} key={id}>
-                      {item.qd !== "" && item.lt !== "" && (
-                        <div className={style.limit_map}>
-                          <p className={style.qd} key={id}>qd: {item.qd}</p>
-                          <p key={id + 1}>lt: {item.lt}</p>
-                          <p></p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                
-                </div>
-                </>
-                }
+              
             </div>
           }
-          Onclik={newEnter}
+          Onclik={setDisplayAddAddress }
           header="cadastro de visitantes"
           SelectButton="4"
         />

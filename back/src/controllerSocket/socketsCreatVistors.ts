@@ -12,17 +12,20 @@ export const handleCreateVisitorEvent = (io: Server, socket: Socket) => {
       //console.log(newVisitor.address)
       const creatVistors = new Visitor(newVisitor, userId, connect);
       const response = await creatVistors.setNewVisitor();
-      console.log(response);
-      if (response == undefined) return;
-      if (!response.success) {
-        return io.emit("getvisitors", response.message);
+
+     if (!response.success) {
+        return socket.emit('error', response.message);
       }
       const visitor = await getVisitors();
       console.log(visitor);
       io.emit("getvisitors", visitor);
     } catch (error) {
-      console.error("Erro ao processar visita:", error);
-      io.emit("getvisitors", "Erro ao processar visita.");
+      //console.error("Erro ao processar visita:", error);
+      if(error instanceof ErrorEvent){
+        return socket.emit('dataError', error.error);
+      }
+      return socket.emit('dataError', error);
+      
     }
   });
 };

@@ -7,20 +7,25 @@ import { Inputcpf } from "../../sistema/components/inputs/inputcpf/cpf";
 import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import { InputName } from "../../sistema/components/inputs/inputname/name";
 import { checkPasswordStrength } from "./helps/helps";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
 import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
+import Swal from 'sweetalert2';
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE;
+
+
 export default function PortariaCadastro() {
+  const router = useRouter();
   const [inputs ,setInputs]=useState(UtilisInputs)
   const [scores, setScores] = useState({
     score: 0,
     texts: "",
   });
-  const [status, setSatus] = useState(0);
+ 
   
   const setValueOfCpf =(cpf:string)=>{
    setInputs({...inputs,cpf})
@@ -37,21 +42,9 @@ export default function PortariaCadastro() {
     setInputs({ ...inputs, password });
   };
 
-  useEffect(() => {
-   
-    if (status === 200) {
-      setInputs({ ...inputs, name: "", password: "", cpf: "" });
-      redirect(`${urlClient}/portaria/login`);
-    }
-  }, [status]);
+ 
 
-  useEffect(() => {
-   console.log(inputs.cpf)
-   
-  }, [inputs]);
-  
-  
-  
+ 
   const fetch = () => {
     const containsLetters = /[a-zA-Z]/.test(inputs.password);
     const containsNumbers = /\d/.test(inputs.password);
@@ -80,14 +73,29 @@ export default function PortariaCadastro() {
       cpf: inputs.cpf,
       password: inputs.password,
     });
-   setSatus(response.status);
+    console.log(response.status)
+  if (response.status=== 200) {
+    setInputs({ ...inputs, password: "" ,name:"" ,cpf:""});
+    return  router.push(`${urlClient}/portaria/login`);
+  }
   }catch(err){
+    setInputs({ ...inputs, password: "" ,name:"" ,cpf:""});
     if(err instanceof AxiosError){
-      alert(err.response?.data)
-      setInputs({...inputs,password:"",cpf:""})
-        console.log(inputs.cpf)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: err.response?.data,
+        showConfirmButton: true,
+      });
+      }else{
+       Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'erro desconhecido',
+        showConfirmButton: true,
+      });
     }
-   
+    
   }
   };
   return (
@@ -97,8 +105,11 @@ export default function PortariaCadastro() {
           // eslint-disable-next-line react/no-children-prop
           children={
             <>
-              <InputName getValueOfName={setValueOfName}/>
-              <Inputcpf  getValueOfCpf={setValueOfCpf}/>
+              <InputName getValueOfName={setValueOfName}
+              />
+              <Inputcpf  getValueOfCpf={setValueOfCpf}
+               update={inputs.cpf}
+              />
 
               <div className={on.password}>
                 <input

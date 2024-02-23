@@ -87,7 +87,7 @@
   height: 34px;
   border: 0cap;
 }
-.Infomation p {
+.Infomation .iconesInfo {
   margin: 5px;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@
   margin-top: 3px;
   
 }
-.maps p {
+.maps .iconesInfo {
   margin: 0px;
   margin-left: 0px;
   margin-bottom: 3px;
@@ -193,7 +193,7 @@
     display: flex;
     flex-direction: column;
   }
-  .Infomation p {
+  .Infomation .iconesInfo{
     font-size: 1.2rem;
   }
   .Infomation {
@@ -208,7 +208,7 @@
   
 }
 @media screen and (max-width: 605px) {
-  .p_Infomation p{
+  .p_Infomation .iconesInfo{
     display: flex;
     font-size: 1rem;
     

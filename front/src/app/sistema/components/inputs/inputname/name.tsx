@@ -4,17 +4,25 @@ import { useEffect, useState } from "react";
 
 export type Names ={
   getValueOfName:((name:string)=>void)
-
+  update?:(()=>void)
 }
-export const InputName = ({getValueOfName}:Names) => {
+export const InputName = ({getValueOfName,update}:Names) => {
   const[name , setName] =useState('')
+    
+  
   
   useEffect(()=>{
-    //if(name=='') return
-     getValueOfName(name)
+   getValueOfName(name)
+   console.log(name)
   },[name])
+  useEffect(()=>{
+   if(update){
+    update()
+   }
+},[update])
   
   const handleNomeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //if(update) return setName(update)
     const inputValue = e.target.value;
     const regex = /^[a-zA-Z\s]*$/;
     const isValidInput = regex.test(inputValue);

@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-
 import style from "./style/adress.module.css";
-import Image from "next/image";
 export type address ={
   getValueOfAddress:((value:{qd:number,lt:number})=>void)
 }

@@ -5,14 +5,21 @@
 import { ChangeEvent, useEffect, useState } from "react";
 export type cnh ={
   getValueOfCnh:((cnh:string)=>void)
+  value?:'clean' 
+  update?:string
 }
 
-export const InputCnh = ({getValueOfCnh}:cnh) => {
+export const InputCnh = ({getValueOfCnh,value,update}:cnh) => {
  const[cnh ,setCnh]=useState('')
  
  useEffect(()=>{
   getValueOfCnh(cnh)
  },[cnh])
+
+ useEffect(()=>{
+  if(value) setCnh('')
+  if(update) setCnh(update) 
+  },[value,update])
  
   const handleCnhChange = (e: ChangeEvent<HTMLInputElement>) => {
     const text = e.target.value;

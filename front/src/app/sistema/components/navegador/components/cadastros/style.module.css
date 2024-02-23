@@ -14,9 +14,9 @@
   padding: 0px;
 }
 .main {
-  min-height: 500px;
+  min-height: 600px;
   max-height: 600px;
-  width: 600px;
+  width: 560px;
   background-color: white;
 }
 .cad_inputs input {
@@ -30,18 +30,17 @@
 .cad_inputs {
   min-height: 300px;
   max-height: 400px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-bottom: 10px;
   justify-content: space-around;
-  
 }
-.addAdress_main{
- 
+.addAdress_main {
   padding-top: 10px;
-  min-height: 110px;
-  max-height: 300px;
+  min-height: 10px;
+  max-height: 30px;
   width: 100%;
   overflow-y: auto;
   display: flex;
@@ -56,15 +55,20 @@
   max-height: 5px;
 }
 .addAdress_main::-webkit-scrollbar-thumb {
-  background:rgb(34, 33, 33)8; /* Cor do indicador da barra de rolagem */
+  background: rgb(34, 33, 33) 8; /* Cor do indicador da barra de rolagem */
   max-height: 5px;
 }
 
 @media screen and (max-width: 640px) {
   .main {
-    width: 100vw;
+    width: 97%;
     height: 100%;
-    background-color: orangered;
+    background-color: white;
+  }
+  .Cadbodys {
+    margin: 6px;
+    width: 95vw;
+    background-color: white;
   }
   .cad_inputs input {
     width: 100%;

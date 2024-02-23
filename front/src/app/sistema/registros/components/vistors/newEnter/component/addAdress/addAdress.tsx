@@ -7,45 +7,31 @@ import { Dispatch, SetStateAction } from "react";
 
 type AddAddressProps = {
   getValueOfAddress: (value: addressValue[]) => void;
-  setValue: () => void;
-  setValueOfAddresClone: Dispatch<SetStateAction<addressValue[]>>;
-  valueOfAddress: addressValue[];
-  valueOfAddressClone: addressValue[];
+  setDisplayAddAddress: () => void;
+   handleNewEnter:(()=>void)
+  
 };
 
 export default function AddAddress({
   getValueOfAddress,
-  setValue,
-  setValueOfAddresClone,
-  valueOfAddressClone,
-  valueOfAddress
+  setDisplayAddAddress,
+  handleNewEnter
 }: AddAddressProps) {
  
- 
-  const clonesAddress = () => {
-    if(valueOfAddressClone[0].qd==''){
-      setValueOfAddresClone([...valueOfAddress])
-    }else{
-      const concatenatedArray = valueOfAddressClone.concat(valueOfAddress)
-      setValueOfAddresClone([...concatenatedArray]);
-    }
-   
-  };
-
-  return (
+ return (
     <>
       <div className={style.addAdressOverlay}>
         <Overlay 
-         handleOverlayVisibility={(()=>{setValue()})}
+         handleOverlayVisibility={(()=>{})}
         >
           <div className={style.address_color}>
             <div className={style.content_address}>
               <InputAdressMain setValueOfAddress={getValueOfAddress} />
             </div>
             <div className={style.AddAddress_button}>
-              <button onClick={() => {setValue(); clonesAddress();}}>Adicionar</button>
+              <button onClick={() => {setDisplayAddAddress(); handleNewEnter();}}>confirmar</button>
               <div className={style.buttonOut}>
-                <button onClick={() => {setValue();}}>Sair</button>
+                <button onClick={() => {setDisplayAddAddress();}}>Sair</button>
               </div>
             </div>
           </div>

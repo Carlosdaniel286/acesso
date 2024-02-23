@@ -45,7 +45,7 @@ export default function Cadastros({children,Onclik,header,SelectButton}:Cadastro
                    }
                    {SelectButton==='4' && 
                 <>
-                    <button className={on.loginButton4} onClick={Onclik}>{'enviar'}</button>
+                    <button className={on.loginButton4} onClick={Onclik}>{'entrar'}</button>
                     <div className={on.value}
                     onClick={(()=>(setHiddeNav({...hiddeNav,modal:false,overflow:false})))}
                     ><button>{value}</button></div>

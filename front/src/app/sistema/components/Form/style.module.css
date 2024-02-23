@@ -86,18 +86,19 @@
 .value {
   display: flex;
   height: 50px;
-  width: 50px;
+  width: 100%;
   justify-content: center;
   align-items: center;
   cursor: pointer;
 }
 .value button {
-  background-color: rgb(112, 98, 194);
+  background-color: rgb(192, 19, 34);
   margin: 0%;
   padding: 0px;
   font-size: 25px;
-  color: blue;
+  color: white;
   display: none;
+  width: 100%;
 }
 .submit button {
   border: 0ch;
@@ -112,10 +113,12 @@
 .loginButton {
   margin-right: 0px;
   background-color: rgb(250, 75, 12);
+  text-transform: capitalize;
 }
 .loginButton4 {
   margin-right: 0px;
-  background-color: rgb(172, 167, 165);
+  background-color: rgb(92, 228, 74);
+  text-transform: capitalize;
 }
 .CadastroButton {
   margin-top: 0px;
@@ -131,13 +134,16 @@
     flex-direction: column;
     justify-content: space-around;
   }
-  .form header {
-    background-color: transparent;
-  }
+  
   .form input {
     background-color: white;
   }
   .value button {
     display: block;
+  }
+}
+@media screen and (max-width: 511px) {
+  .form header {
+    font-size: 0.7rem;
   }
 }

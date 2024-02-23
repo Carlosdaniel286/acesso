@@ -13,6 +13,8 @@ import { project} from "@/app/types/form";
 import Entry from "../vistors/newEnter/main";
 import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
 import { HandlerChanger } from "@/app/utils/changer/changer";
+
+
 type scroll ={
   DiplayInfo:'default'| (()=>void)
 }
@@ -37,13 +39,12 @@ export default function Scroll({DiplayInfo}:scroll) {
     }
   }, [socket]);
 
-  useEffect(() => {
-    console.log(changer);
-  }, [changer]);
+
 
   return (
     <div className={on.bodyon}>
       <div className={on.scroll}>
+     
         {visitors &&
           visitors.map((item,id) => (
             <div

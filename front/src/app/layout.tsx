@@ -2,7 +2,7 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import { UserProviderHidden } from './sistema/context/hiddeNav'
-
+import { UserChangeInput } from "./sistema/context/changeInputs";
 export default function RootLayout({
   children,
 }: {
@@ -18,9 +18,11 @@ export default function RootLayout({
          <link rel="manifest" href="/site.webmanifest"></link>
        </head>
       <body className={"bodys"} suppressHydrationWarning={true}>
+        <UserChangeInput>
         <UserProviderHidden >
         {children}
       </UserProviderHidden >
+      </UserChangeInput>
         <footer>
           <ul>
             <li>
