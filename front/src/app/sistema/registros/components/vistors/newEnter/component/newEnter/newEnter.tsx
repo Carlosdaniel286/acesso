@@ -57,12 +57,7 @@ export default function NewEntry({ cards }: card) {
       visitorId: cards.id,
     };
     socket?.emit("visitorsEnter", newVisitor);
-    Swal.fire({
-      icon: 'success',
-      title: 'Ok!',
-      showConfirmButton: false, // Não mostrar botão de confirmação
-      timer: 700 // Tempo em milissegundos (2 segundos)
-    });
+  
     //setHiddeNav({ ...hiddeNav, overflow: false });
    
   };

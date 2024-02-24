@@ -14,6 +14,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 import Swal from 'sweetalert2';
+import Head from "next/head";
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE;
 
@@ -100,6 +101,10 @@ export default function PortariaCadastro() {
   };
   return (
     <div className={on.portBody}>
+       <Head>
+        <title>Meu Título</title>
+        <meta property="og:title" content="Meu título" key="title" />
+      </Head>
       <div className={on.port}>
         <Cadastros
           // eslint-disable-next-line react/no-children-prop

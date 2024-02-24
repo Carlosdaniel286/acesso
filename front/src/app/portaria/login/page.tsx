@@ -1,4 +1,4 @@
-/* eslint-disable react/no-children-prop */
+
 "use client";
 import on from "./style.module.css";
 import Cadastros from "../../sistema/components/Form/cadastros";
@@ -11,6 +11,8 @@ import { useState } from "react";
 import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import { AxiosError } from "axios";
 import Swal from 'sweetalert2';
+import Head from "next/head";
+//import { Metadata } from "next";
 dotenv.config();
 
 const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT;
@@ -57,15 +59,19 @@ export default function Login() {
     }
   }
   };
-
+  
   return (
+    <>
+   
     <div className={on.Loginbody}>
-     
-      <div className={on.login}>
+     <div className={on.login}>
         <Cadastros
+             // eslint-disable-next-line react/no-children-prop
              children={
-            <div className={on.login_inputs}>
+              <>
               
+            <div className={on.login_inputs}>
+             
               <Inputcpf 
                getValueOfCpf={setValueOfCpf}
               />
@@ -75,6 +81,7 @@ export default function Login() {
               />
               
             </div>
+            </>
           }
           
           Onclik={Request}
@@ -83,5 +90,6 @@ export default function Login() {
         />
       </div>
     </div>
+    </>
   );
 }
