@@ -3,7 +3,7 @@
 
 import {  Dispatch, ReactNode, SetStateAction, createContext, useContext, useState } from "react"
 
-interface UserContextProps {
+export interface UserContextProps {
     hiddeNav: {
         overflow: boolean;
         modal: boolean;

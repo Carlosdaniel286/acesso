@@ -9,11 +9,13 @@ import {vistorsAddress}  from '../controllerSocket/vistorsFillter/VistorAddress/
 
 export const sockets = (io: Server) => {
   io.on("connection", (socket: Socket) => {
+    
     handleGetVisitorEvent(socket)
     handleCreateVisitorEvent(io, socket);
     fillterVistors(socket)
     handleEventEnters(io,socket)
     Vistors_Inside(socket)
     vistorsAddress(socket)
+    
   });
 };

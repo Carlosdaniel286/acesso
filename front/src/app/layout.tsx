@@ -1,45 +1,64 @@
 import "./globals.css";
-import Head from 'next/head';
-import type { Metadata } from 'next'
 import Image from "next/image";
 import Link from "next/link";
 import { UserProviderHidden } from './sistema/context/hiddeNav'
 import { UserChangeInput } from "./sistema/context/changeInputs";
-export const metadata: Metadata = {
-  title:'condminio',
-  description: '...',
+
+export async function generateMetadata( ) {
+ return {
+    title: 'condominio',
+    metadataBase: new URL('https://www.easyresgistercondominios.website'),
   openGraph: {
-    title: 'Next.js',
-    description: 'The React Framework for the Web',
-    url: '/logo.png',
-    siteName: 'Next.js',
-    images: [
-      {
-        url: '/logo.png', // Must be an absolute URL
-        width: 800,
-        height: 600,
-      },
-      {
-        url: '/logo.png', // Must be an absolute URL
-        width: 1800,
-        height: 1600,
-        alt: 'My custom alt',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  icons:{
+     title: 'easyresgistercondominios',
+     description: 'The React Framework for the Web',
+     url: 'https://www.easyresgistercondominios.website/logo.png',
+     siteName: 'easyresgistercondominios',
+     images: [
+       {
+         url: 'https://www.easyresgistercondominios.website/logo.png', // Must be an absolute URL
+         width: 800,
+         height: 600,
+       },
+       {
+         url: 'https://www.easyresgistercondominios.website/logo.png', // Must be an absolute URL
+         width: 1800,
+         height: 1600,
+         alt: 'My custom alt',
+       },
+     ],
+     locale: 'pt',
+     //type: 'website',
+   },
+   icons:{
     icon: [
       { url: '/favicon-32x32.png' },
       { url: '/favicon-16x16.png', media: '(prefers-color-scheme: dark)' },
     ],
   },
-  manifest:'/site.webmanifest'
-  
-
+  manifest:'/site.webmanifest',
+  twitter: {
+    card: 'easyresgistercondominios',
+    title: 'easyresgistercondominios',
+    description: 'The React Framework for the Web',
+    siteId: '1467726470533754880',
+    creator: '@nextjs',
+    creatorId: '1467726470533754880',
+    images:[
+      {
+        url: 'https://www.easyresgistercondominios.website/logo.png', // Must be an absolute URL
+        width: 800,
+        height: 600,
+      },
+      {
+        url: 'https://www.easyresgistercondominios.website/logo.png', // Must be an absolute URL
+        width: 1800,
+        height: 1600,
+        alt: 'My custom alt',
+      },
+    ],// Must be an absolute URL
+  },
 }
-
+}
 
 
 export default function RootLayout({ children,}:{children: React.ReactNode;})

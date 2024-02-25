@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    
-      //basePath:'/easyresgistercondominios'
-
-}
-
-module.exports = nextConfig
+          experimental: {
+            serverActions: true,
+          },
+    }
+     
+ module.exports = nextConfig

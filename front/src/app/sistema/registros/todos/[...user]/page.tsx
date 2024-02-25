@@ -5,17 +5,13 @@ import Scroll from "../../components/scroll/sroll";
 import { cookies} from 'next/headers'
 import dotenv from 'dotenv';
 import { AxiosError } from "axios";
-//import { ConnectSoket } from "../../context/socket";
 dotenv.config();
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE
-const UrlCient = process.env.NEXT_PUBLIC_URL_CLIENT
 import axios from "axios"
-
-
-
 
 async function getProjects() {
   try {
+    
     const cookieStore = cookies()
     const token = cookieStore.get('token')
     if(!token) return false
@@ -28,15 +24,14 @@ async function getProjects() {
     }
   })
     const projects = response.status
-    console.log(projects)
     if(projects===200) return true
-    
+    return false
 }catch(err){
  if(err instanceof AxiosError){
-  //alert(err.response?.data)
-  return false
- }
- 
+    console.log(err.message)
+    return false
+    }
+    return false
 }
   }
    
@@ -46,7 +41,7 @@ async function getProjects() {
  if(!projects){
  
      return (
-      redirect(`${UrlCient}/portaria/login`)
+      redirect(`/`)
      )
     }else{
      

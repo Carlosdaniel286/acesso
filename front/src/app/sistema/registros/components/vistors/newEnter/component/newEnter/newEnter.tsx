@@ -18,9 +18,9 @@ import IconeCod from "../icones/iconeCod";
 import IconeLocal from "../icones/iconeLocal";
 import IconeAttend from "../icones/iconeAttend";
 import Swal from 'sweetalert2';
+import { newEnterVistor } from "./helper/newEnterVistor/newEnterVisitor";
 
-
-type newEnters = {
+export type newEnters = {
   address: addressValue[];
   visitorId: number;
 };
@@ -38,30 +38,7 @@ export default function NewEntry({ cards }: card) {
   const [renderAddress, setRenderAddress] = useState(false);
   
 
-  const newEnter = async () => {
-    const filterAddress = valueOfAddress.filter((item)=>{
-      return item.lt!==''&& item.qd!==''
-    })
-    
-    if(filterAddress.length===0){
-      await Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Sem Endereço Para Adicionar ',
-        showConfirmButton: true,
-      });
-      return
-    }
-    const newVisitor: newEnters = {
-      address: filterAddress,
-      visitorId: cards.id,
-    };
-    socket?.emit("visitorsEnter", newVisitor);
   
-    //setHiddeNav({ ...hiddeNav, overflow: false });
-   
-  };
-
   const getValueOfAddress = (value: addressValue[]) => {
     setValueOfAddress(value);
   };
@@ -80,7 +57,9 @@ export default function NewEntry({ cards }: card) {
           <Address
             getValueOfAddress={getValueOfAddress}
             setDisplayAddAddress={setDisplayAddAddress}
-            handleNewEnter={newEnter}          />
+            handleNewEnter={(()=>{
+              newEnterVistor({socket,valueOfAddress,cards,setHiddeNav,hiddeNav})
+            })}          />
         </div>
       )}
       <div className={style.move}>
