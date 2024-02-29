@@ -3,8 +3,7 @@ import Overlay from "@/app/sistema/components/overlay/hidden";
 import style from '../../style/enter.module.css'
 import { InputAdressMain } from "@/app/sistema/components/inputs/inputadress/mainAddress";
 import { addressValue } from "@/app/types/inputs";
-import { Dispatch, SetStateAction } from "react";
-
+import ButtonOut from "./component/buttonOut/buttonOut";
 type AddAddressProps = {
   getValueOfAddress: (value: addressValue[]) => void;
   setDisplayAddAddress: () => void;
@@ -21,18 +20,22 @@ export default function AddAddress({
  return (
     <>
       <div className={style.addAdressOverlay}>
+     
         <Overlay 
          handleOverlayVisibility={(()=>{})}
         >
           <div className={style.address_color}>
+            <ButtonOut
+            DisplayAddAdress={setDisplayAddAddress}
+            />
+           <h2>cadastro de endereço</h2>
             <div className={style.content_address}>
+             
               <InputAdressMain setValueOfAddress={getValueOfAddress} />
             </div>
             <div className={style.AddAddress_button}>
               <button onClick={() => {setDisplayAddAddress(); handleNewEnter();}}>confirmar</button>
-              <div className={style.buttonOut}>
-                <button onClick={() => {setDisplayAddAddress();}}>Sair</button>
-              </div>
+             
             </div>
           </div>
         </Overlay>

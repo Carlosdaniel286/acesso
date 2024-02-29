@@ -43,6 +43,11 @@
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  position: relative;
+  }
+  .address_color h2 {
+    text-transform: capitalize;
+    color: black;
   }
 
 .content_address::-webkit-scrollbar {

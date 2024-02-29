@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import style from "./style/adress.module.css";
+import Swal from "sweetalert2";
 export type address ={
   getValueOfAddress:((value:{qd:number,lt:number})=>void)
 }
@@ -46,7 +47,13 @@ export const InputAdress = ({getValueOfAddress}:address) => {
       if (inputValue.length > 3) return;
       const qd = inputValue.join("");
       if(Number(qd)>20) {
-        alert('maior do que 20')
+        Swal.fire({
+          icon: 'info',
+          title: 'Endereço Inexistente',
+          text: 'Essa Quadra Não Existe',
+          showConfirmButton: true,
+        });
+        
         setAddres({ ...addres, qd:"" });
         return
         }
@@ -62,7 +69,13 @@ export const InputAdress = ({getValueOfAddress}:address) => {
       if (inputValue.length > 3) return;
       let lt = inputValue.join("");
       if(Number(lt)>20) {
-        alert('maior do que 20')
+        Swal.fire({
+          icon: 'info',
+          title: 'Endereço Inexistente',
+          text: 'Esse lote Não Existe',
+          showConfirmButton: true,
+
+        });
 
         setAddres({ ...addres, lt:""});
          return

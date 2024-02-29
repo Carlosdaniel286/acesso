@@ -6,8 +6,8 @@ import IconeDrive from "../newEnter/component/icones/iconeDrive";
 import Image from "next/image";
 import { project } from "@/app/types/form";
 import IconeCod from "../newEnter/component/icones/iconeCod";
-import IconeAttend from "../newEnter/component/icones/iconeAttend";
-export default function CardVisita({ name, id, User, license }: project) {
+
+export default function CardVisita({ name, id}: project) {
  
   return (
     <div className={on.bodyVisit}>

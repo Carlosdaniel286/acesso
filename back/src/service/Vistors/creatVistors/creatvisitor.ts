@@ -27,7 +27,9 @@ export class Visitor {
 
   async setNewVisitor() {
     try {
-      console.log(this.addresses);
+      
+      if(this.name=='' || this.cpf=='' )  return { success: false, message: "Nome ou cpf vazios." };
+     
       for (const address of this.addresses) {
         if (address.lt === "")
           return { success: false, message: "Endereço não encontrado." };
@@ -48,15 +50,15 @@ export class Visitor {
         if (!foundAddress.idResident) {
           return { success: false, message: "Sem residente nesse endereço." };
         }
-
         this.addressList.push(foundAddress);
       }
 
       if (this.addressList.length === 0) {
         return { success: false, message: "Lista de endereços vazia." };
       }
-
-      const newVisitor = await this.prisma.visitor.create({
+     
+      
+       const newVisitor = await this.prisma.visitor.create({
         data: {
           name: this.name,
           cpf: this.cpf,
@@ -67,7 +69,7 @@ export class Visitor {
         },
       });
 
-      console.log(this.addressList);
+    
       for (let i = 0; i < this.addressList.length; i++) {
         const item = this.addressList[i];
         if (!item.idResident) return { success: false };
@@ -85,7 +87,7 @@ export class Visitor {
       }
       return { success: true,message:"sucesso"};
     } catch (error) {
-      //console.error("Erro ao criar visitante:", error);
+      console.error("Erro ao criar visitante:", error);
       return { success: false, message: "Falha ao criar o visitante." };
     }
   }

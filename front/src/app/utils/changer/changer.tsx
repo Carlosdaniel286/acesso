@@ -13,5 +13,6 @@ export const HandlerChanger:project={
     User:{
         name:""
     },
-    inside:[initInside]
+    controll: 'Exit',
+    //inside:[initInside]
 }

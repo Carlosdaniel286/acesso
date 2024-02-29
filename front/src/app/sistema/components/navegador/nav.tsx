@@ -34,7 +34,7 @@ export default function Nav() {
         >
           cadastro de visitantes
         </li>
-        <RenderInside />
+       
         <RenderEveryVistor />
         <li>saidas</li>
       </ul>

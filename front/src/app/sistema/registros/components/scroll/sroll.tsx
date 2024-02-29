@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-async-client-component */
 /* eslint-disable react-hooks/exhaustive-deps */
+//visitorsExit"
 
 "use client"
 import on from "../scroll/style/scroll.module.css";
@@ -9,7 +10,7 @@ import { useEffect, useState } from "react";
 import dotenv from "dotenv";
 dotenv.config();
 import { ConnectSoket } from "@/app/sistema/context/socket";
-import { project} from "@/app/types/form";
+import { project ,everyVistors} from "@/app/types/form";
 import Entry from "../vistors/newEnter/main";
 import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
 import { HandlerChanger } from "@/app/utils/changer/changer";
@@ -33,6 +34,7 @@ export default function Scroll({DiplayInfo}:scroll) {
         DiplayInfo()
       }
       socket.on("getvisitors", (msg: project[] | [] ) => {
+        console.log(msg)
           setVisitors([...msg])
           });
     
@@ -46,7 +48,7 @@ export default function Scroll({DiplayInfo}:scroll) {
       <div className={on.scroll}>
      
         {visitors &&
-          visitors.map((item,id) => (
+          visitors.map((item) => (
             <div
              onClick={() => {
                setHiddeNav({ ...hiddeNav, overflow: !hiddeNav.overflow });
@@ -57,7 +59,7 @@ export default function Scroll({DiplayInfo}:scroll) {
                   cpf: item.cpf,
                   license: item.license,
                   User:item.User,
-                  inside:item.inside,
+                  controll:item.controll
                   
                 });
               }}
@@ -70,7 +72,7 @@ export default function Scroll({DiplayInfo}:scroll) {
                 cpf={item.cpf}
                 license={item.license}
                 User={item.User}
-                inside={item.inside}
+                controll='Enter'
               />
             </div>
           ))}

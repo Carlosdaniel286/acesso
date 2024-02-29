@@ -3,78 +3,92 @@ generator client {
 }
 
 datasource db {
-   provider = "mysql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-model Address {
+model address {
   id         Int       @id @default(autoincrement())
   qd         Int
   lt         Int
   idResident Int?
-  Resident   Resident? @relation(fields: [idResident], references: [id])
-  Inside     Inside[]  
-  Outside    Outside[] 
+  resident   resident? @relation(fields: [idResident], references: [id], map: "Address_idResident_fkey")
+  inside     inside[]
+  outside    outside[]
+
+  @@index([idResident], map: "Address_idResident_fkey")
 }
 
-model Resident {
+model inside {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  day        Int
+  years      Int
+  month      Int
+  hours      Int
+  residentId Int
+  visitorId  Int
+  idAddress  Int
+  address    address  @relation(fields: [idAddress], references: [id], map: "Inside_idAddress_fkey")
+  resident   resident @relation(fields: [residentId], references: [id], map: "Inside_residentId_fkey")
+  visitor    visitor  @relation(fields: [visitorId], references: [id], map: "Inside_visitorId_fkey")
+
+  @@index([idAddress], map: "Inside_idAddress_fkey")
+  @@index([residentId], map: "Inside_residentId_fkey")
+  @@index([visitorId], map: "Inside_visitorId_fkey")
+}
+
+model outside {
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  day        Int
+  years      Int
+  month      Int
+  hours      Int
+  residentId Int
+  idAddress  Int
+  visitorId  Int
+  address    address  @relation(fields: [idAddress], references: [id], map: "Outside_idAddress_fkey")
+  resident   resident @relation(fields: [residentId], references: [id], map: "Outside_residentId_fkey")
+  visitor    visitor  @relation(fields: [visitorId], references: [id], map: "Outside_visitorId_fkey")
+
+  @@index([idAddress], map: "Outside_idAddress_fkey")
+  @@index([residentId], map: "Outside_residentId_fkey")
+  @@index([visitorId], map: "Outside_visitorId_fkey")
+}
+
+model resident {
   id      Int       @id @default(autoincrement())
   name    String
-  cpf     String    @unique
+  cpf     String    @unique(map: "Resident_cpf_key")
   license String?
   idUser  Int
-  Address Address[]
-  inside  Inside[]
-  outside Outside[]
-  User    User      @relation(fields: [idUser], references: [id])
+  address address[]
+  inside  inside[]
+  outside outside[]
+  user    user      @relation(fields: [idUser], references: [id], map: "Resident_idUser_fkey")
+
+  @@index([idUser], map: "Resident_idUser_fkey")
 }
 
-model User {
+model user {
   id       Int        @id @default(autoincrement())
-  cpf      String     @unique
+  cpf      String     @unique(map: "User_cpf_key")
   name     String
   password String
-  Resident Resident[]
-  Visitor  Visitor[]
+  resident resident[]
+  visitor  visitor[]
 }
 
-model Visitor {
-  id        Int       @id @default(autoincrement())
-  name      String
-  cpf       String    @unique
-  license   String?
-  idUser    Int
-  inside    Inside[]
-  outside   Outside[]
-  User      User      @relation(fields: [idUser], references: [id])
-}
+model visitor {
+  id      Int       @id @default(autoincrement())
+  name    String
+  cpf     String    @unique(map: "Visitor_cpf_key")
+  license String?
+  idUser  Int
+  inside  inside[]
+  outside outside[]
+  user    user      @relation(fields: [idUser], references: [id], map: "Visitor_idUser_fkey")
 
-model Inside {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  day        Int
-  years      Int
-  month      Int
-  hours      Int
-  residentId Int
-  visitorId  Int
-  idAddress  Int
-  resident   Resident  @relation(fields: [residentId], references: [id])
-  visitor    Visitor   @relation(fields: [visitorId], references: [id])
-  Address    Address   @relation(fields: [idAddress], references: [id])
-}
-
-model Outside {
-  id         Int       @id @default(autoincrement())
-  createdAt  DateTime  @default(now())
-  day        Int
-  years      Int
-  month      Int
-  hours      Int
-  residentId Int
-  idAddress  Int
-  visitorId  Int
-  resident   Resident  @relation(fields: [residentId], references: [id])
-  visitor    Visitor   @relation(fields: [visitorId], references: [id])
-  Address    Address   @relation(fields: [idAddress], references: [id])
+  @@index([idUser], map: "Visitor_idUser_fkey")
 }

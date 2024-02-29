@@ -11,7 +11,7 @@ export async function POST(req:Request , res:Response) {
   const response = await axios.post(`${urlBase}/login`, data)
   const cookie = response.headers.token
   const name = response.headers.name
-  console.log(cookie)
+  console.log('server')
   const cookieOptions = {
     httpOnly: true,
     maxAge: 60 * 60 * 24, // Exemplo: expira em 1 dia

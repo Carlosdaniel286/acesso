@@ -15,8 +15,8 @@ export default function Cadastros({ children, Onclik, header, SelectButton }: Ca
   const [heightSubmit, setHeightSubmit] = useState(20);
 
   useEffect(() => {
-    if (SelectButton === '4') {
-      setValue('sair');
+    if (SelectButton === 'Enter' || SelectButton ==='Exit') {
+      setValue('X');
     }
     if (SelectButton === '1' || SelectButton === '3') {
       setHeightSubmit(30);
@@ -40,17 +40,27 @@ export default function Cadastros({ children, Onclik, header, SelectButton }: Ca
                 <span className={on.CadastroButton}>
                   <Link style={{ color: 'blue', fontSize: '20px' }} href={`${urlBaseClient}/portaria/cadastro`}>
                     cadastro
-                  </Link>{' '}
+                  </Link>
                 </span>
               </>
             )}
-            {SelectButton === '4' && (
+            {SelectButton === 'Enter' && (
               <>
                 <button className={on.loginButton4} onClick={Onclik}>
                   {'entrar'}
                 </button>
                 <div className={on.value} onClick={() => setHiddeNav({ ...hiddeNav, modal: false, overflow: false })}>
-                  <button>{value}</button>
+                  <button className={on.value_button}>{value}</button> 
+                </div>
+              </>
+            )}
+            {SelectButton === 'Exit' && (
+              <>
+                <button className={on.loginButtonExit} onClick={Onclik}>
+                  {'saida'}
+                </button>
+                <div className={on.value} onClick={() => setHiddeNav({ ...hiddeNav, modal: false, overflow: false })}>
+                  <button className={on.value_button} >{value}</button> 
                 </div>
               </>
             )}

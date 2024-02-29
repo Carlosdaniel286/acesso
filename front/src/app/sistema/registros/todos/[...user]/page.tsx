@@ -27,6 +27,7 @@ async function getProjects() {
     if(projects===200) return true
     return false
 }catch(err){
+  console.log(err)
  if(err instanceof AxiosError){
     console.log(err.message)
     return false

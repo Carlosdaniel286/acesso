@@ -19,12 +19,18 @@ export type project = {
     cpf: string;
     id: number;
     license:string;
-    inside:inside[];
+    controll :'Exit'|'Enter';
     User:{
       name:string;
     }
     
   };
+
+  export type everyVistors ={
+    visitor: project[],
+    createdAt: Date
+    controll: string
+  }
 
  
   

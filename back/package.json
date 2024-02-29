@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node ./src/server/server.ts",
+    "dev": "pm2 start dist/server/server.js --name back",
     "tsc": "tsc"
   },
   "author": "",
@@ -39,6 +40,7 @@
     "@types/cookie": "^0.6.0",
     "@types/cookie-parser": "^1.4.6",
     "@types/jsonwebtoken": "^9.0.5",
+    "@types/node-cache": "^4.2.5",
     "@types/zxcvbn": "^4.4.4",
     "nodemon": "^3.0.1",
     "prisma": "^5.10.2"

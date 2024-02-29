@@ -32,6 +32,7 @@
   border-radius: 10px;
   box-sizing: border-box;
   text-transform: capitalize;
+  position: relative;
 }
 .form input {
   background-color: transparent;
@@ -84,41 +85,68 @@
  
 }
 .value {
-  display: flex;
-  height: 50px;
-  width: 100%;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
+  position: absolute;
+  border-radius: 50%;
+  top:-3%;
+  
 }
-.value button {
-  background-color: rgb(192, 19, 34);
-  margin: 0%;
+.value_button {
+  background-color: rgba(14, 14, 15, 0.9);
+  text-transform: capitalize;
+  border: 0cap;
   padding: 0px;
-  font-size: 25px;
+  min-width: 50px;
+  min-height: 50px;
+  border-radius: 50%;
+  font-size: 2rem;
+  cursor: pointer;
+  font-family: "MinhaFonte";
   color: white;
+  text-align: center;
   display: none;
-  width: 100%;
 }
-.submit button {
+
+.loginButton {
+  margin-right: 0px;
+  background-color: rgb(250, 75, 12);
+  text-transform: capitalize;
+  text-transform: capitalize;
   border: 0ch;
   padding: 6px;
   color: rgb(255, 255, 255);
   font-family: "fonte";
   font-size: 1.2rem;
-  border-radius: 6px;
+  border-radius:6px;
   cursor: pointer;
   width: 100%;
 }
-.loginButton {
-  margin-right: 0px;
-  background-color: rgb(250, 75, 12);
-  text-transform: capitalize;
-}
+
 .loginButton4 {
   margin-right: 0px;
   background-color: rgb(92, 228, 74);
   text-transform: capitalize;
+  border: 0ch;
+  padding: 6px;
+  color: rgb(255, 255, 255);
+  font-family: "fonte";
+  font-size: 1.2rem;
+  border-radius:6px;
+  cursor: pointer;
+  width: 100%;
+}
+.loginButtonExit{
+  margin-right: 0px;
+  background-color: rgb(226, 14, 42);
+  text-transform: capitalize;
+  border: 0ch;
+  padding: 6px;
+  color: rgb(255, 255, 255);
+  font-family: "fonte";
+  font-size: 1.2rem;
+  border-radius:6px;
+  cursor: pointer;
+  width: 100%;
 }
 .CadastroButton {
   margin-top: 0px;
@@ -138,12 +166,19 @@
   .form input {
     background-color: white;
   }
-  .value button {
-    display: block;
-  }
+ 
 }
 @media screen and (max-width: 511px) {
   .form header {
     font-size: 0.7rem;
   }
+}
+@media screen and (max-width: 650px) {
+  .value_button {
+    display: block;
+  }
+  .form header{
+    margin-top: 35px;
+  }
+   
 }

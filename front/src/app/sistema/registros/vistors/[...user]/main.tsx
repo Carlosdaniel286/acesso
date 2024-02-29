@@ -9,7 +9,7 @@ export default function DisplayEnteredVisitor() {
   const { socket } = ConnectSoket();
   const request = () => {
     if (!socket) return;
-    socket.emit("Vistors_inside", "");
+   // socket.emit("Vistors_inside", "");
   };
   return (
     <>

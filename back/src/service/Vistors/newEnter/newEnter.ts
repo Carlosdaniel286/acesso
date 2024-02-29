@@ -1,6 +1,8 @@
 import { visitorAddres } from "../../../types/vistors";
 import { PrismaClient } from "@prisma/client";
 import { Inside } from "../handleEnterVistors/insideVisitor";
+import { checkInSide } from "./helper/checkInSide/checkInSIde";
+import { myCache } from "../../../cache/newCache";
 export class newEntry {
   private visitorId: number;
   private addressResident: visitorAddres[];
@@ -17,6 +19,11 @@ export class newEntry {
 
   async NewEntry() {
     try {
+      const permisson = await checkInSide(this.visitorId, this.prisma);
+
+      if (!permisson)
+        return { success: false, message: "vistante já esta no condominio" };
+
       for (const item of this.addressResident) {
         if (item.lt == "")
           return { success: false, message: "Endereço não encontrado." };
@@ -43,7 +50,8 @@ export class newEntry {
         );
         await inside.visitorInside();
       }
-      return { success: true, message: "entrada" };
+      myCache.set(this.visitorId, "Exit");
+      return { success: true, message: "Exit" };
     } catch (err) {
       console.log(err);
       return { success: false, message: "Endereço não encontrado." };

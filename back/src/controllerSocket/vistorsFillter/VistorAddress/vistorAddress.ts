@@ -7,7 +7,7 @@ export const vistorsAddress = async (socket: Socket) => {
   socket.on("inside", async (id:number) => {
     try {
      const address = await handleVistorsAddress(id)
-    console.log(address)
+    
       socket.emit("inside", address);
     } catch (err) {
       socket.emit("inside", err);

@@ -16,6 +16,7 @@ import { addressValue, Inputs } from "@/app/types/inputs";
 import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import AddAddress from "@/app/sistema/registros/components/vistors/newEnter/component/addAdress/addAdress";
 import Swal from "sweetalert2";
+import { setTimeout } from "timers";
 
 type ReponseSocket ={
   success: boolean, 
@@ -83,14 +84,12 @@ const setValueOfAddress=(value:addressValue[])=>{
     if (!socket) return;
     socket.on("getvisitors", async(msg: project[]) => {
       setVisitors([...msg]);
-     await Swal.fire({
-        icon: 'success',
-        title: 'Mensagem de Ok!',
-        showConfirmButton: false,
-        timer:600
-        });
-       //setHiddeNav({...hiddeNav,modal:true})
-       //setHidden(false)
+   
+       setHiddeNav({...hiddeNav,modal:true})
+       setHidden(false)
+       setTimeout(() => {
+        setHidden(true)
+    }, 1);
     });
     socket.on('error', async(err) => {
      await Swal.fire({
@@ -130,7 +129,7 @@ const setValueOfAddress=(value:addressValue[])=>{
           }
           Onclik={(()=>{setdiplayAddAddress(!diplayAddAddress)})}
           header="cadastro de vistantes"
-          SelectButton="4"
+          SelectButton='Enter'
         />
       </div>
     </div>

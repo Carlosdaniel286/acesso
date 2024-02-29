@@ -14,7 +14,7 @@ import { AxiosError } from "axios";
 import axios from "axios";
 import dotenv from "dotenv";
 import Swal from "sweetalert2";
-import Head from "next/head";
+
 
 dotenv.config();
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;
@@ -67,7 +67,7 @@ export default function PortariaCadastro() {
       console.log(response.status);
       if (response.status === 200) {
         setInputs({ ...inputs, password: "", name: "", cpf: "" });
-        return router.push(`${urlClient}/portaria/login`);
+        return router.push(`/`);
       }
     } catch (err) {
       setInputs({ ...inputs, password: "", name: "", cpf: "" });

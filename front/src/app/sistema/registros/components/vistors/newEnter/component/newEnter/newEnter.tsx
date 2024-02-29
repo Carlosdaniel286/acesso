@@ -4,7 +4,7 @@
 "use client";
 import style from "../../style/enter.module.css";
 import Cadastros from "@/app/sistema/components/Form/cadastros";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { card } from "@/app/types/cards";
 import { addressValue } from "@/app/types/inputs";
 import Address from "../addAdress/addAdress";
@@ -17,8 +17,9 @@ import IconeID from "../icones/iconeID";
 import IconeCod from "../icones/iconeCod";
 import IconeLocal from "../icones/iconeLocal";
 import IconeAttend from "../icones/iconeAttend";
-import Swal from 'sweetalert2';
+
 import { newEnterVistor } from "./helper/newEnterVistor/newEnterVisitor";
+import { newExitVistor } from "./helper/outSideVistor/outsideVistor";
 
 export type newEnters = {
   address: addressValue[];
@@ -26,6 +27,7 @@ export type newEnters = {
 };
 
 export default function NewEntry({ cards }: card) {
+  
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   const { socket } = ConnectSoket();
   const [valueOfAddress, setValueOfAddress] = useState<addressValue[]>([
@@ -36,8 +38,7 @@ export default function NewEntry({ cards }: card) {
   ]);
   const [renderAddAddres, setRenderAddAddress] = useState(false);
   const [renderAddress, setRenderAddress] = useState(false);
-  
-
+  const [controll, setControll] = useState<'Exit'|'Enter'>(cards.controll);
   
   const getValueOfAddress = (value: addressValue[]) => {
     setValueOfAddress(value);
@@ -50,6 +51,25 @@ export default function NewEntry({ cards }: card) {
     setRenderAddress(!renderAddress);
   };
 
+  const handleExitVistor =()=>{
+    if(controll==='Exit'){
+      newExitVistor({socket,valueOfAddress,cards,setHiddeNav,hiddeNav})
+    }if(controll==='Enter'){
+      setDisplayAddAddress()
+      }
+  }
+ useEffect(()=>{
+ if(!socket) return
+ socket.emit('cache',cards.id)
+ socket?.on("cache", async(state:string) => {
+  if(state==='Enter' || state==="Exit"){
+    setControll(state)
+  }
+ })
+
+},[socket])
+  
+  
   return (
     <div className={style.bodyEnter}>
       {renderAddAddres && (
@@ -58,8 +78,10 @@ export default function NewEntry({ cards }: card) {
             getValueOfAddress={getValueOfAddress}
             setDisplayAddAddress={setDisplayAddAddress}
             handleNewEnter={(()=>{
+            // setControll('Exit')
               newEnterVistor({socket,valueOfAddress,cards,setHiddeNav,hiddeNav})
-            })}          />
+             })} 
+             />
         </div>
       )}
       <div className={style.move}>
@@ -99,9 +121,13 @@ export default function NewEntry({ cards }: card) {
               
             </div>
           }
-          Onclik={setDisplayAddAddress }
+          Onclik={(()=>{
+            handleExitVistor()
+            //setControll('Enter')
+           
+          })}
           header="cadastro de visitantes"
-          SelectButton="4"
+          SelectButton={controll}
         />
       </div>
     </div>

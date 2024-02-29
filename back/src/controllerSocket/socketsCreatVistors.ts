@@ -1,7 +1,7 @@
 import { Server, Socket } from "socket.io";
 import { Visitor } from "../service/Vistors/creatVistors/creatvisitor";
 import { VisitorInfo } from "../types/vistors";
-import { getVisitors } from "../service/Vistors/getvistors/getVisitor";
+import { getVisitor } from "../service/Vistors/getvistors/getVisitor";
 import prisma from "../database/prisma";
 export const handleCreateVisitorEvent = (io: Server, socket: Socket) => {
   const userId = Number(socket.handshake.query.userId as string);
@@ -16,7 +16,7 @@ export const handleCreateVisitorEvent = (io: Server, socket: Socket) => {
      if (!response.success) {
         return socket.emit('error', response.message);
       }
-      const visitor = await getVisitors();
+      const visitor = await getVisitor();
       console.log(visitor);
       io.emit("getvisitors", visitor);
     } catch (error) {

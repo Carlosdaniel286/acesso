@@ -10,7 +10,7 @@
 **/dist/
 # production
 **/build
-
+**/ecosystem.config.js
 
 # debug
 
