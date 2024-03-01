@@ -1,11 +1,11 @@
 import { Server, Socket } from "socket.io";
-import { myCache } from "../../cache/newCache";
+import { getCache } from "../../cache/newCache";
 
 
 export const handleEventCache = (io: Server, socket: Socket) => {
  socket.on("cache", async (id:number) => {
     try {
-      const state = myCache.get<string>(id.toString());
+      const state = await getCache(id.toString()) as string
       if(!state) return io.emit("cache",'vazio');
       return io.emit("cache",state);
     } catch (error) {

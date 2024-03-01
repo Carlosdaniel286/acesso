@@ -2,7 +2,7 @@ import { visitorAddres } from "../../../types/vistors";
 import { PrismaClient } from "@prisma/client";
 import { Inside } from "../handleEnterVistors/insideVisitor";
 import { checkInSide } from "./helper/checkInSide/checkInSIde";
-import { myCache } from "../../../cache/newCache";
+import { setCache} from "../../../cache/newCache";
 export class newEntry {
   private visitorId: number;
   private addressResident: visitorAddres[];
@@ -50,7 +50,7 @@ export class newEntry {
         );
         await inside.visitorInside();
       }
-      myCache.set(this.visitorId, "Exit");
+      setCache(this.visitorId.toString(), "Exit");
       return { success: true, message: "Exit" };
     } catch (err) {
       console.log(err);

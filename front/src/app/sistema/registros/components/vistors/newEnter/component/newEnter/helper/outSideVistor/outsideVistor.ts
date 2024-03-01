@@ -42,10 +42,9 @@ export const newExitVistor = async ({
         if(response.success){
           await Swal.fire({
             icon:'success',
-            title: 'ok',
-            text: 'ok',
+            title: 'OK',
             showConfirmButton: false,
-            timer:3300
+            timer:500
           });
          
         setHiddeNav({ ...hiddeNav, overflow: false });

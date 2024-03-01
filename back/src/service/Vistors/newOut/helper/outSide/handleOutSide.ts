@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Outside } from "../../newOut";
 import { checkOutSide } from "../checkOutSide/checkOutSide";
-import { myCache } from "../../../../../cache/newCache";
+import { setCache } from "../../../../../cache/newCache";
 
 export class newExitVistor {
   private visitorId: number;
@@ -50,7 +50,7 @@ export class newExitVistor {
         );
         await ouside.visitorOutside();
       }
-      myCache.set(this.visitorId.toString(), "Enter");
+      setCache(this.visitorId.toString(), "Enter");
       return { success: true, message: "Enter" };
     } catch (err) {
       console.log(err);

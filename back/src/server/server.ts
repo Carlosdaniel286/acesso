@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import { socketAuthMiddleware } from "../middleware/soketmiddleware";
+import { connect } from '../cache/newCache';
 const cors = require('cors');
 const app = express();
 const httpServer = createServer(app);
@@ -38,8 +39,8 @@ app.get('/home', (req, res) => {
   res.send('Hello, TypScript with Express!');
 });
 
-httpServer.listen(port, () => {
-  
+httpServer.listen(port, async() => {
+  await connect()
   console.log(`Server is runnin at http://localhost:${port}`);
 });
  

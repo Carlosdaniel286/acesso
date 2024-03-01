@@ -61,7 +61,7 @@ export default function NewEntry({ cards }: card) {
  useEffect(()=>{
  if(!socket) return
  socket.emit('cache',cards.id)
- socket?.on("cache", async(state:string) => {
+ socket?.on("cache", (state:string) => {
   if(state==='Enter' || state==="Exit"){
     setControll(state)
   }

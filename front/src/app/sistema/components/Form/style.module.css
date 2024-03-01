@@ -178,7 +178,10 @@
     display: block;
   }
   .form header{
-    margin-top: 35px;
+    margin-top: 5px;
+  }
+  .value {
+    top:-7%;
   }
    
 }
