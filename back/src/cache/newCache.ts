@@ -1,19 +1,33 @@
-// node_cache/index.js
 import dotenv from 'dotenv'
 dotenv.config()
 import { createClient } from 'redis';
-const client = createClient();
 
+const password:string | undefined = process.env.PASSWORD_REDIS 
+const url= process.env.HORST_REDIS as string
+
+const client = createClient({
+    password,
+    url,
+   });
 
 export const connect =async()=>{
+    try{
+        
     return await client.connect();
-    
+    }catch(err){
+        console.log(err)
+    }
 }
 
 client.on('error', err => console.log('Redis Client Error', err));
 client.on('ready', async() => {
+    try{
 console.log('Cliente Redis conectado');
+
 console.log('Detalhes da conexão: ' + (await client.CLIENT_INFO()).addr);
+    }catch(err){
+        console.log(err)
+    }
 });
 
   export const setCache = async (key:string, value:string) => {
@@ -21,6 +35,7 @@ console.log('Detalhes da conexão: ' + (await client.CLIENT_INFO()).addr);
       await client.set(key, value);
     
 }catch(err){
+    console.log('Detalhes da conexão: ' );
     console.log(err)
 }
 };
