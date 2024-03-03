@@ -15,78 +15,56 @@ import Entry from "../vistors/newEnter/main";
 import { useContextHiddent } from "@/app/sistema/context/hiddeNav";
 import { HandlerChanger } from "@/app/utils/changer/changer";
 
-
-type scroll ={
-  DiplayInfo:'default'| (()=>void)
+type scroll = {
+  DiplayInfo: 'default' | (() => void)
 }
 
-export default function Scroll({DiplayInfo}:scroll) {
+export default function Scroll({ DiplayInfo }: scroll) {
   const { socket } = ConnectSoket();
   const { visitors, setVisitors } = useVisitors();
   const [changer, setChanger] = useState(HandlerChanger);
-  const { setHiddeNav, hiddeNav } = useContextHiddent();
+  const { hiddeNav } = useContextHiddent();
   
   useEffect(() => {
     if (socket) {
-      if(DiplayInfo=='default'){
+      if (DiplayInfo == 'default') {
         socket.emit("getvisitor", "");
-      }else{
+      } else {
         DiplayInfo()
       }
-      socket.on("getvisitors", (msg: project[] | [] ) => {
-        console.log(msg)
-          setVisitors([...msg])
-          });
-    
+      socket.on("getvisitors", (msg: project[] | []) => {
+        setVisitors([...msg])
+      });
     }
   }, [socket]);
-
-
 
   return (
     <div className={on.bodyon}>
       <div className={on.scroll}>
-     
         {visitors &&
           visitors.map((item) => (
-            <div
-             onClick={() => {
-               setHiddeNav({ ...hiddeNav, overflow: !hiddeNav.overflow });
-                setChanger({
-                  ...changer,
-                  name: item.name,
-                  id: item.id,
-                  cpf: item.cpf,
-                  license: item.license,
-                  User:item.User,
-                  controll:item.controll
-                  
-                });
-              }}
-              key={item.id}
-              className={on.cards}
-            >
+            <div key={item.id} className={on.cards}>
               <Card
-                name={item.name}
-                id={item.id}
-                cpf={item.cpf}
-                license={item.license}
-                User={item.User}
-                controll='Enter'
+                cards={item}
+                setChanger={() => {
+                  setChanger({
+                    ...changer,
+                    name:item.name,
+                    id:item.id,
+                    cpf:item.cpf,
+                    license:item.license,
+                    User:item.User,
+                    controll:item.controll,
+                  });
+                }}
               />
             </div>
           ))}
         <div>
-          {
-            <>
-             { hiddeNav.overflow && changer.name && 
-             <Entry
+          {hiddeNav.overflow && changer.name && 
+            <Entry
               cards={changer}
-              
-             />
-             
-             }
-            </>
+            />
           }
         </div>
       </div>

@@ -17,7 +17,7 @@ import { UtilisInputs } from "@/app/utils/inputs/inputs";
 import AddAddress from "@/app/sistema/registros/components/vistors/newEnter/component/addAdress/addAdress";
 import Swal from "sweetalert2";
 import { setTimeout } from "timers";
-
+import TakePhoto from "../../../takePhoto/takePhoto";
 type ReponseSocket ={
   success: boolean, 
   message: string
@@ -30,8 +30,11 @@ export default function VisitaCadastros({ setHidden }: Props) {
   const {setHiddeNav,hiddeNav} = useContextHiddent()
   const [inputs, setInputs]=useState(UtilisInputs)
   const [diplayAddAddress, setdiplayAddAddress]=useState(false)
+  const [displayTakePhoto, setDisplayTakePhoto]=useState(false)
   
-const setValueOfAddress=(value:addressValue[])=>{
+
+
+  const setValueOfAddress=(value:addressValue[])=>{
  
   setInputs({...inputs,address:value})
   }
@@ -84,8 +87,7 @@ const setValueOfAddress=(value:addressValue[])=>{
     if (!socket) return;
     socket.on("getvisitors", async(msg: project[]) => {
       setVisitors([...msg]);
-   
-       setHiddeNav({...hiddeNav,modal:true})
+      setHiddeNav({...hiddeNav,modal:true})
        setHidden(false)
        setTimeout(() => {
         setHidden(true)
@@ -109,6 +111,10 @@ const setValueOfAddress=(value:addressValue[])=>{
           // eslint-disable-next-line react/no-children-prop
           children={
             <div className={on.cad_inputs}>
+              {displayTakePhoto &&
+              <TakePhoto/>
+              }
+             
               <InputName getValueOfName={setValueOfName}/>
               <Inputcpf 
               getValueOfCpf={setValueOfCpf}
@@ -125,6 +131,13 @@ const setValueOfAddress=(value:addressValue[])=>{
              <InputCnh 
               getValueOfCnh={setValueOfCnh}
               />
+              <div>
+                <button className={on.button_AddPic} 
+                  onClick={(()=>{
+                    setDisplayTakePhoto(!displayTakePhoto)
+                  })}
+                >adcionar foto</button>
+              </div>
             </div>
           }
           Onclik={(()=>{setdiplayAddAddress(!diplayAddAddress)})}

@@ -4,8 +4,8 @@ import { UserProviderVisitors } from './context/visitors'
 import style from './styleLayout/style.module.css'
 import { UserProviderHidden } from './context/hiddeNav'
 import Mean from '../sistema/registros/todos/[...user]/main'
-import { ConnectSoket, SocketProvider } from './context/socket'
-
+import { SocketProvider } from './context/socket'
+import { UserProviderStream } from './context/mediaDevices/mediaDevices'
 export default function RootLayout({
   children,
 }: {
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
      <>
        <div className={style.ons}>
-      
+      <UserProviderStream>
       <SocketProvider>
       <UserProviderHidden>
        <UserChangeInput>
@@ -31,7 +31,7 @@ export default function RootLayout({
       </UserChangeInput>
       </UserProviderHidden>
       </SocketProvider>
-      
+      </UserProviderStream>
         </div>
       </>
     
