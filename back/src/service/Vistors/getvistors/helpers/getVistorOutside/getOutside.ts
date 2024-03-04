@@ -22,7 +22,7 @@ export const getVisitorsOutside= async(prisma:PrismaClient)=>{
             },
             take: 1 // Seleciona apenas o último inside
           },
-          User:{
+          user:{
             select:{
               name:true
             },

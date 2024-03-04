@@ -16,9 +16,6 @@ export default function TakePhoto() {
       setActiveStream(false)
     })
   }, []);
-  
-  
-  
   return (
     <>
     <Overlay 

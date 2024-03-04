@@ -22,7 +22,7 @@ export default function CardVisita({cards,setChanger}:typeOfCards) {
       <div className={on.person}>
         <div className={on.visitimg}>
           <Image
-            src={"/user.jpg"}
+            src={"https://imagem-bucker.s3.sa-east-1.amazonaws.com/1709575964902"}
             alt="Descrição da imagem"
             width={100}
             height={100}

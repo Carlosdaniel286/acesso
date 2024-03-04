@@ -1,13 +1,16 @@
 // src/index.ts
 import express from 'express';
 const router = require('../route/route')
+const photo = require('../controller/handlePhoto')
+
 import cookieParser from 'cookie-parser';
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import { socketAuthMiddleware } from "../middleware/soketmiddleware";
 import { connect } from '../cache/newCache';
+import bodyParser from 'body-parser'
 const cors = require('cors');
-const app = express();
+export const app = express();
 const httpServer = createServer(app);
 import dotenv from 'dotenv';
 import { sockets } from './socket';
@@ -30,10 +33,13 @@ const io = new Server(httpServer, {
 });
 io.use(socketAuthMiddleware)
 sockets(io)
+app.use(bodyParser.json({ limit: '1gb' }));
+app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(cors(opcoesCors));
 app.use(cookieParser());
 app.use(express.json());
 app.use('/',router)
+app.use('/',photo)
 
 app.get('/home', (req, res) => {
   res.send('Hello, TypScript with Express!');

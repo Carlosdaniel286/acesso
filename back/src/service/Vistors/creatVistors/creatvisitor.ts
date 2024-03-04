@@ -2,7 +2,6 @@ import { PrismaClient } from "@prisma/client";
 import { visitorAddres } from "../../../types/vistors";
 import { Inside } from "../handleEnterVistors/insideVisitor";
 import { VisitorInfo, AddressInfo } from "../../../types/vistors";
-
 export class Visitor {
   private name = "";
   private cpf = "";
@@ -63,7 +62,7 @@ export class Visitor {
           name: this.name,
           cpf: this.cpf,
           license: this.license,
-          User: {
+          user: {
             connect: { id: this.idUser },
           },
         },

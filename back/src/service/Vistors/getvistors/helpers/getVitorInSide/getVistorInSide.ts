@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 export const getVistorInside =async(prisma:PrismaClient)=>{
     const visitorsInInside = await prisma.visitor.findMany({
         where: { inside: {some: {} }
-        // Garante que exista pelo menos um objeto inside associado
+        
           },include: {inside: {
               select: {
               id: true,
@@ -14,7 +14,7 @@ export const getVistorInside =async(prisma:PrismaClient)=>{
             },
             take: 1 // Seleciona apenas o último inside
           },
-          User:{
+          user:{
             select:{
               name:true
             }
