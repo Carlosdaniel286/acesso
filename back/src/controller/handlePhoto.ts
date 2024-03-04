@@ -7,15 +7,16 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 export const router = Router()
 import multers3 from 'multer-s3'
 import { v4 as uuid } from 'uuid';
-
-
-
+import dotenv from 'dotenv'
+dotenv.config()
+const accessKeyId = process.env.ACCESSKEYID as string
+const secretAccessKey = process.env.SECRETACCESSKEY as string
 const s3 = new S3Client({
     region:'sa-east-1',
    
     credentials: {
-        accessKeyId:'AKIAQ3EGRQOGTWCXT6L6',
-        secretAccessKey:'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',
+        accessKeyId,
+        secretAccessKey
         
     }
 });
