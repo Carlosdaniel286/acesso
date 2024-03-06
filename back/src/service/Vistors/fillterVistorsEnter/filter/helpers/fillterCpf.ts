@@ -24,7 +24,7 @@ export class CpfFilter {
               cpf:true,
               id:true,
               license:true,
-              User:{
+              user:{
                 select:{
                   name:true
                 }

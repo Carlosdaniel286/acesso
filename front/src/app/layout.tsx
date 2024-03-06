@@ -1,8 +1,8 @@
 import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
-import { UserProviderHidden } from './sistema/context/hiddeNav'
-import { UserChangeInput } from "./sistema/context/changeInputs";
+import { UserProviderHidden } from '@/context/hiddeNav'
+import { UserChangeInput } from "@/context/changeInputs";
 
 export async function generateMetadata( ) {
  return {

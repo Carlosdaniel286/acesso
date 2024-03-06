@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import { addressValue } from "./inputs";
 //resident: {…}, residentId: 85, createdAt:
 export type inside ={
- Address:addressValue,
+ address:addressValue,
  createdAt:string,
  residentId: number;
  visitorId: number;
@@ -19,8 +19,8 @@ export type project = {
     cpf: string;
     id: number;
     license:string;
-    controll :'Exit'|'Enter';
-    User:{
+    image: string,
+    user:{
       name:string;
     }
     

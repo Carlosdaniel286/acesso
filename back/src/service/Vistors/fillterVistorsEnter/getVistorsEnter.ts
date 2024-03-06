@@ -35,7 +35,7 @@ export class handleVistorsEnter {
           id: true,
           license: true,
 
-          User: {
+          user: {
             select: {
               name: true,
             },

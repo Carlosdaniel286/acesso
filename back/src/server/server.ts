@@ -1,7 +1,7 @@
 // src/index.ts
 import express from 'express';
 const router = require('../route/route')
-const photo = require('../controller/handlePhoto')
+//const photo = require('../controller/handlePhoto')
 
 import cookieParser from 'cookie-parser';
 import { createServer } from "node:http";
@@ -13,7 +13,9 @@ const cors = require('cors');
 export const app = express();
 const httpServer = createServer(app);
 import dotenv from 'dotenv';
-import { sockets } from './socket';
+import path from 'path';
+import {upload} from '../middleware/multer/handlerPhoto'
+import { userRouterSocket } from './socket';
 dotenv.config();
 
 
@@ -29,19 +31,24 @@ const opcoesCors = {
 
 const io = new Server(httpServer, {
   cors:opcoesCors
-  
 });
+
+const pathImage = process.env.PATH_IMAGE as string
+
+const imagePath = path.resolve(__dirname, pathImage);
 io.use(socketAuthMiddleware)
-sockets(io)
+userRouterSocket(io)
+
 app.use(bodyParser.json({ limit: '1gb' }));
 app.use(bodyParser.urlencoded({ limit: '1gb', extended: true }));
 app.use(cors(opcoesCors));
 app.use(cookieParser());
 app.use(express.json());
 app.use('/',router)
-app.use('/',photo)
+app.use('/', express.static(imagePath));
+//app.use('/',photo)
 
-app.get('/home', (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hello, TypScript with Express!');
 });
 

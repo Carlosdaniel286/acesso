@@ -1,11 +1,11 @@
 /* eslint-disable react/no-children-prop */
-import { UserChangeInput } from './context/changeInputs'
-import { UserProviderVisitors } from './context/visitors'
+import { UserChangeInput } from '@/context/changeInputs'
+import { UserProviderVisitors } from '@/context/visitors'
 import style from './styleLayout/style.module.css'
-import { UserProviderHidden } from './context/hiddeNav'
+import { UserProviderHidden } from '@/context/hiddeNav'
 import Mean from '../sistema/registros/todos/[...user]/main'
-import { SocketProvider } from './context/socket'
-import { UserProviderStream } from './context/mediaDevices/mediaDevices'
+import { SocketProvider } from '@/context/socket'
+import { UserProviderStream } from '@/context/mediaDevices/mediaDevices'
 export default function RootLayout({
   children,
 }: {

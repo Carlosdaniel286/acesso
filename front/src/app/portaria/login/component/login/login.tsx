@@ -1,8 +1,8 @@
 "use client";
 import on from "./style/style.module.css";
-import Cadastros from "../../../../sistema/components/Form/cadastros";
-import { Inputcpf } from "../../../../sistema/components/inputs/inputcpf/cpf";
-import InputPassword from "../../../../sistema/components/inputs/inputPassword/password";
+import Cadastros from "@/components/Form/form";
+import { Inputcpf } from "@/components/inputs/inputcpf/cpf";
+import InputPassword from "@/components/inputs/inputPassword/password";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import dotenv from "dotenv";

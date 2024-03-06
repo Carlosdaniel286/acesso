@@ -13,7 +13,7 @@ export const handleVistorsAddress = async(id:number)=>{
           visitorId:id
         },
         select:{
-            Address:{
+            address:{
                select:{
                 lt:true,
                 qd:true
@@ -35,7 +35,7 @@ export const handleVistorsAddress = async(id:number)=>{
           lt:4
         },
        select:{
-        Inside:{
+        inside:{
             select:{
                 visitor:{
                     select:{
@@ -47,7 +47,7 @@ export const handleVistorsAddress = async(id:number)=>{
                 createdAt:true
             }
         },
-        Outside:{
+        outside:{
             select:{
                 visitor:{
                     select:{

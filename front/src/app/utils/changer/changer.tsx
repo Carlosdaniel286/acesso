@@ -10,9 +10,9 @@ export const HandlerChanger:project={
     id: 0,
     cpf: '',
     license: '',
-    User:{
+    user:{
         name:""
     },
-    controll: 'Exit',
+    image:''
     //inside:[initInside]
 }

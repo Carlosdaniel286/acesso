@@ -1,6 +1,3 @@
-
-
-
 export type visitorAddres={
     qd:number | "",
      lt:number | ""
@@ -10,7 +7,7 @@ export type VisitorInfo ={
     cpf:string,
     address:visitorAddres[],
     cnh:string,
-   
+    image:Express.Multer.File | ''
 
 }
 

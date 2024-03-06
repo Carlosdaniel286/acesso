@@ -23,7 +23,7 @@ async setNewResident() {
             data:{
               name: 'carlos',
               cpf: '000',
-              Address:{
+              address:{
                   connect: {
                   id: newAddr?.id, // Utiliza o ID do endereço criado anteriormente
                 }

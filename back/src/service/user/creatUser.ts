@@ -6,13 +6,16 @@ import { l } from "../ds";
 const cpf = require("gerador-validador-cpf");
 import { CPF } from "@julioakira/cpf-cnpj-utils";
 import { Request, Response } from "express";
-
+import dotenv from 'dotenv'
+dotenv.config()
+const urlBase = process.env.BASE_URL_EXPRESS as string
 export class User {
   private name: string = "";
   private cpf: string = "";
   private password: string = "";
   public res: Response;
   public req: Request;
+  private image:string = ''
 
   constructor(req: Request, res: Response) {
     const { name, cpf, password } = req.body;
@@ -21,6 +24,7 @@ export class User {
     this.password = password;
     this.req = req;
     this.res = res;
+  
   }
 
   async creatUser() {
@@ -38,13 +42,24 @@ export class User {
         return this.res
           .status(400)
           .send("erro de tipo, cpf deve conter caracters ou nome vazio");
-      this.verifiqueCpf(this.cpf);
+         
+     
+        this.verifiqueCpf(this.cpf);
       //this.verifiquePassword(this.password)
       const hashedPassword = await bcrypt.hash(this.password, 10);
+      const hashedCpf= await bcrypt.hash(this.cpf, 10);
       const connect = await prisma;
       if (!connect) return;
+      const file = this.req.file;
+      if(file) this.image =`${urlBase}/${file?.filename}`
       await connect.user.create({
-        data: { cpf: this.cpf, name: this.name, password: hashedPassword },
+        data: {
+           cpf: hashedCpf, 
+           name: this.name, 
+           password: hashedPassword,
+           image:this.image
+          
+          },
       });
 
       return this.res.status(200).send("usuario criado com sucesso");
@@ -109,7 +124,7 @@ export const creatResdents = async () => {
         name: arrys[i],
         cpf: formatted,
 
-        Address: {
+        address: {
           connect: {
             id: ls + 1, // Utiliza o ID do endereço criado anteriormente
           },

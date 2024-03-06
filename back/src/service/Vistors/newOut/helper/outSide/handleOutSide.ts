@@ -22,7 +22,7 @@ export class newExitVistor {
           visitorId: this.visitorId,
         },
         select: {
-          Address: {
+          address: {
             select: {
               lt: true,
               qd: true,
@@ -39,13 +39,13 @@ export class newExitVistor {
         return { success: false, message: "Endereço não encontrado." };
 
       for (const i in address) {
-        const idResident = address[i].Address.idResident;
+        const idResident = address[i].address.idResident;
         if (!idResident) return { success: false, message: "saida" };
 
         const ouside = new Outside(
           this.visitorId,
           idResident,
-          address[i].Address.id,
+          address[i].address.id,
           this.prisma
         );
         await ouside.visitorOutside();

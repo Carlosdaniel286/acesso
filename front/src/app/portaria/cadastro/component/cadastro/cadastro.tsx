@@ -3,10 +3,10 @@
 "use client";
 
 import on from "./style/style.module.css";
-import Cadastros from "../../../../sistema/components/Form/cadastros";
-import { Inputcpf } from "../../../../sistema/components/inputs/inputcpf/cpf";
+import Cadastros from "@/components/Form/form";
+import { Inputcpf } from "@/components/inputs/inputcpf/cpf";
 import { UtilisInputs } from "@/app/utils/inputs/inputs";
-import { InputName } from "../../../../sistema/components/inputs/inputname/name";
+import { InputName } from "@/components/inputs/inputname/name";
 import { checkPasswordStrength } from "./helpers/helps";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -14,7 +14,6 @@ import { AxiosError } from "axios";
 import axios from "axios";
 import dotenv from "dotenv";
 import Swal from "sweetalert2";
-
 
 dotenv.config();
 const urlClient = process.env.NEXT_PUBLIC_URL_CLIENT;

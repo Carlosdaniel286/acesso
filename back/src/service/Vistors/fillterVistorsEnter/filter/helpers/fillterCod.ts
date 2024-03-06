@@ -22,7 +22,7 @@ export class CodeFilter {
           cpf: true,
           id: true,
           license: true,
-          User: {
+          user: {
             select: {
               name: true,
             },

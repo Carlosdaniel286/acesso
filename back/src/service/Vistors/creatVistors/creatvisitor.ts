@@ -2,6 +2,9 @@ import { PrismaClient } from "@prisma/client";
 import { visitorAddres } from "../../../types/vistors";
 import { Inside } from "../handleEnterVistors/insideVisitor";
 import { VisitorInfo, AddressInfo } from "../../../types/vistors";
+import dotenv from 'dotenv'
+dotenv.config()
+const urlBase = process.env.BASE_URL_EXPRESS as string
 export class Visitor {
   private name = "";
   private cpf = "";
@@ -10,7 +13,7 @@ export class Visitor {
   private idUser: number;
   private prisma: PrismaClient;
   private addressList: AddressInfo[] = [];
-
+  private image:Express.Multer.File | string = '' 
   constructor(
     visitorInfo: VisitorInfo,
     userId: number,
@@ -22,14 +25,19 @@ export class Visitor {
     this.license = visitorInfo.cnh;
     this.idUser = userId;
     this.prisma = prismaClient;
+    this.image = visitorInfo.image
   }
 
   async setNewVisitor() {
     try {
       
+   
+      if(typeof this.image!=='string') {
+        this.image =`${urlBase}/${this.image.filename}`
+      }
       if(this.name=='' || this.cpf=='' )  return { success: false, message: "Nome ou cpf vazios." };
-     
-      for (const address of this.addresses) {
+      
+     for (const address of this.addresses) {
         if (address.lt === "")
           return { success: false, message: "Endereço não encontrado." };
         if (address.qd === "")
@@ -62,6 +70,7 @@ export class Visitor {
           name: this.name,
           cpf: this.cpf,
           license: this.license,
+          image:this.image,
           user: {
             connect: { id: this.idUser },
           },
@@ -78,13 +87,11 @@ export class Visitor {
           item.id,
           this.prisma
         );
-        await inside.visitorInside();
+         await inside.visitorInside();
 
-        if (i === this.addressList.length - 1) {
-          return { success: true };
-        }
+        
       }
-      return { success: true,message:"sucesso"};
+      return { success: true , message: newVisitor };
     } catch (error) {
       console.error("Erro ao criar visitante:", error);
       return { success: false, message: "Falha ao criar o visitante." };
