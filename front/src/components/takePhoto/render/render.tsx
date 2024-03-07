@@ -25,6 +25,7 @@ export default function RenderPhoto({setDisplay,urLink}:renderTakePhoto){
     return(()=>{
       if(!activeStream) return
       if(stream) cleaStream(stream)
+      setImageSrc(null)
     })
   },[activeStream])
  

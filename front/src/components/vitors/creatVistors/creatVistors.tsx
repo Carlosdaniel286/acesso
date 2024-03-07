@@ -32,8 +32,9 @@ export default function creatVisitors({ setHidden }: Props) {
   const [inputs, setInputs] = useState(UtilisInputs);
   const [diplayAddAddress, setdiplayAddAddress] = useState(false);
   const [displayTakePhoto, setDisplayTakePhoto] = useState(false);
-  const { photo, imageSrc ,setStream,setImageSrc } = useContextStream();
+  const { photo, imageSrc ,setStream,setImageSrc,activeStream,stream } = useContextStream();
 
+ 
 
   const setValueOfAddress = (value: addressValue[]) => {
     setInputs({ ...inputs, address: value });
@@ -131,7 +132,7 @@ export default function creatVisitors({ setHidden }: Props) {
                 )}
               </div>
               <InputCnh getValueOfCnh={setValueOfCnh} />
-              <div>
+              <div className={on.contanier_Picture}>
                 {imageSrc && (
                   <Image
                     src={imageSrc}
@@ -139,16 +140,23 @@ export default function creatVisitors({ setHidden }: Props) {
                     height={80}
                     alt=""
                     style={{ borderRadius: "50%" }}
-                    onClick={() => {
-                      setDisplayTakePhoto(true);
+                    onClick={async() => {
+                      const stream = await mediaDevices()
+                      console.log(stream?.id)
+                      setImageSrc(imageSrc)
+                      if(stream){
+                        setStream(stream)
+                      }
+                     setDisplayTakePhoto(true);
                       
                     }}
                   />
                 )}
               </div>
 
-              <div>
+              <div className={on.contanier_AddPic}>
                 <button
+                  className={on.button_AddPi}
                   onClick={async() => {
                     const stream = await mediaDevices()
                     console.log(stream?.id)

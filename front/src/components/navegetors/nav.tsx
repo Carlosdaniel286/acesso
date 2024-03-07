@@ -9,10 +9,11 @@ import { useEffect, useState } from "react";
 import Filtro from "../vitors/filtroVistors/filtro";
 //import RenderInside from "./components/vistors/entersVistors/main";
 import RenderEveryVistor from "./everyVistors/main";
+import { useContextStream } from "@/context/mediaDevices/mediaDevices";
 
 export default function Nav() {
   const [hidden, setHidden] = useState(false);
-
+  const { setImageSrc} = useContextStream();
   return (
     <nav className={nav.nav}>
       {hidden && (
@@ -29,7 +30,9 @@ export default function Nav() {
         <Filtro />
         <li
           onClick={() => {
+            setImageSrc(null)
             setHidden(!hidden);
+
           }}
         >
           cadastro de visitantes
