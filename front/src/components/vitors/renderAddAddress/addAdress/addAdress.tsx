@@ -4,6 +4,7 @@ import style from "./style/addAddress.module.css";
 import { InputAdressMain } from "@/components/inputs/inputadress/mainAddress";
 import { addressValue } from "@/app/types/inputs";
 import ButtonOut from "./buttonOut/buttonOut";
+
 type AddAddressProps = {
   getValueOfAddress: (value: addressValue[]) => void;
   setDisplayAddAddress: () => void;
@@ -15,6 +16,7 @@ export default function AddAddress({
   setDisplayAddAddress,
   handleNewEnter,
 }: AddAddressProps) {
+ 
   return (
     <>
       <div className={style.addAdressOverlay}>
@@ -28,8 +30,11 @@ export default function AddAddress({
             <div className={style.AddAddress_button}>
               <button
                 onClick={() => {
+                 
+     
+    
                   setDisplayAddAddress();
-                  handleNewEnter();
+                 handleNewEnter();
                 }}
               >
                 confirmar

@@ -9,6 +9,7 @@ import { useContextHiddent } from "@/context/hiddeNav";
 import axios from "axios";
 import dotenv from 'dotenv'
 import { ConnectSoket } from "@/context/socket";
+import { useEffect, useState } from "react";
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 
@@ -19,18 +20,27 @@ type typeOfCards ={
 
 export default function Card({cards,setChanger}:typeOfCards) {
  const {socket}=ConnectSoket()
-  const { setHiddeNav, hiddeNav } = useContextHiddent();
+  const[src , setImageSrc]= useState("/user.jpg")
+  useEffect(()=>{
+    if(cards.image!==''){
+    setImageSrc(cards.image)
+    }
+  },[])
+ 
+ 
+ const { setHiddeNav, hiddeNav } = useContextHiddent();
   return (
     <div className={on.bodyVisit}>
       <div className={on.person}>
         <div className={on.visitimg}>
+          
           <Image
-            src={"/use.png"}
+            src={src}
             alt="Descrição da imagem"
             width={100}
             height={100}
             style={{ borderRadius: "50%" ,cursor:'pointer'}}
-            
+            key={cards.id}
           />
         </div>
         <div className={on.content}>

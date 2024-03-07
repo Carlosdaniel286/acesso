@@ -15,6 +15,8 @@ import { HandlerChanger } from "@/app/utils/changer/changer";
 import dotenv from 'dotenv'
 import NewEntry from "../vitors/CardVistorDetails/CardVistorDetails";
 import Overlay from "../overlay/hidden";
+import { ConnectSoket } from "@/context/socket";
+import { useCache } from "@/context/cache/cache";
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 
@@ -26,14 +28,21 @@ export default function Scroll({ DiplayInfo }: scroll) {
   const { visitors, setVisitors } = useVisitors();
   const [changer, setChanger] = useState(HandlerChanger);
   const { hiddeNav } = useContextHiddent();
-
+  
+  
+  
+  
+  
+  
+  
+  
   useEffect(() => {
-    async function fetchVisitors() {
+   async function fetchVisitors() {
       try {
         const response = await axios.get(`${urlBase}/getvisitor`,{
           withCredentials:true
         }); // Faz uma requisição GET para obter os visitantes
-        
+        console.log(response.data)
         setVisitors(response.data); // Atualiza o estado dos visitantes com os dados da resposta
       } catch (error) {
         console.error("Erro ao obter os visitantes:", error);
@@ -47,15 +56,18 @@ export default function Scroll({ DiplayInfo }: scroll) {
     }
   }, []);
 
+
+
   return (
     <div className={on.bodyon}>
       <div className={on.scroll}>
         {visitors &&
           visitors.map((item) => (
-            <div key={item.id} className={on.cards}>
+            <div key={item.id+1} className={on.cards}>
               <Card
                 cards={item}
                 setChanger={() => {
+                 
                   setChanger({
                     ...changer,
                     name: item.name,
@@ -64,6 +76,7 @@ export default function Scroll({ DiplayInfo }: scroll) {
                     license: item.license,
                     user: item.user,
                     image: item.image,
+                    
                   });
                 }}
               />
@@ -71,11 +84,12 @@ export default function Scroll({ DiplayInfo }: scroll) {
           ))}
         <div>
           {
-          hiddeNav.overflow && changer.name &&
+          hiddeNav.overflow && changer.name && 
           <Overlay  
           children={<>
           <NewEntry cards={changer} />
-          </>}
+          </>
+          }
           handleOverlayVisibility={'default'}
           />
            

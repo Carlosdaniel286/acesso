@@ -38,29 +38,7 @@ export const UserProviderStream=({ children }:{children:ReactNode}) => {
         imageSrc
     }
  
-    useEffect(() =>{
-       
-        async function mediaDevices(){
-          try{
-            //const stream = await navigator.mediaDevices.getUserMedia({video:true});
-            //setStream(stream)
-          }catch(err){
-              console.log(err)
-              return null
-          }
-      }
-      function cleanup(stream:MediaStream) {
-        if (stream) {
-          stream.getTracks().forEach((marck) => {
-            console.log(marck.id)
-           marck.stop();
-          });
-        }
-      }
-   
-     return
     
-    },[stream])
    
     useEffect(() => {
         if (stream && videoRef.current) {

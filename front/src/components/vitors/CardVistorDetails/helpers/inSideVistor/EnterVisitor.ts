@@ -50,7 +50,9 @@ export const EnterVistor = async ({
   "visitorsEnter"
   try {
   
-          await axios.post( `${urlBase}/visitorsEnter`,newVisitor)
+          await axios.post( `${urlBase}/visitorsEnter`,newVisitor,{
+            withCredentials:true
+          })
           await Swal.fire({
             icon: "success",
             title: "ok",

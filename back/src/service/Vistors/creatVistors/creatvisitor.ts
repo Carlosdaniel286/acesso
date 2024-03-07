@@ -1,8 +1,11 @@
+import { User } from './../../user/creatUser';
 import { PrismaClient } from "@prisma/client";
 import { visitorAddres } from "../../../types/vistors";
 import { Inside } from "../handleEnterVistors/insideVisitor";
 import { VisitorInfo, AddressInfo } from "../../../types/vistors";
+import  {Request, Response} from 'express'
 import dotenv from 'dotenv'
+
 dotenv.config()
 const urlBase = process.env.BASE_URL_EXPRESS as string
 export class Visitor {
@@ -13,35 +16,41 @@ export class Visitor {
   private idUser: number;
   private prisma: PrismaClient;
   private addressList: AddressInfo[] = [];
-  private image:Express.Multer.File | string = '' 
+  private image:Express.Multer.File | undefined
+  private res: Response;
+  private req:Request
+  private src:string =''
   constructor(
-    visitorInfo: VisitorInfo,
+    req:Request,
+    res:Response,
     userId: number,
     prismaClient: PrismaClient
   ) {
-    this.name = visitorInfo.name;
-    this.cpf = visitorInfo.cpf;
-    this.addresses = visitorInfo.address;
-    this.license = visitorInfo.cnh;
+    this.res = res
+    this.req =req
+    this.name =  this.req.body.name;
+    this.cpf =  this.req.body.cpf;
+    this.addresses =  this.req.body.address;
+    this.license =  this.req.body.cnh;
     this.idUser = userId;
     this.prisma = prismaClient;
-    this.image = visitorInfo.image
+    this.image =  this.req.file
+    
   }
 
   async setNewVisitor() {
     try {
-      
+      console.log(this.req.body)
    
-      if(typeof this.image!=='string') {
-        this.image =`${urlBase}/${this.image.filename}`
-      }
-      if(this.name=='' || this.cpf=='' )  return { success: false, message: "Nome ou cpf vazios." };
+        if(typeof this.image!=='undefined'){
+         this.src =`${urlBase}/${this.image.filename}`
+        }
+      
+      if(this.name=='' || this.cpf=='' )  return this.res.status(400).send('cpf ou nome vazios')
       
      for (const address of this.addresses) {
-        if (address.lt === "")
-          return { success: false, message: "Endereço não encontrado." };
-        if (address.qd === "")
-          return { success: false, message: "Endereço não encontrado." };
+        if (address.lt === "") return this.res.status(400).send( "Endereço não encontrado.")
+        if (address.qd === "") return this.res.status(400).send("Endereço não encontrado." )
 
         const foundAddress = await this.prisma.address.findFirst({
           where: {
@@ -51,17 +60,17 @@ export class Visitor {
         });
 
         if (!foundAddress) {
-          return { success: false, message: "Endereço não encontrado." };
+          return this.res.status(400).send("Endereço não encontrado." )
         }
 
         if (!foundAddress.idResident) {
-          return { success: false, message: "Sem residente nesse endereço." };
+          return this.res.status(400).send("Sem residente nesse endereço." )
         }
         this.addressList.push(foundAddress);
       }
 
       if (this.addressList.length === 0) {
-        return { success: false, message: "Lista de endereços vazia." };
+        return this.res.status(400).send("Lista de endereços vazia.")
       }
      
       
@@ -70,17 +79,25 @@ export class Visitor {
           name: this.name,
           cpf: this.cpf,
           license: this.license,
-          image:this.image,
+          image:this.src,
           user: {
-            connect: { id: this.idUser },
+            connect: { id: this.idUser},
+            
           },
         },
+         include:{
+          user:{
+           select:{
+              name:true,
+              },
+          }
+         }
       });
 
     
       for (let i = 0; i < this.addressList.length; i++) {
         const item = this.addressList[i];
-        if (!item.idResident) return { success: false };
+        if (!item.idResident)  return this.res.status(400).send('sem residente')
         const inside = new Inside(
           newVisitor.id,
           item.idResident,
@@ -91,10 +108,11 @@ export class Visitor {
 
         
       }
-      return { success: true , message: newVisitor };
+      console.log(newVisitor)
+      return this.res.status(200).send(newVisitor)
     } catch (error) {
       console.error("Erro ao criar visitante:", error);
-      return { success: false, message: "Falha ao criar o visitante." };
+      return this.res.status(400).send("Falha ao criar o visitante.")
     }
   }
 }

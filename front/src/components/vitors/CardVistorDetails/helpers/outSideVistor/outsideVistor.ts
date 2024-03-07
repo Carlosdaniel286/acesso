@@ -29,7 +29,9 @@ export const newExitVistor = async ({
   };
 
   try {
-    await axios.post(`${urlBase}/visitorsExit`, newExit);
+    await axios.post(`${urlBase}/visitorsExit`, newExit,{
+      withCredentials:true
+    });
     await Swal.fire({
       icon: 'success',
       title: 'OK',
@@ -38,6 +40,7 @@ export const newExitVistor = async ({
     });
     setHiddeNav({ ...hiddeNav, overflow: false });
   } catch (err) {
+    console.log(err)
     if (axios.isAxiosError(err)) {
       await Swal.fire({
         icon: 'error',

@@ -41,7 +41,8 @@ export class Login {
         try{
         
         if(typeof this.password!=='string') res.status(400).send('erro de tipo, senha deve conter caracters')
-        const user = await this.prisma.user.findUnique({ where: { cpf:this.cpf } })
+
+        const user = await this.prisma.user.findFirst({ where: { cpf:this.cpf} })
         
         if(!user) return res.status(400).send('Esse Usuário Não Existe!')
         const authenticated =  await bcrypt.compare(this.password, user.password)

@@ -47,14 +47,14 @@ export class User {
         this.verifiqueCpf(this.cpf);
       //this.verifiquePassword(this.password)
       const hashedPassword = await bcrypt.hash(this.password, 10);
-      const hashedCpf= await bcrypt.hash(this.cpf, 10);
+     
       const connect = await prisma;
       if (!connect) return;
       const file = this.req.file;
       if(file) this.image =`${urlBase}/${file?.filename}`
       await connect.user.create({
         data: {
-           cpf: hashedCpf, 
+           cpf: this.cpf, 
            name: this.name, 
            password: hashedPassword,
            image:this.image

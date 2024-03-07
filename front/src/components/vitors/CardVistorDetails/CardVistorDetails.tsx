@@ -9,10 +9,15 @@ import SetAddressOfVistor from "../renderAddAddress/renderAddAddress";
 import Loading from "@/components/loading/loading";
 import { ConnectSoket } from "@/context/socket";
 import style from './style/info.module.css'
+import { useCache } from "@/context/cache/cache";
 export type newEnters = {
   address: addressValue[];
   visitorId: number;
 };
+type controll={
+  id:number,
+  controll:'Exit'|'Enter'|''
+}
 
 export default function NewEntry({ cards }: card) {
   const { setHiddeNav, hiddeNav } = useContextHiddent();
@@ -24,8 +29,19 @@ export default function NewEntry({ cards }: card) {
     },
   ]);
   const [renderAddAddres, setRenderAddAddress] = useState(false);
-  const [controll, setControll] = useState<"Exit" | "Enter" | "">('Exit');
-
+  const{controll,setControll}=useCache()
+  const getCahe =(controll:string)=>{
+       if (!socket) return;
+       socket.emit('caches',{id:cards.id,controll})
+       socket.on(cards.id.toString(),(state: string) => {
+        if (state == "Enter" || state == "Exit" || state=='' ) {
+           console.log(state)
+           setControll(state);
+         }
+       });
+       
+    }
+  
   const setDisplayAddAddress = () => {
     setRenderAddAddress(!renderAddAddres);
   };
@@ -35,25 +51,27 @@ export default function NewEntry({ cards }: card) {
   };
 
   const handleExitVistor = async () => {
+   
     if (controll === "Exit") {
      await newExitVistor({cards, setHiddeNav, hiddeNav });
+    
     }
     if (controll === "Enter") {
       setDisplayAddAddress();
+     
     }
   };
   useEffect(() => {
-    if (!socket) return;
-    socket.emit("cache", cards.id);
-    
-    socket.on("cache", async (state: string) => {
-      console.log(state)
-      if (state === "Enter" || state === "Exit") {
+ if (!socket) return;
+ socket.emit('caches',{id:cards.id,controll:""})
+ socket.on(cards.id.toString(),(state: string) => {
+ if (state == "Enter" || state == "Exit" || state=='' ) {
+       console.log(state)
         setControll(state);
       }
     });
-  }, [socket, controll, cards]);
-
+  }, []);
+  
   return (
     <>
       {controll ? (
@@ -62,7 +80,10 @@ export default function NewEntry({ cards }: card) {
             <SetAddressOfVistor
               cards={cards}
               getAdress={setAddAddress}
-              Display={setDisplayAddAddress}
+              Display={(()=>{
+                getCahe('Exit')
+                setDisplayAddAddress()
+              })}
             />
           )}
 
@@ -74,7 +95,9 @@ export default function NewEntry({ cards }: card) {
                 </>
               }
               Onclik={() => {
-                handleExitVistor();
+               getCahe("Enter")
+               handleExitVistor();
+               
               }}
               header="cadastro de visitantes"
               SelectButton={controll}

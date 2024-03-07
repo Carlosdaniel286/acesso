@@ -51,7 +51,8 @@ export class newEntry {
         await inside.visitorInside();
       }
       //delCache('1')
-      setCache(this.visitorId.toString(), "Exit");
+      
+
       return { success: true, message: "Exit" };
     } catch (err) {
       console.log(err);

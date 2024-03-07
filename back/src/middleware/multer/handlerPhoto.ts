@@ -40,8 +40,8 @@ const storage = multer.diskStorage({
       cb(null, paths)
     },
     filename: function (req, file, cb) {
-        const ext = path.extname(req.body.photo.originalname);
-       
+        const ext = path.extname(uuid()+file.originalname);
+        
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
         cb(null, `file-` + uniqueSuffix + ext);
     }

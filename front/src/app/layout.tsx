@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { UserProviderHidden } from '@/context/hiddeNav'
 import { UserChangeInput } from "@/context/changeInputs";
-
+import { UserProviderCacher } from "@/context/cache/cache";
 export async function generateMetadata( ) {
  return {
     title: 'condominio',
@@ -66,11 +66,13 @@ export default function RootLayout({ children,}:{children: React.ReactNode;})
   return (
     <html lang="pt">
     <body className={"bodys"} >
+      <UserProviderCacher>
         <UserChangeInput>
         <UserProviderHidden >
         {children}
       </UserProviderHidden >
       </UserChangeInput>
+      </UserProviderCacher>
         <footer>
           <ul>
             <li>

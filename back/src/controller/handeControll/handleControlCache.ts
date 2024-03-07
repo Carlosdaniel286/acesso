@@ -1,17 +1,24 @@
 import { Server, Socket } from "socket.io";
-import { getCache } from "../../cache/newCache";
+import { getCache,setCache } from "../../cache/newCache";
+type controll={
+  id:number,
+  controll:'Exit'|'Enter'|''
+}
 
-
-export const handleCache = async (io: Server) => {
+export const handleCache = async (io:Server,socket:Socket) => {
   try {
-   io.on('cache' ,(async(id:number)=>{
-    const state = await getCache(id.toString());
-
-    if (!state) {
-      io.emit('cache', '');
-    } else {
-      io.emit('cache', state);
-    }
+   socket.on("caches",(async(msg:controll)=>{
+    console.log("msg")
+    console.log(msg)
+    if(msg.controll==''){
+        const cache = await getCache(msg.id.toString())
+       io.emit(msg.id.toString(),cache)
+      }else{
+      setCache(msg.id?.toString(), msg.controll);
+      io.emit(msg.id.toString(),msg.controll)
+      }
+      
+   
 }))
 
 } catch (error) {

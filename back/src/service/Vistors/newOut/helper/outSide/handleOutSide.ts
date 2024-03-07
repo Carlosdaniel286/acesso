@@ -50,7 +50,7 @@ export class newExitVistor {
         );
         await ouside.visitorOutside();
       }
-      setCache(this.visitorId.toString(), "Enter");
+      
       return { success: true, message: "Enter" };
     } catch (err) {
       console.log(err);

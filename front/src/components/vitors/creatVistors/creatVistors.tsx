@@ -20,6 +20,8 @@ import TakePhoto from "../../takePhoto/takePhoto";
 import { useContextStream } from "@/context/mediaDevices/mediaDevices";
 import Image from "next/image";
 import dotenv from 'dotenv'
+import { handleProfilePhoto } from "./helpers/PhotoProfile/PhotoProfile";
+import { handleEmptyPhoto } from "./helpers/EmptyPhotoVisitor/EmptyPhotoVisitor";
 import { mediaDevices } from "@/components/takePhoto/render/helpers/newSteam/stream";
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
@@ -61,25 +63,22 @@ export default function creatVisitors({ setHidden }: Props) {
       });
       return;
     }
-   
+      
      try {
-     const response = await axios.post(`${urlBase}/creatVisitors`,{
-        name: inputs.name,
-        cpf: inputs.cpf,
-        cnh: inputs.cnh,
-        address: inputs.address,
-        photo
-        },{
-         withCredentials:true, 
-               headers: {
-              'Content-Type': 'multipart/form-data'
+      if(photo){
+        const response = await handleProfilePhoto(photo,inputs)
+        if(!response) return
+        const newVisitor = response.data as project
+        console.log(newVisitor)
+        setVisitors([...visitors, newVisitor])
+      
+      }if(!photo){
+        const response = await handleEmptyPhoto(inputs)
+        if(!response) return
+        const newVisitor = response.data as project
+        console.log(newVisitor)
+        setVisitors([...visitors, newVisitor])
       }
-    
-    }
-    );
-       
-      const newVisitor = response.data as project
-      setVisitors([...visitors, newVisitor])
       setHiddeNav({ ...hiddeNav, modal: true });
       setHidden(false);
       setTimeout(() => {
