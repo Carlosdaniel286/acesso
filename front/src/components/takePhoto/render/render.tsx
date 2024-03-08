@@ -1,7 +1,7 @@
 
 
 import { useContextStream} from "@/context/mediaDevices/mediaDevices";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import style from "../style/addPicture.module.css";
 import Image from "next/image";
 import axios, { AxiosError } from "axios";
@@ -20,21 +20,48 @@ const backend = process.env.NEXT_PUBLIC_URL_BASE as string
 
 export default function RenderPhoto({setDisplay,urLink}:renderTakePhoto){
   const {setActiveStream,videoRef,activeStream,setPhoto,photo,setImageSrc,imageSrc,setStream ,stream} = useContextStream();
+  const [dimison, setDimison] = useState({
+    height:0,
+    width:0
+  });
+  const ImageRef = useRef<HTMLDivElement | null>(null)
+  const [dimisonVideo, setDimisonVideo] = useState({
+    height:0,
+    width:0
+  });
+  
   useEffect(()=>{
-   
-    return(()=>{
+   return(()=>{
       if(!activeStream) return
       if(stream) cleaStream(stream)
       setImageSrc(null)
     })
   },[activeStream])
  
+  const dimisonOfImage =()=>{
+    if(ImageRef.current){
+      setDimison({...dimison,
+       height:ImageRef.current.scrollHeight,
+       width:ImageRef.current.scrollWidth
+      })
+    }
+  }
+  useEffect(() => {
+    dimisonOfImage(); // Chamando a função inicialmente
+    window.addEventListener('resize', dimisonOfImage); // Adicionando o listener de resize
 
-  
+    return () => {
+      window.removeEventListener('resize', dimisonOfImage); // Removendo o listener quando o componente desmonta
+    };
+  }, [imageSrc,activeStream,videoRef]); 
 
   useEffect(()=>{
-   
-   
+    console.log(imageSrc)
+   },[imageSrc])
+  
+  
+  useEffect(()=>{
+   //dimisonOfImage()
     const handlePhoto =async()=>{
       try{
         if(urLink=='')return
@@ -76,20 +103,20 @@ export default function RenderPhoto({setDisplay,urLink}:renderTakePhoto){
 
 const takePhoto = () => {
     if (videoRef.current) {
+      
       const canvas = document.createElement("canvas");
-      canvas.height = 400;
-      canvas.width = 400;
+      canvas.height = 400
+      canvas.width = 400
       const ctx = canvas.getContext("2d");
       ctx?.drawImage(videoRef.current, 0, 0, 400, 400);
-     
+     console.log(videoRef.current.height)
       canvas.toBlob(async (blob:Blob|null) => {
         if(!blob) return
          const formData = new FormData();
         formData.append('photo', blob, 'foto.png'); 
-        console.log(formData)
         setPhoto(formData);
-        console.log(formData)
         const temporaryUrl = URL.createObjectURL(blob);
+        //console.log(temporaryUrl)
         setImageSrc(temporaryUrl)
         
        
@@ -101,14 +128,21 @@ const takePhoto = () => {
     return(
         <>
         <div className={style.take_photo_container}>
-        <div className={style.play}>
+        <div  className={style.play}>
           {
-           !imageSrc  &&  <video ref={videoRef} autoPlay />
+           !imageSrc  &&  
+           <div  className={style.video}>
+              <video ref={videoRef}  autoPlay />
+           </div>
           }
-          {
-           imageSrc && <Image src={imageSrc}  width={395} height={300} alt='' />
-          }
-          <div>
+          
+            {imageSrc &&
+           <div ref={ImageRef} className={style.img}>
+             {<Image src={imageSrc}  width={dimison.width} height={dimison.height} alt='' />}
+          </div>
+            }
+          
+          <div className={style.take_photo_containerButton}>
             {!imageSrc &&
             <>
             <button
@@ -116,10 +150,7 @@ const takePhoto = () => {
               onClick={() => {
                 takePhoto();
                 if(stream) cleaStream(stream)
-                setDisplay(false)
-                
-                
-               
+                //setImageSrc(imageSrc)
               }}
             >
               Tirar Foto
@@ -141,16 +172,13 @@ const takePhoto = () => {
             <button
               className={style.NewStreamButton}
               onClick={async() => {
-                setImageSrc(null)
-               const stream = await mediaDevices()
-                console.log(stream?.id)
+                const stream = await mediaDevices()
                 if(stream){
-                  setStream(stream)
+                  setImageSrc(null)
                   setActiveStream(true)
-                }
-               
-                
-              }}>
+                  setStream(stream)
+                  }
+               }}>
                 tira outra foto
             </button>
             <button

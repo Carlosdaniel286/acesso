@@ -4,7 +4,7 @@ const nextConfig = {
             serverActions: true,
           },
           images: {
-            domains: ['localhost'], // Adicione 'localhost' ou o domínio correto aqui
+            domains: ['localhost', 'www.easyresgistercondominios.website'], // Adicione o domínio correto aqui
           },
     }
      

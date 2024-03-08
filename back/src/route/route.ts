@@ -22,11 +22,12 @@ router.get("/token", authMiddleware, Token);
 router.post("/visitorsExit", authMiddleware, handleExitVistor);
 router.get("/Vistors_inside", authMiddleware, Vistors_Inside);
 router.get("/address/inside/:id", authMiddleware, getVistorsAddress);
-router.get("/filltervisitor", authMiddleware, fillterVistors);
+router.post("/filltervisitor", authMiddleware, fillterVistors);
 router.get("/getvisitor", authMiddleware, getVisitors);
 router.post("/visitorsEnter", authMiddleware, handleEntersVisitor);
 router.post("/creatVisitors",authMiddleware,upload.single("photo"),handleCreateVisitor);
 //"creatVisitors"
 //creatVisitors
+//filltervisitor
 
 module.exports = router;

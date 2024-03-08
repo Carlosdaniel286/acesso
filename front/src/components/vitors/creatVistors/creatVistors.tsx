@@ -156,7 +156,7 @@ export default function creatVisitors({ setHidden }: Props) {
 
               <div className={on.contanier_AddPic}>
                 <button
-                  className={on.button_AddPi}
+                  className={on.button_AddPic}
                   onClick={async() => {
                     const stream = await mediaDevices()
                     console.log(stream?.id)

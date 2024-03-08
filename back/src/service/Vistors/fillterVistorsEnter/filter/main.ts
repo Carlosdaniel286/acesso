@@ -8,7 +8,6 @@ export class DataFilter {
   private name: string | " ";
   private code: number | "";
   private cpf: string | "";
-
   private prisma: PrismaClient;
   constructor(data: Datafilter, prisma: PrismaClient) {
     this.name = data.name;

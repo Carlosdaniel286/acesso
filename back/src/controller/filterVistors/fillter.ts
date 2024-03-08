@@ -8,8 +8,10 @@ export const fillterVistors = async (req: Request, res: Response) => {
       const conect = await prisma;
       if (!conect) return res.status(400).send('erro na conexão')
       const fillter = req.body as Datafilter
+    console.log(fillter)
       const dataFilter = new DataFilter(fillter, conect);
       const fillters = await dataFilter.HandleDataFilter();
+      console.log(fillters)
      return res.status(200).send(fillters)
     } catch (err) {
       return res.status(400).send(err)

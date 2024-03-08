@@ -17,8 +17,8 @@ export default function Seach() {
   const [inputs, setInputs] = useState(UtilisInputs);
   const {setVisitors,visitors}=useVisitors()
   
-  const updateVistors =(project:project)=>{
-     setVisitors([...visitors,project])
+  const updateVistors =(project:project[])=>{
+     setVisitors(project)
   }
   
   

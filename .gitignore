@@ -8,7 +8,7 @@
 **/.next/
 **/out/
 **/dist/
-**/image/
+**/scr/image/
 # production
 **/build
 **/ecosystem.config.js

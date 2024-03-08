@@ -13,7 +13,7 @@ export type renderTakePhoto = {
 };
 
 export default function TakePhoto({ setDisplay, urLink }: renderTakePhoto) {
-  const { stream, setActiveStream,activeStream} = useContextStream();
+  const { stream, setActiveStream,activeStream,imageSrc} = useContextStream();
 
   useEffect(() => {
    setActiveStream(true);
@@ -27,13 +27,13 @@ export default function TakePhoto({ setDisplay, urLink }: renderTakePhoto) {
     <>
       <Overlay
         children={
-          <>
-            {stream?.active ? (
+          <div className={style.containerRenderPhoto} >
+            {typeof imageSrc=="string" ||  stream?.active ? (
               <RenderPhoto setDisplay={setDisplay} urLink={urLink} />
             ) : (
               <Loading />
             )}
-          </>
+          </div>
         }
         handleOverlayVisibility={() => {
           setDisplay(false);

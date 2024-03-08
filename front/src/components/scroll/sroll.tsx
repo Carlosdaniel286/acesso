@@ -29,20 +29,13 @@ export default function Scroll({ DiplayInfo }: scroll) {
   const [changer, setChanger] = useState(HandlerChanger);
   const { hiddeNav } = useContextHiddent();
   
-  
-  
-  
-  
-  
-  
-  
   useEffect(() => {
    async function fetchVisitors() {
       try {
         const response = await axios.get(`${urlBase}/getvisitor`,{
           withCredentials:true
         }); // Faz uma requisição GET para obter os visitantes
-        console.log(response.data)
+       
         setVisitors(response.data); // Atualiza o estado dos visitantes com os dados da resposta
       } catch (error) {
         console.error("Erro ao obter os visitantes:", error);
