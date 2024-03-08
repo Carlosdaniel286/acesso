@@ -159,10 +159,10 @@ export default function creatVisitors({ setHidden }: Props) {
                   className={on.button_AddPic}
                   onClick={async() => {
                     const stream = await mediaDevices()
-                    console.log(stream?.id)
-                    setImageSrc(imageSrc)
                     if(stream){
                       setStream(stream)
+                      console.log(stream?.id)
+                      setImageSrc(imageSrc)
                     }
                    setDisplayTakePhoto(true);
                     

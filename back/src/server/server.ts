@@ -14,6 +14,7 @@ export const app = express();
 const httpServer = createServer(app);
 import dotenv from 'dotenv';
 import path from 'path';
+//import d from '../../public/image'
 import {upload} from '../middleware/multer/handlerPhoto'
 import { userRouterSocket } from './socket';
 dotenv.config();

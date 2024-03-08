@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import path from "path";
 import multer from 'multer'
 import { S3Client} from '@aws-sdk/client-s3';
-//import d from '../../image'
+
 import multers3 from 'multer-s3'
 import { v4 as uuid } from 'uuid';
 import dotenv from 'dotenv'
 dotenv.config()
+
 
 const accessKeyId = process.env.ACCESSKEYID as string
 const secretAccessKey = process.env.SECRETACCESSKEY as string
@@ -33,8 +34,8 @@ const uploads = multer({
     })
 
 });
-
-const paths = path.resolve(__dirname,'../../image')
+const pathImage = process.env.PATH_DIST as string
+const paths = path.resolve(__dirname,pathImage )
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, paths)

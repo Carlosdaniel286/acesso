@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ts-node ./src/server/server.ts",
     "dev": "pm2 start dist/server/server.js --name back",
+    "dist": " node ./dist/server/server.js",
     "tsc": "tsc"
   },
   "author": "",

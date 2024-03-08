@@ -120,12 +120,19 @@
   .Cadbodys {
     margin-left: 12px;
     margin-right: 12px;
-    margin-top: 0px;
-    margin-bottom: 10px;
-    min-height: 95vh;
-    max-height:95vh;
-    background-color: rgb(145, 68, 68);
-    background-color: white
+    margin-top: 25px;
+    margin-bottom: 2px;
+    min-height: 85vh;
+    max-height: 85vh;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+    
+   
+  }
+  .main {
+    max-height: 95%;
+    min-height: 95%;
    
   }
 }

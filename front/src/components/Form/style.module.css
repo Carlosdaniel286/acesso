@@ -185,3 +185,8 @@
   }
    
 }
+@media screen and (min-height: 639px) and (max-height: 750px) {
+  .value {
+    top:-10%;
+  }
+}
