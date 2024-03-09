@@ -8,9 +8,9 @@ import { Inputcpf } from "@/components/inputs/inputcpf/cpf";
 import { useChangeInput } from "@/context/changeInputs";
 import { handleCodigo } from "./help/help";
 import { FillterThis } from "./help/fillter";
-import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { UtilisInputs } from "@/utils/inputs/inputs";
 import { useVisitors } from "@/context/visitors";
-import { project } from "@/app/types/form";
+import { project } from "@/types/form";
 export default function Seach() {
   const [input, setInput] = useState("");
   const { changeInput } = useChangeInput();

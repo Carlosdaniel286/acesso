@@ -3,9 +3,7 @@
     src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
     /* Adicione outros formatos de fonte se necessário */
   }
-  
-  
-  .content_address{
+  .content_address_Scroll{
     display: flex;
     background-color: white;
     max-height: 300px;
@@ -15,10 +13,7 @@
     padding-bottom: 40px;
     
   }
-  
-  
-  .address_color{
-    background-color: rgb(189, 84, 84);
+  .content_card_Add_Address{
     background-color: white;
     padding: 30px;
     display: flex;
@@ -28,20 +23,20 @@
     border-radius: 8px;
     position: relative;
     }
-    .address_color h2 {
+    .content_card_Add_Address h2 {
       text-transform: capitalize;
       color: black;
     }
   
-  .content_address::-webkit-scrollbar {
+    .content_address_Scroll::-webkit-scrollbar {
     width: 3px; /* Largura da barra de rolagem */
     height: 10px;
   }
-  .content_address::-webkit-scrollbar-track {
+  .content_address_Scroll::-webkit-scrollbar-track {
     background: #b33d3d; /* Cor do fundo da barra de rolagem */
     max-height: 5px;
   }
-  .content_address::-webkit-scrollbar-thumb {
+  .content_address_Scroll::-webkit-scrollbar-thumb {
     background:rgb(168, 158, 158); /* Cor do indicador da barra de rolagem */
     max-height: 5px;
   }
@@ -62,7 +57,7 @@
     font-family: "MinhaFonte";
   }
   
-  .content_address input {
+  .content_address_Scroll input {
     border: 0pc;
     border-bottom: 1px solid rgb(131, 131, 134);
     height: 40px;
@@ -108,15 +103,15 @@
   }
   
   @media screen and (max-width: 650px) {
-    .address_color{
+    .content_card_Add_Address{
       width: 90%;
       padding: 10px;
     }
-    .content_address{
+    .content_address_Scroll{
       width: 100%;
       padding: 10px;
     }
-    .content_address input {
+    .content_address_Scroll input {
       width: 90%;
     }
    

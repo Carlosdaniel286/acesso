@@ -1,6 +1,6 @@
-import { project } from "@/app/types/form";
-import { addressValue } from "@/app/types/inputs";
-import { initInside } from "../inside/main";
+import { project } from "@/types/form";
+import { addressValue } from "@/types/inputs";
+
 const Address: addressValue = {
     lt: "",
     qd: ""

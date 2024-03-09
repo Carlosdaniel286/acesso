@@ -1,4 +1,4 @@
-import { Inputs } from "@/app/types/inputs";
+import { Inputs } from "@/types/inputs";
 export const UtilisInputs:Inputs={
     cpf:'',
     cnh:'',

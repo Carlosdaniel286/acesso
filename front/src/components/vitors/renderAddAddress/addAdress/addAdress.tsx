@@ -1,8 +1,8 @@
 /* eslint-disable react/no-children-prop */
 import Overlay from "@/components/overlay/hidden";
-import style from "./style/addAddress.module.css";
+import style from "../style/addAddress.module.css";
 import { InputAdressMain } from "@/components/inputs/inputadress/mainAddress";
-import { addressValue } from "@/app/types/inputs";
+import { addressValue } from "@/types/inputs";
 import ButtonOut from "./buttonOut/buttonOut";
 
 type AddAddressProps = {
@@ -21,19 +21,16 @@ export default function AddAddress({
     <>
       <div className={style.addAdressOverlay}>
         <Overlay handleOverlayVisibility={() => {}}>
-          <div className={style.address_color}>
+          <div className={style.content_card_Add_Address}>
             <ButtonOut DisplayAddAdress={setDisplayAddAddress} />
             <h2>cadastro de endereço</h2>
-            <div className={style.content_address}>
+            <div className={style.content_address_Scroll}>
               <InputAdressMain setValueOfAddress={getValueOfAddress} />
             </div>
             <div className={style.AddAddress_button}>
               <button
                 onClick={() => {
-                 
-     
-    
-                  setDisplayAddAddress();
+                 setDisplayAddAddress();
                  handleNewEnter();
                 }}
               >

@@ -1,25 +1,22 @@
 import { useContextHiddent } from "@/context/hiddeNav";
-import { addressValue } from "@/app/types/inputs";
-import { useEffect, useState } from "react";
-import style from "./addAdress/styles/info.module.css";
+import { addressValue } from "@/types/inputs";
+import {  useState } from "react";
+import style from "./style/addAddress.module.css";
 import { EnterVistor } from "../CardVistorDetails/helpers/inSideVistor/EnterVisitor";
 import AddAddress from "./addAdress/addAdress";
-import { project } from "@/app/types/form";
+import { project } from "@/types/form";
 
 
 type SetAddressOfVistor = {
   cards: project;
-  getAdress: (value: addressValue[]) => void;
   Display: () => void;
 };
 
-export default function SetAddressOfVistor({
+export default function ScrollOfAddAddress({
   cards,
-  getAdress,
   Display,
 }: SetAddressOfVistor) {
   const { setHiddeNav, hiddeNav } = useContextHiddent();
-  
   const [valueOfAddress, setValueOfAddress] = useState<addressValue[]>([
     {
       lt: "",
@@ -27,24 +24,19 @@ export default function SetAddressOfVistor({
     },
   ]);
   const getValueOfAddress = (value: addressValue[]) => {
-  
     setValueOfAddress(value);
-    getAdress(value);
+    
   };
-  
-  
-  
-   return (
+return (
     <>
       <div className={style.conent_address}>
         <AddAddress
           getValueOfAddress={getValueOfAddress}
           setDisplayAddAddress={Display}
+          
           handleNewEnter={() => {
-           
-            EnterVistor({
-              
-              valueOfAddress,
+             EnterVistor({
+             valueOfAddress,
               cards,
               setHiddeNav,
               hiddeNav,

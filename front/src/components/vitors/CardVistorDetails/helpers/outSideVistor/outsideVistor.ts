@@ -1,7 +1,7 @@
 import axios from 'axios';
-import { addressValue } from '@/app/types/inputs';
+import { addressValue } from '@/types/inputs';
 import Swal from 'sweetalert2';
-import { project } from '@/app/types/form';
+import { project } from '@/types/form';
 import { Dispatch, SetStateAction } from 'react';
 import dotenv from 'dotenv'
 dotenv.config()

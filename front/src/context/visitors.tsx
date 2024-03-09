@@ -1,8 +1,8 @@
 'use client'
 
 import React, { createContext, useState, useContext, ReactNode, Dispatch, SetStateAction } from 'react';
-import { project } from '@/app/types/form';
-import { addressValue } from '@/app/types/inputs'
+import { project } from '@/types/form';
+import { addressValue } from '@/types/inputs'
 
 const Address:addressValue={qd:'',lt:''}
 

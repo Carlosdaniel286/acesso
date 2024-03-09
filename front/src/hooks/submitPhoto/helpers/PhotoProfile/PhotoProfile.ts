@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import dotenv from 'dotenv'
-import { Inputs } from "@/app/types/inputs";
+import { Inputs } from "@/types/inputs";
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 

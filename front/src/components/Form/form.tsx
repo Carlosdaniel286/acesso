@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import on from "./style.module.css";
 import Link from "next/link";
-import { CadastrosProps } from "@/app/types/cadastros";
+import { CadastrosProps } from "@/types/cadastros";
 import dotenv from "dotenv";
 import { useContextHiddent } from "@/context/hiddeNav";
 dotenv.config();

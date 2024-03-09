@@ -15,17 +15,17 @@
 
 }
 .hiddenModal{
-       position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
       /* Cor de fundo com transparência */
-        z-index: 0; /* Certifique-se de que está acima de outros elementos na página */
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
+    z-index: 0; /* Certifique-se de que está acima de outros elementos na página */
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
         
 }
 .Navs {
@@ -50,7 +50,7 @@
     text-align: center;
     cursor: pointer;
 }
-@media (min-width: 800px) and (max-width: 950px) {
+@media screen and (min-width: 800px) and (max-width: 950px) {
     .bodyModal {
         width: 35%;
        }
@@ -58,26 +58,29 @@
     }
     
 
-    @media (min-width: 580px) and (max-width: 760px){
+@media screen and (min-width: 580px) and (max-width: 760px){
         .bodyModal {
             width: 45%;
            }
            
         }
 
-@media (max-width: 580px) {
+@media screen and (max-width: 580px) {
  .bodyModal {
      width: 60%;
     }
-    
-    
-  }
-  @media (max-width: 480px) {
+}
+  @media screen and (max-width: 480px) {
     .bodyModal {
         width: 65%;
        }
-       
-       
+    }
+
+@media screen and (min-height: 1000px) {
+    .bodyModal {
+       height: 1020px;
      }
+           
+}
 
    

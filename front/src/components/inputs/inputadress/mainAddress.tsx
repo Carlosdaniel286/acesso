@@ -2,7 +2,7 @@ import Image from "next/image";
 import style from './style/adress.module.css';
 import { InputAdress } from "./andress";
 import { useEffect, useState } from "react";
-import { addressValue } from "@/app/types/inputs";
+import { addressValue } from "@/types/inputs";
 
 export type address = {
   setValueOfAddress: ((value: addressValue[]) => void);

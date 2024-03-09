@@ -8,15 +8,12 @@ import Card from "../card/card";
 import { useVisitors } from "@/context/visitors";
 import { useEffect, useState } from "react";
 import axios from 'axios'; // Importe o Axios
-import { project } from "@/app/types/form";
-import Info from "../info/info";
 import { useContextHiddent } from "@/context/hiddeNav";
-import { HandlerChanger } from "@/app/utils/changer/changer";
+import { HandlerChanger } from "@/utils/changer/changer";
 import dotenv from 'dotenv'
 import NewEntry from "../vitors/CardVistorDetails/CardVistorDetails";
 import Overlay from "../overlay/hidden";
-import { ConnectSoket } from "@/context/socket";
-import { useCache } from "@/context/cache/cache";
+
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 

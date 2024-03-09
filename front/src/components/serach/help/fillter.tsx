@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import axios from 'axios';
-import { Inputs } from "@/app/types/inputs";
-import { project } from "@/app/types/form";
+import { Inputs } from "@/types/inputs";
+import { project } from "@/types/form";
 import dotenv from 'dotenv'
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string

@@ -7,8 +7,9 @@ import { io ,Socket} from "socket.io-client";
 import { useRouter } from 'next/navigation';
 import dotenv from 'dotenv';
 import Swal from 'sweetalert2';
-import { Manager } from "socket.io-client";
+
 dotenv.config();
+
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
 interface SocketContextProps {
     socket: Socket | undefined
@@ -40,17 +41,12 @@ useEffect(()=>{
     });
     setSocket(newsocket)
     setIsConnect(true)
-    
-    
-   return () => {
-    
-    if(!socket) return
+  return () => {
+     if(!socket) return
     socket.disconnect();
     setSocket(undefined);
     setIsConnect(false);
-   
-   
-  }
+   }
 }catch(err){
   alert(err)
 }
@@ -64,28 +60,25 @@ useEffect(()=>{
     });} 
    
      socket.on("disconnect",() => {
-      //setTimeout( handleDesconnect, 30000);
      Swal.fire({
         icon: 'info',
         title: '...tentando Reconectar',
         text: 'Servidor fora do ar',
         showConfirmButton: false,
-        //timer:30000
+       
       });
-     //CONNECT_ERROR
+    
      socket.io.on("reconnect_attempt", (attempt) => {
       if(attempt===10){
        handleDesconnect()
       }
     });
 
-     socket.on("error", (error) => {
-      //console.log(error)
-    });
+    
     socket.io.on("reconnect", (attempt) => {
       Swal.fire({
         icon: 'success',
-        title: 'reconectado',
+        title: 'Reconectado!',
         text: 'ok',
         showConfirmButton: true,
         timer:1000

@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import dotenv from "dotenv";
 import { useState } from "react";
-import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { UtilisInputs } from "@/utils/inputs/inputs";
 import { AxiosError } from "axios";
 import Swal from "sweetalert2";
 import Head from "next/head";

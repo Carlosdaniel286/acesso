@@ -1,7 +1,7 @@
 import Form from "@/components/Form/form";
 import { useEffect, useState } from "react";
-import { card } from "@/app/types/cards";
-import { addressValue } from "@/app/types/inputs";
+import { card } from "@/types/cards";
+import { addressValue } from "@/types/inputs";
 
 import { useContextHiddent } from "@/context/hiddeNav";
 import style from "./style/info.module.css";

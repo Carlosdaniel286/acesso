@@ -6,11 +6,11 @@ import { InputCnh } from "../../inputs/inputCnh/cnh";
 import { InputName } from "../../inputs/inputname/name";
 import { InputAdressMain } from "../../inputs/inputadress/mainAddress";
 import { useVisitors } from "@/context/visitors";
-import { project, Props } from "@/app/types/form";
+import { project, Props } from "@/types/form";
 import { useEffect, useState } from "react";
 import { useContextHiddent } from "@/context/hiddeNav";
-import { addressValue, Inputs } from "@/app/types/inputs";
-import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { addressValue, Inputs } from "@/types/inputs";
+import { UtilisInputs } from "@/utils/inputs/inputs";
 import AddAddress from "../renderAddAddress/addAdress/addAdress";
 import Swal from "sweetalert2";
 import axios, { AxiosError } from "axios";
@@ -100,7 +100,7 @@ export default function creatVisitors({ setHidden }: Props) {
             <div>
               {displayTakePhoto && (
                 <TakePhoto
-                  urLink=""
+                
                   setDisplay={(ev: boolean) => {
                     setDisplayTakePhoto(ev);
                   }}

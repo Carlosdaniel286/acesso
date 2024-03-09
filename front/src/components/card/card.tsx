@@ -3,7 +3,7 @@
 import on from "./style/card.module.css";
 import IconeUser from "../icones/iconeUser";
 import Image from "next/image";
-import { project } from "@/app/types/form";
+import { project } from "@/types/form";
 import IconeCod from "../icones/iconeCod";
 import { useContextHiddent } from "@/context/hiddeNav";
 import axios from "axios";

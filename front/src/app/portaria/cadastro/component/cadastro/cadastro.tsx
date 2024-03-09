@@ -5,7 +5,7 @@
 import on from "./style/style.module.css";
 import Cadastros from "@/components/Form/form";
 import { Inputcpf } from "@/components/inputs/inputcpf/cpf";
-import { UtilisInputs } from "@/app/utils/inputs/inputs";
+import { UtilisInputs } from "@/utils/inputs/inputs";
 import { InputName } from "@/components/inputs/inputname/name";
 import { checkPasswordStrength } from "./helpers/helps";
 import { useState } from "react";

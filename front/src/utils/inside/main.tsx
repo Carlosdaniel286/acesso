@@ -1,4 +1,4 @@
-import { inside } from "@/app/types/form";
+import { inside } from "@/types/form";
 
 export const initInside:inside={
      createdAt:'',

@@ -1,11 +1,11 @@
 import Form from "@/components/Form/form";
 import { useEffect, useState } from "react";
-import { card } from "@/app/types/cards";
-import { addressValue } from "@/app/types/inputs";
+import { card } from "@/types/cards";
+import { addressValue } from "@/types/inputs";
 import { useContextHiddent } from "@/context/hiddeNav";
 import Info from "../../info/info";
 import { newExitVistor } from "./helpers/outSideVistor/outsideVistor";
-import SetAddressOfVistor from "../renderAddAddress/renderAddAddress";
+import ScrollOfAddAddress from "../renderAddAddress/ScrollOfAddAddress";
 import Loading from "@/components/loading/loading";
 import { ConnectSoket } from "@/context/socket";
 import style from './style/info.module.css'
@@ -14,20 +14,10 @@ export type newEnters = {
   address: addressValue[];
   visitorId: number;
 };
-type controll={
-  id:number,
-  controll:'Exit'|'Enter'|''
-}
 
 export default function NewEntry({ cards }: card) {
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   const {socket}= ConnectSoket()
-  const [valueOfAddress, setValueOfAddress] = useState<addressValue[]>([
-    {
-      lt: "",
-      qd: "",
-    },
-  ]);
   const [renderAddAddres, setRenderAddAddress] = useState(false);
   const{controll,setControll}=useCache()
   const getCahe =(controll:string)=>{
@@ -46,9 +36,7 @@ export default function NewEntry({ cards }: card) {
     setRenderAddAddress(!renderAddAddres);
   };
 
-  const setAddAddress = (value: addressValue[]) => {
-    setValueOfAddress(value);
-  };
+  
 
   const handleExitVistor = async () => {
    
@@ -77,9 +65,8 @@ export default function NewEntry({ cards }: card) {
       {controll ? (
         <div className={style.bodyEnter}>
           {renderAddAddres && (
-            <SetAddressOfVistor
+            <ScrollOfAddAddress
               cards={cards}
-              getAdress={setAddAddress}
               Display={(()=>{
                 getCahe('Exit')
                 setDisplayAddAddress()

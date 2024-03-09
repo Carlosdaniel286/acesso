@@ -1,7 +1,7 @@
 import { Socket } from "socket.io-client";
-import { addressValue } from "@/app/types/inputs";
+import { addressValue } from "@/types/inputs";
 import Swal from "sweetalert2";
-import { project } from "@/app/types/form";
+import { project } from "@/types/form";
 import { Dispatch, SetStateAction } from "react";
 import { newEnters } from "../../CardVistorDetails";
 import axios, { AxiosError } from "axios";

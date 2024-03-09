@@ -2,7 +2,7 @@
 /* eslint-disable react/no-children-prop */
 import style from "./style.module.css";
 import Overlay from "@/components/overlay/hidden";
-import { inside } from "@/app/types/form";
+import { inside } from "@/types/form";
 import { useEffect, useState } from "react";
 import { formatDate } from "./helpers/dateTime";
 import axios from "axios";
