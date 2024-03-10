@@ -11,8 +11,9 @@
     top:1px;
     left: 0px;
     z-index: 1000;
-    
-
+}
+#Image{
+    background-color: rgb(214, 12, 12);
 }
 .hiddenModal{
     position: fixed;

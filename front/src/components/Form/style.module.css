@@ -12,6 +12,9 @@
   flex-direction: column;
   align-items: center;
   padding: 0px;
+  background-color: black;
+  
+  
 }
 
 .Cadbody main {
@@ -19,7 +22,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  border-radius: 20px;
+
+  
 }
 .form {
   display: flex;
@@ -33,17 +37,20 @@
   box-sizing: border-box;
   text-transform: capitalize;
   position: relative;
+  
 }
 .form input {
   background-color: transparent;
   border: 0px;
   max-width: 90%;
-  margin-top: 20px;
+  margin-top: 0px;
+  height: 40px;
   border-bottom: 1px solid rgba(116, 114, 114, 0.7);
   font-size: 1rem;
   font-family: "fonte";
   text-transform: capitalize;
   color: rgb(15, 15, 15);
+  color: white;
 }
 
 .form input:focus {
@@ -72,7 +79,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(250, 75, 12);
+
 }
 
 .submit {
@@ -85,10 +92,10 @@
  
 }
 .value {
-  cursor: pointer;
-  position: absolute;
-  border-radius: 50%;
-  top:-3%;
+   width: 100%;
+  display: flex;
+  justify-content: center;
+  
   
 }
 .value_button {
@@ -107,10 +114,11 @@
   display: none;
 }
 
+
 .loginButton {
   margin-right: 0px;
-  background-color: rgb(250, 75, 12);
-  text-transform: capitalize;
+  background-color:rgb(221, 6, 6);
+text-transform: capitalize;
   text-transform: capitalize;
   border: 0ch;
   padding: 6px;
@@ -150,12 +158,21 @@
 }
 .CadastroButton {
   margin-top: 0px;
+ 
+}
+#Link{
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+#Link:hover{
+  color: blue;
+  text-decoration:underline;
 }
 
 @media screen and (max-width: 900px) {
   .loginButton {
     width: 100%;
-    background-color: rgb(172, 167, 165);
     height: 50px;
   }
   .submit {
@@ -163,9 +180,7 @@
     justify-content: space-around;
   }
   
-  .form input {
-    background-color: white;
-  }
+  
  
 }
 @media screen and (max-width: 511px) {
@@ -173,7 +188,7 @@
     font-size: 0.7rem;
   }
 }
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1000px) {
   .value_button {
     display: block;
   }

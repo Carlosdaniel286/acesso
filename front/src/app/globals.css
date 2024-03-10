@@ -33,8 +33,7 @@ footer ul {
 footer {
   margin-top: 0px;
   display: flex;
-  height: 150px;
-  background-color: orangered;
+  min-height: 180px;
   width: 100%;
   padding: 0px;
   

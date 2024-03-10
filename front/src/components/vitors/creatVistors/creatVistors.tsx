@@ -30,11 +30,14 @@ export default function creatVisitors({ setHidden }: Props) {
 
   
   return (
+    <>
     <div className={on.Cadbodys}>
       <div className={on.main}>
         <Cadastros
           children={
+            <>
             <div className={on.cad_inputs}>
+             
               {displayTakePhoto && (
                 <TakePhoto
                    setDisplay={(ev: boolean) => {
@@ -74,7 +77,7 @@ export default function creatVisitors({ setHidden }: Props) {
                   />
                 )}
               </div>
-
+              {!imageSrc && 
               <div className={on.contanier_AddPic}>
                 <button
                   className={on.button_AddPic}
@@ -86,7 +89,9 @@ export default function creatVisitors({ setHidden }: Props) {
                   Adicionar foto
                 </button>
               </div>
+           }
             </div>
+            </>
           }
           Onclik={() => {
             setdiplayAddAddress(!diplayAddAddress);
@@ -96,6 +101,7 @@ export default function creatVisitors({ setHidden }: Props) {
         />
       </div>
     </div>
+    </>
   );
 }
 

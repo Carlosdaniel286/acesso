@@ -30,8 +30,15 @@ export default function Form ({
   return (
     <div className={on.Cadbody}>
       <main>
-        <div className={on.form}>
-          <header>
+     <div className={on.form}>
+          <div className={on.value}>
+                <button className={on.value_button} 
+                  onClick={() =>
+                  setHiddeNav({ ...hiddeNav, modal: false, overflow: false })
+                     }
+                >{value}</button>
+              </div>
+        <header>
             <h1>{header}</h1>
           </header>
           {children}
@@ -42,10 +49,7 @@ export default function Form ({
                   {"click para entrar"}
                 </button>
                 <span className={on.CadastroButton}>
-                  <Link
-                    style={{ color: "blue", fontSize: "20px" }}
-                    href={`${urlBaseClient}/portaria/cadastro`}
-                  >
+                  <Link id={on.Link} href={`${urlBaseClient}/portaria/cadastro`}>
                     cadastro
                   </Link>
                 </span>
@@ -56,14 +60,7 @@ export default function Form ({
                 <button className={on.loginButton4} onClick={Onclik}>
                   {"entrar"}
                 </button>
-                <div
-                  className={on.value}
-                  onClick={() =>
-                    setHiddeNav({ ...hiddeNav, modal: false, overflow: false })
-                  }
-                >
-                  <button className={on.value_button}>{value}</button>
-                </div>
+               
               </>
             )}
             {SelectButton === "Exit" && (
@@ -83,7 +80,7 @@ export default function Form ({
             )}
             {SelectButton === "2" && (
               <button className={on.CadastroButton}>
-                <Link style={{ textDecoration: "none" }} href={`/`}>
+                <Link id={on.Link}  href={`/`}>
                   ja tenho conta
                 </Link>
               </button>
@@ -94,7 +91,7 @@ export default function Form ({
                   {"enviar"}
                 </button>
                 <span className={on.CadastroButton}>
-                  <Link style={{ color: "blue", fontSize: "20px" }} href={`/`}>
+                  <Link id={on.Link}  href={`/`}>
                     ja tenho conta
                   </Link>
                 </span>

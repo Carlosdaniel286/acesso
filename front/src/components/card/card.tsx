@@ -26,6 +26,10 @@ export default function Card({cards,setChanger}:typeOfCards) {
     setImageSrc(cards.image)
     }
   },[])
+
+  useEffect(()=>{
+   console.log(cards.image)
+  },[cards.image])
  
  
  const { setHiddeNav, hiddeNav } = useContextHiddent();

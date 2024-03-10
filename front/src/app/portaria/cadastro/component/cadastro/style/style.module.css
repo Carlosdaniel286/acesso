@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: orangered;
+  background-color:rgb(31, 30, 30);
 }
 .port {
   height: 600px;
@@ -17,7 +17,7 @@
 }
 .port input {
   width: 100%;
-  background-color: white;
+ 
 }
 .password {
   border: 0px;
@@ -42,13 +42,10 @@
 @media screen and (max-width: 900px) {
   .port {
     width: 100%;
-    background-color: orangered;
-    height: 80%;
+    height: 100%;
   }
   .port input {
-    border: 0px;
-    width: 100%;
-    background-color: white;
+   width: 100%;
     height: 50px;
   }
 }

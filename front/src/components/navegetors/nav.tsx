@@ -20,9 +20,9 @@ export default function Nav() {
         <Overlay
           handleOverlayVisibility={"default"}
           children={
-            <div className={nav.limit}>
+            <>
               <VisitaCadastros setHidden={setHidden} />
-            </div>
+            </>
           }
         />
       )}

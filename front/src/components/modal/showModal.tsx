@@ -11,11 +11,12 @@ export const ShowModal = () => {
       <div className={style.bodyModalShow}>
         <div className={style.imgShow}>
           <Image
+            id={style.Image}
             src="/mais.png"
-            height={50}
-            width={50}
+            height={45}
+            width={45}
             alt=""
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",borderRadius:'5px'}}
             onClick={() => setHiddeNav({ ...hiddeNav, modal: !hiddeNav.modal })}
           />
         </div>
