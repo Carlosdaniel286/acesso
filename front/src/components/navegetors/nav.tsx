@@ -10,6 +10,7 @@ import Filtro from "../vitors/filtroVistors/filtro";
 //import RenderInside from "./components/vistors/entersVistors/main";
 import RenderEveryVistor from "./everyVistors/main";
 import { useContextStream } from "@/context/mediaDevices/mediaDevices";
+import { on } from "events";
 
 export default function Nav() {
   const [hidden, setHidden] = useState(false);
@@ -27,7 +28,10 @@ export default function Nav() {
         />
       )}
       <ul>
-        <Filtro />
+        <div className={nav.filter}>
+          <Filtro />
+        </div>
+        
         <li
           onClick={() => {
             setImageSrc(null)

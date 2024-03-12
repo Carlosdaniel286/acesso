@@ -14,7 +14,7 @@ import { useContextStream } from "@/context/mediaDevices/mediaDevices";
 import Image from "next/image";
 import { useMediaDevices } from "@/hooks/initVideo/stream";
 import { submitPhoto } from "@/hooks/submitPhoto/sendPhoto";
-
+import InputPhone from "@/components/inputs/inputPhone/inputPhone";
 export default function creatVisitors({ setHidden }: Props) {
   const [diplayAddAddress, setdiplayAddAddress] = useState(false);
   const [displayTakePhoto, setDisplayTakePhoto] = useState(false);
@@ -45,9 +45,11 @@ export default function creatVisitors({ setHidden }: Props) {
                   }}
                 />
               )}
-
-              <InputName getValueOfName={setValueOfName} />
+              <div className={on.content_inputs} >
+             <InputName getValueOfName={setValueOfName} />
               <Inputcpf getValueOfCpf={setValueOfCpf} />
+              </div>
+             
               <div className={on.addAdress_main}>
                 {diplayAddAddress && (
                   <>
@@ -61,7 +63,11 @@ export default function creatVisitors({ setHidden }: Props) {
                   </>
                 )}
               </div>
+              <div className={on.content_inputs} >
               <InputCnh getValueOfCnh={setValueOfCnh} />
+              <InputPhone/>
+              </div>
+              
               <div className={on.contanier_Picture}>
                 {imageSrc && (
                   <Image

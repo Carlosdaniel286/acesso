@@ -49,7 +49,7 @@ export default function Card({cards,setChanger}:typeOfCards) {
         </div>
         <div className={on.content}>
           <ul>
-            <li><IconeUser/> {cards.name}</li>
+           <li> {cards.name}</li>
             <li><IconeCod/> {cards.id}</li>
              
           </ul>

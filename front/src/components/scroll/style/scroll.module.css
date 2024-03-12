@@ -8,7 +8,7 @@
 }
 
 .scroll{
-  background-color:black;
+    background-color:black;
     width: 100%;
     max-height: 80vh;
     overflow-y: scroll;
@@ -22,6 +22,7 @@
     padding-bottom: 40px;
     overflow-x: hidden;
 }
+
 
 .scroll::-webkit-scrollbar {
     display: none;

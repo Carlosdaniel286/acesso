@@ -12,9 +12,18 @@
     list-style: none;
     width: 100%;
     box-sizing: border-box;
-   
-    
-}
+   }
+   .filter {
+    color: rgb(240, 235, 235);
+    z-index: 2;
+    display: flex;
+    border-radius: 4px;
+    background-color: rgb(10, 7, 7,0.6);
+    padding: 8px;
+   }
+  .filter p {
+    font-size: 1em;
+  }
 .nav li {
     margin-right: 0px;
     list-style: none;

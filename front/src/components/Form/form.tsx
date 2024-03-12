@@ -68,14 +68,7 @@ export default function Form ({
                 <button className={on.loginButtonExit} onClick={Onclik}>
                   {"saida"}
                 </button>
-                <div
-                  className={on.value}
-                  onClick={() =>
-                    setHiddeNav({ ...hiddeNav, modal: false, overflow: false })
-                  }
-                >
-                  <button className={on.value_button}>{value}</button>
-                </div>
+               
               </>
             )}
             {SelectButton === "2" && (

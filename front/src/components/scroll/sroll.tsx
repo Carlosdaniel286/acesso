@@ -11,7 +11,7 @@ import axios from 'axios'; // Importe o Axios
 import { useContextHiddent } from "@/context/hiddeNav";
 import { HandlerChanger } from "@/utils/changer/changer";
 import dotenv from 'dotenv'
-import NewEntry from "../vitors/CardVistorDetails/CardVistorDetails";
+import CardVistorDetails from "../vitors/CardVistorDetails/CardVistorDetails";
 import Overlay from "../overlay/hidden";
 
 dotenv.config()
@@ -77,7 +77,7 @@ export default function Scroll({ DiplayInfo }: scroll) {
           hiddeNav.overflow && changer.name && 
           <Overlay  
           children={<>
-          <NewEntry cards={changer} />
+          <CardVistorDetails cards={changer} />
           </>
           }
           handleOverlayVisibility={'default'}

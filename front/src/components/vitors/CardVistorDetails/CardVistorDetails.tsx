@@ -15,7 +15,7 @@ export type newEnters = {
   visitorId: number;
 };
 
-export default function NewEntry({ cards }: card) {
+export default function CardVistorDetails({ cards }: card) {
   const { setHiddeNav, hiddeNav } = useContextHiddent();
   const {socket}= ConnectSoket()
   const [renderAddAddres, setRenderAddAddress] = useState(false);
@@ -86,7 +86,7 @@ export default function NewEntry({ cards }: card) {
                handleExitVistor();
                
               }}
-              header="cadastro de visitantes"
+              header="informaçoes do vistante"
               SelectButton={controll}
             />
           </div>

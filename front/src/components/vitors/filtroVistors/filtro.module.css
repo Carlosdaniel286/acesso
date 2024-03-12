@@ -7,16 +7,39 @@
 
   .filtroConetnt{
     display: flex;
-    justify-content: center;
+    justify-content:flex-start;
     align-items:center;
     flex-direction: column;
     cursor: pointer;
-   
-
-   
-   
     
-  }
+   }
+   .filterOptions{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    
+   }
+   .filter_hidden {
+    margin: 0px;
+    padding: 0px;
+    background-color: rgb(18, 18, 19);
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction: column;
+    cursor: pointer;
+    
+   }
+   .filter_hidden p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.2rem;
+    text-align: center;
+   }
   .filtroConetnt p{
     margin: 0%;
     border-bottom: 2px solid transparent; /* Adicione uma linha de borda inferior */

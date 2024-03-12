@@ -34,7 +34,10 @@ useEffect(() => {
     <div ref={divRef} className={style.filtroBody}>
      
         <div className={style.filtroConetnt} 
+        
          onClick={(()=>(setHidden(!hidden)))}>
+          
+          {!hidden && <>
              <Image
               alt='filtro'
               width={60}
@@ -43,16 +46,23 @@ useEffect(() => {
               
               />
               <p>filtro</p>
+              </>}
            </div>
            {hidden &&
-            <>
-            
-             <Options
-              width={width}
+            <div className={style.filterOptions}  >
+             <div className={style.filter_hidden}
+                onClick={(()=>(setHidden(!hidden)))}
+             >
+               <p>X</p>
+             </div>
+            <Options
+              diplayOptions={(()=>{
+                setHidden(!hidden)
+              })}
 
              />
             
-             </> 
+             </div> 
              }
     </div>
    )

@@ -30,6 +30,10 @@
  }
  .Cadbodys main input {
   color: black;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-color: white;
+  width: 45%;
  }
 
  .main {
@@ -55,12 +59,7 @@
 
 }
 
-.main input{
-  width: 100%;
-  padding-top: 25px;
-  padding-bottom: 25px;
-  background-color: white;
-}
+
 .addAdress_main {
   padding-top: 10px;
   min-height: 10px;
@@ -104,6 +103,12 @@
   margin-top: 10px;
   margin-left: 20px;
 }
+.content_inputs{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
 
 @media screen and (max-width: 640px) {
   .main {
