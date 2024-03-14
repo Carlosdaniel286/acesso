@@ -1,0 +1,6 @@
+@media screen and (max-width:660px) {
+    #images{
+        width:80%;
+        height: auto;
+    }
+}

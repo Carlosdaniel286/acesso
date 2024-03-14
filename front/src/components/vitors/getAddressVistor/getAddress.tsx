@@ -24,7 +24,9 @@ export default function ShowAddress({ id, handlerOverlay }: renderAddress) {
         const response = await axios.get(`${urlBase}/address/inside/${id}`,{
           withCredentials:true
         })
+        console.log(response.data)
         setVistorInside(response.data);
+        return
       } catch (error) {
         console.error("Error fetching visitor inside data:", error);
       }
@@ -36,7 +38,7 @@ export default function ShowAddress({ id, handlerOverlay }: renderAddress) {
     return () => {
       // Clean up the effect
     };
-  }, [id]);
+  }, []);
 
   return (
     <>

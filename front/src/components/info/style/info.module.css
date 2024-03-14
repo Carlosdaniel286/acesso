@@ -1,189 +1,219 @@
 @font-face {
-    font-family: "MinhaFonte";
-    src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
-    /* Adicione outros formatos de fonte se necessário */
-  }
-  
-  
-  .Infomation {
-    display: flex;
-    flex-direction: column;
-    min-height: 300px;
-    max-height: 350px;
-    justify-content: space-between;
-    margin-bottom: 50px;
-    width: 600px;
-    
-  }
-  
-  
-  .address_color{
-    background-color: rgb(189, 84, 84);
-    background-color: white;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    position: relative;
-    }
-   .Infomation input {
-    height: 34px;
-    border: 0cap;
-  }
-  .Infomation .iconesInfo {
-    margin: 5px;
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    
-  }
-  .p_Infomation{
-     margin-top: 10px;
-     margin-bottom: 10px;
-     display: flex;
-     align-items: center;
-     justify-content:space-between;
-     width: 90%;
-    
-  }
-  #cod_p{
-    width: 180px;
-    word-break: break-all;
-   
-  }
-  
-  .maps {
-    display: flex;
-    margin-top: 3px;
-    
-  }
-  .maps .iconesInfo {
-    margin: 0px;
-    margin-left: 0px;
-    margin-bottom: 3px;
-  
-  }
-  .limit_map{
-    display: flex;
-    width: 70%;
-    justify-content:space-between;
-    
-  }
-  .clickRenderAddress {
-   width: 300px;
-    display: flex;
-   justify-content: space-between;
-   margin: 3px;
-   padding-top: 10px;
-   padding-bottom: 10px;
-  
-  }
-  .container_NewAddress{
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 0px;
-    max-height: 260px;
-    padding: 4px;
-    background-color: aliceblue;
-  }
-  
-  .continer_RenderAddress{
-    display: inline-flex;
-    background-color: orangered;
-    text-transform:capitalize;
-    border: 0cap;
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-family: "MinhaFonte";
-  }
-  
-  .button button {
-    background-color: rgb(134, 127, 230,0.6);
-    text-transform: capitalize;
-    border: 0cap;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-family: "MinhaFonte";
-  }
-  .buttonOut{
-    margin-left:20px ;
-  }
-  .buttonOut button {
-    background-color: rgba(245, 102, 121, 0.6);
-    text-transform: capitalize;
-    border: 0cap;
-    padding: 8px;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    font-family: "MinhaFonte";
-  }
-  .date{
-    font-size: 0.2rem;
-    color: rgb(185, 196, 196);
-  }
-  
-  @media screen and (max-width: 900px) {
-   
-    .Infomation .iconesInfo{
-      font-size: 1.2rem;
-    }
-    .Infomation {
-      width: 80%;
-    }
-    .Infomation input {
-      width: 80%;
-    }
-    .bodyEnter {
-     width: 98%;
-    }
-    
-  }
-  @media screen and (max-width: 830px) {
-    .p_Infomation .iconesInfo{
-      display: flex;
-      font-size: 1rem;
-      
-    }
-    #cod_p{
-      width: 160px;
-    }
-  }
-  
-  @media screen and (max-width: 490px) {
-   .p_Infomation{
-      display: flex;
-      width: 100%;
-     }
-    .Infomation {
-      width: 100%;
-      display: flex;
-      
-    }
-    .clickRenderAddress  {
-      width: 70%;
+  font-family: "MinhaFonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
+  /* Adicione outros formatos de fonte se necessário */
+}
+
+.container_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 50% 50% 50%;
+  grid-template-rows: 70% 25% 40%;
+  grid-row-gap: 5px;
+  grid-column-gap: 0px;
+  box-sizing: border-box;
+  min-width: 100%;
+  height: 100%;
+}
+
+.Infomation {
+  display: flex;
+  flex-direction: column;
+  grid-column-start: 2; /* Começa na segunda coluna */
+  grid-column-end: 3; /* Termina na terceira coluna */
+  grid-row-start: 1; /* Começa na primeira linha */
+  grid-row-end: 2;
+  box-sizing: border-box;
+}
+
+.container_image {
+  box-sizing: border-box;
+  min-height: 100%;
+  min-width: 50%;
+  display: flex;
+  justify-content:center;
+  grid-column-start: 1; /* Começa na primeira coluna */
+  grid-column-end: 2; /* Termina na segunda coluna */
+  grid-row-start: 1; /* Começa na primeira linha */
+  grid-row-end: 2;
+ 
+ 
+}
+
+.address_color {
+  background-color: rgb(189, 84, 84);
+  background-color: white;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  position: relative;
+}
+
+.Infomation input {
+  height: 34px;
+  border: 0cap;
+}
+
+.Infomation .iconesInfo {
+  margin: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+.p_Infomation {
+  box-sizing: border-box;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+
+.span {
+  width: 180px;
+}
+
+#cod_p {
+  word-break: break-all;
+}
+
+.maps {
+  display: flex;
+  margin-top: 3px;
+}
+
+.iconesInfo {
+  margin: 0px;
+  margin-left: 0px;
+  margin-bottom: 3px;
+  width: 180px;
+}
+
+.limit_map {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+
+.clickRenderAddress {
+  display: flex;
+  justify-content: space-between;
+  margin: 3px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  grid-column-start: 1; /* Começa na primeira coluna */
+  grid-column-end: 3; /* Termina na terceira coluna */
+  grid-row-start: 2; /* Começa na segunda linha */
+  grid-row-end: 3;
   
 }
-  
+
+.container_NewAddress {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0px;
+  max-height: 260px;
+  padding: 4px;
+  background-color: aliceblue;
+}
+
+.continer_RenderAddress {
+  display: inline-flex;
+  background-color: orangered;
+  text-transform: capitalize;
+  border: 0cap;
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "MinhaFonte";
+}
+
+.button button {
+  background-color: rgb(134, 127, 230, 0.6);
+  text-transform: capitalize;
+  border: 0cap;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "MinhaFonte";
+}
+
+.buttonOut {
+  margin-left: 20px;
+}
+
+.buttonOut button {
+  background-color: rgba(245, 102, 121, 0.6);
+  text-transform: capitalize;
+  border: 0cap;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: "MinhaFonte";
+}
+
+.date {
+  font-size: 0.2rem;
+  color: rgb(185, 196, 196);
+}
+
+@media screen and (max-width: 900px) {
+  .Infomation .iconesInfo {
+      font-size: 1.2rem;
+  }
+
+}
+
+@media screen and (max-width: 830px) {
+  .p_Infomation .iconesInfo {
+     font-size: 1rem;
+  }
+
+ 
+}
+
+@media screen and (max-width: 490px) {
+  .p_Infomation {
+      display: flex;
+      width: 100%;
+  }
+
+  .Infomation {
+      width: 100%;
+      display: flex;
+  }
+
+  .clickRenderAddress {
+      width: 70%;
+  }
+  #images{
+    width: 90%;
+    height: 50%;
     
   }
-  @media screen and (max-width: 300px) {
-    .p_Infomation{
+}
+
+@media screen and (max-width: 300px) {
+  .p_Infomation {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
       width: 100%;
-     }
-    .container_NewAddress{
+  }
+
+  .container_NewAddress {
       min-height: 70px;
       margin-bottom: 10px;
-    }
   }
+}

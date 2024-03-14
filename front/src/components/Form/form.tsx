@@ -13,6 +13,8 @@ export default function Form ({
   Onclik,
   header,
   SelectButton,
+  displayInX
+
 }: CadastrosProps) {
   const [value, setValue] = useState("");
   const { setHiddeNav, hiddeNav } = useContextHiddent();
@@ -26,17 +28,21 @@ export default function Form ({
       setHeightSubmit(30);
     }
   }, [SelectButton]);
-
+// {displayInX !== 'default' ? displayInX : null}
+//setHiddeNav({ ...hiddeNav, modal: false, overflow: false })
   return (
     <div className={on.Cadbody}>
       <main>
+    
      <div className={on.form}>
           <div className={on.value}>
                 <button className={on.value_button} 
-                  onClick={() =>
-                  setHiddeNav({ ...hiddeNav, modal: false, overflow: false })
-                     }
-                >{value}</button>
+                  onClick={(()=>{
+                    {displayInX !== 'default' ? displayInX : null}
+                    {displayInX ==='default'?  setHiddeNav({ ...hiddeNav, modal: false, overflow: false }):null }
+                   
+                  })}
+                   >{value}</button>
               </div>
         <header>
             <h1>{header}</h1>

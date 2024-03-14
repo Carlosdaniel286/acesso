@@ -1,78 +1,76 @@
-
-.bodyon{
-    display: flex;
-    width: 100vw;
-    height: 100%;
-    align-items: flex-start;
-    
+.bodyon {
+  display: flex;
+  width: 100vw;
+  height: 100%;
+  align-items: flex-start;
+}
+.modal_fixed {
+  max-height: 87vh;
+  min-height: 87vh;
+  background-colo: rgb(223, 65, 65);
+  width: 300px;
 }
 
-.scroll{
-    background-color:black;
-    width: 100%;
-    max-height: 80vh;
-    overflow-y: scroll;
-    display: flex;
-    align-items:center;
-    justify-content: space-evenly;
-    margin-top: 10px;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    padding-right: 0px;
-    padding-bottom: 40px;
-    overflow-x: hidden;
+.scroll {
+  background-color: black;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+  padding-right: 0px;
+  padding-bottom: 40px;
+  overflow-x: hidden;
 }
-
 
 .scroll::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
-.cards{
-    border-radius: 10px;
-    width:32%;
-    height: 200px;
-    display: flex;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    border-radius: 10px;
-    background-color: white;
+.cards {
+  border-radius: 10px;
+  width: 32%;
+  height: 200px;
+  display: flex;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  background-color: white;
 }
 
 /* media query*/
 
-
 @media (max-width: 780px) {
-    .cards {
-        margin-left: 3px;
-        margin-right: 3px;
-        width:100%;
-        height: 200px;
-    }
+  .cards {
+    margin-left: 3px;
+    margin-right: 3px;
+    width: 100%;
+    height: 200px;
   }
-  
-
-  @media (max-width: 1000px) {
-    .cards {
-     height: 300px;
-    }
-  }
-  @media (min-width: 768px) {
-    .scroll {
-       padding-right: 0px;
-    }
-  }
-
-  @media (max-width: 870px) {
-    .cards{
-      width:94%;
-      height: 200px;
-      margin-bottom: 10px;
-      flex-wrap: nowrap;
-     }
-   
 }
 
+@media (max-width: 1000px) {
+  .cards {
+    height: 300px;
+  }
+}
+@media (min-width: 768px) {
+  .scroll {
+    padding-right: 0px;
+  }
+}
 
+@media (max-width: 870px) {
+  .cards {
+    width: 94%;
+    height: 200px;
+    margin-bottom: 10px;
+    flex-wrap: nowrap;
+  }
+}

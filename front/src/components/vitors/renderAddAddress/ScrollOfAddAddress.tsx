@@ -5,6 +5,7 @@ import style from "./style/addAddress.module.css";
 import { EnterVistor } from "../CardVistorDetails/helpers/inSideVistor/EnterVisitor";
 import AddAddress from "./addAdress/addAdress";
 import { project } from "@/types/form";
+import { useContextStream } from "@/context/mediaDevices/mediaDevices";
 
 
 type SetAddressOfVistor = {
@@ -27,7 +28,9 @@ export default function ScrollOfAddAddress({
     setValueOfAddress(value);
     
   };
-return (
+  const{setPhoto,setImageSrc} =useContextStream()
+
+  return (
     <>
       <div className={style.conent_address}>
         <AddAddress
@@ -35,11 +38,14 @@ return (
           setDisplayAddAddress={Display}
           
           handleNewEnter={() => {
+              setImageSrc(null)
+              setPhoto(null)
              EnterVistor({
              valueOfAddress,
               cards,
               setHiddeNav,
               hiddeNav,
+              
             });
           }}
         />

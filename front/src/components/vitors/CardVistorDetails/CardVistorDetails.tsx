@@ -10,6 +10,7 @@ import Loading from "@/components/loading/loading";
 import { ConnectSoket } from "@/context/socket";
 import style from './style/info.module.css'
 import { useCache } from "@/context/cache/cache";
+
 export type newEnters = {
   address: addressValue[];
   visitorId: number;
@@ -20,6 +21,7 @@ export default function CardVistorDetails({ cards }: card) {
   const {socket}= ConnectSoket()
   const [renderAddAddres, setRenderAddAddress] = useState(false);
   const{controll,setControll}=useCache()
+  
   const getCahe =(controll:string)=>{
        if (!socket) return;
        socket.emit('caches',{id:cards.id,controll})
@@ -39,7 +41,6 @@ export default function CardVistorDetails({ cards }: card) {
   
 
   const handleExitVistor = async () => {
-   
     if (controll === "Exit") {
      await newExitVistor({cards, setHiddeNav, hiddeNav });
     
@@ -51,9 +52,9 @@ export default function CardVistorDetails({ cards }: card) {
   };
   useEffect(() => {
  if (!socket) return;
- socket.emit('caches',{id:cards.id,controll:""})
- socket.on(cards.id.toString(),(state: string) => {
- if (state == "Enter" || state == "Exit" || state=='' ) {
+    socket.emit('caches',{id:cards.id,controll:""})
+    socket.on(cards.id.toString(),(state: string) => {
+   if (state == "Enter" || state == "Exit" || state=='' ) {
        console.log(state)
         setControll(state);
       }
@@ -74,12 +75,12 @@ export default function CardVistorDetails({ cards }: card) {
             />
           )}
 
-          <div className={style.move}>
+          <div className={style.container_form}>
             <Form
               children={
-                <>
+                <div className={style.container_info}>
                   <Info cards={cards} />
-                </>
+                </div>
               }
               Onclik={() => {
                getCahe("Enter")
@@ -88,6 +89,7 @@ export default function CardVistorDetails({ cards }: card) {
               }}
               header="informaçoes do vistante"
               SelectButton={controll}
+              displayInX={'default'}
             />
           </div>
         </div>

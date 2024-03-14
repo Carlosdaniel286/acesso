@@ -58,8 +58,6 @@ export const handleVistorsAddress = async(id:number)=>{
         }
        }
     })
-    console.log("-----andress--------")
-  console.log(JSON.stringify(adds))
-  console.log("-----andress--------")
+  
     return inside
 }

@@ -12,7 +12,7 @@
   flex-direction: column;
   align-items: center;
   padding: 0px;
-  background-color: black;
+ 
   
   
 }
@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   width: 100%;
-
+  
   
 }
 .form {
@@ -169,6 +169,11 @@ text-transform: capitalize;
   color: blue;
   text-decoration:underline;
 }
+@media screen and (min-height:700px) {
+  .value {
+    display: flex;
+  }
+}
 
 @media screen and (max-width: 900px) {
   .loginButton {
@@ -186,9 +191,20 @@ text-transform: capitalize;
   
  
 }
+
+@media screen and (max-width: 580px) {
+  .form header {
+   max-width: 93%;
+ 
+}
+}
+
+
+
 @media screen and (max-width: 511px) {
   .form header {
     font-size: 0.7rem;
+    max-width: 93%;
   }
   .value {
     display: flex;
@@ -210,4 +226,11 @@ text-transform: capitalize;
   .value {
     top:-10%;
   }
+}
+
+@media screen and (max-width: 400px) {
+  .form header {
+   max-width: 90%;
+ 
+}
 }

@@ -1,69 +1,55 @@
 
 'use client'
-import Image from 'next/image'
-import style from './filtro.module.css'
-import Options from './component/options/options'
-import { useRef, useState ,useEffect} from 'react'
+import Image from 'next/image';
+import style from './filtro.module.css';
+import Options from './component/options/options';
+import { useRef, useState, useEffect } from 'react';
 
-
-export default function Filtro() {
- const[hidden , setHidden]=useState(false)
- const divRef = useRef<HTMLDivElement>(null);
- const [width , setWidth]=useState(100)
- // Use o hook useEffect para executar código após a renderização do componente
- const handleResize = () => {
-  if (divRef.current) {
-    const larguraDaDiv = divRef.current.clientWidth;
-    const divid = (larguraDaDiv / 2)
-    console.log('Largura da div:', larguraDaDiv);
-    setWidth(divid)
-  }
+type FilterProps = {
+  displayOptions: boolean | 'default';
 };
 
-// Adiciona um listener de evento de redimensionamento ao window
-useEffect(() => {
-  window.addEventListener('resize', handleResize);
+export default function Filtro({ displayOptions }: FilterProps) {
+  const [hidden, setHidden] = useState(false);
+  const divRef = useRef<HTMLDivElement>(null);
 
-  // Remove o listener quando o componente é desmontado
-  return () => {
-    window.removeEventListener('resize', handleResize);
-  };
-}, []); 
-   //.filtroBody
-   return(
+  useEffect(() => {
+    if (displayOptions !== 'default') {
+      setHidden(displayOptions);
+    }
+  }, [displayOptions]);
+
+  return (
     <div ref={divRef} className={style.filtroBody}>
-     
-        <div className={style.filtroConetnt} 
-        
-         onClick={(()=>(setHidden(!hidden)))}>
-          
-          {!hidden && <>
-             <Image
-              alt='filtro'
-              width={60}
-              height={60}
-              src='/filtro.png'
-              
+      <div className={style.filtroConetnt} onClick={() => setHidden(!hidden)}>
+        {!hidden && (
+          <>
+            <div id={style.filterImage}>
+              <Image
+                id={style.filterImages}
+                alt='filtro'
+                width={50}
+                height={50}
+                src='/search.png'
               />
-              <p>filtro</p>
-              </>}
-           </div>
-           {hidden &&
-            <div className={style.filterOptions}  >
-             <div className={style.filter_hidden}
-                onClick={(()=>(setHidden(!hidden)))}
-             >
-               <p>X</p>
-             </div>
-            <Options
-              diplayOptions={(()=>{
-                setHidden(!hidden)
-              })}
+            </div>
+          </>
+        )}
+      </div>
 
-             />
-            
-             </div> 
-             }
+      {hidden && (
+        <div className={style.filterOptions}>
+          <div className={style.filter_hidden} onClick={() => setHidden(!hidden)}>
+            <p>X</p>
+          </div>
+
+          <Options
+            diplayOptions={() => {
+              setHidden(!hidden);
+            }}
+          />
+        </div>
+      )}
     </div>
-   )
+  );
 }

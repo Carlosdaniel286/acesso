@@ -11,7 +11,7 @@ const urlBase = process.env.BASE_URL_EXPRESS as string
 export class Visitor {
   private name = "";
   private cpf = "";
-  private addresses: visitorAddres[] = [];
+  private address: visitorAddres[] | string = [];
   private license = "";
   private idUser: number;
   private prisma: PrismaClient;
@@ -30,7 +30,7 @@ export class Visitor {
     this.req =req
     this.name =  this.req.body.name;
     this.cpf =  this.req.body.cpf;
-    this.addresses =  this.req.body.address;
+    this.address =  this.req.body.address;
     this.license =  this.req.body.cnh;
     this.idUser = userId;
     this.prisma = prismaClient;
@@ -40,7 +40,7 @@ export class Visitor {
 
   async setNewVisitor() {
     try {
-      console.log(this.req.body)
+      
    
         if(typeof this.image!=='undefined'){
          this.src =`${urlBase}/${this.image.filename}`
@@ -48,14 +48,25 @@ export class Visitor {
       
       if(this.name=='' || this.cpf=='' )  return this.res.status(400).send('cpf ou nome vazios')
       
-     for (const address of this.addresses) {
-        if (address.lt === "") return this.res.status(400).send( "Endereço não encontrado.")
-        if (address.qd === "") return this.res.status(400).send("Endereço não encontrado." )
+      if(typeof this.address =='string'){
+       this.address= JSON.parse(this.address) as visitorAddres[]
+      }
+     
+      for (let i=0;i<this.address.length;i++) {
+        const lt = this.address[i].lt
+        const qd = this.address[i].qd 
+        console.log("================")
+        console.log(this.address[i])
+        
+        if (lt =='' )return this.res.status(400).send( "Endereço não encontrado.")
+        if (qd == "") return this.res.status(400).send("Endereço não encontrado." )
 
+        
+        
         const foundAddress = await this.prisma.address.findFirst({
           where: {
-            lt: address.lt,
-            qd: address.qd,
+            lt: Number(lt),
+            qd: Number(qd),
           },
         });
 

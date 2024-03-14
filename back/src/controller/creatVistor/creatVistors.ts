@@ -19,8 +19,10 @@ export const handleCreateVisitor = async (req: Request, res: Response) => {
       if (!connect) return res.status(400).send('deu errado');
      
      const userId = Number(req.headers.user as string)
+     console.log(req.body.address)
      const creatVistors = new Visitor(req,res, userId, connect);
-     await creatVistors.setNewVisitor();
+      await creatVistors.setNewVisitor();
+
     
       } catch (error) {
        return res.status(400).send('erro');

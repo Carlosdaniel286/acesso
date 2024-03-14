@@ -15,7 +15,11 @@ import Image from "next/image";
 import { useMediaDevices } from "@/hooks/initVideo/stream";
 import { submitPhoto } from "@/hooks/submitPhoto/sendPhoto";
 import InputPhone from "@/components/inputs/inputPhone/inputPhone";
-export default function creatVisitors({ setHidden }: Props) {
+ type Creat ={
+   setHidden:((ev:boolean)=>void) 
+ }
+
+export default function CreatVisitors({ setHidden }: Creat) {
   const [diplayAddAddress, setdiplayAddAddress] = useState(false);
   const [displayTakePhoto, setDisplayTakePhoto] = useState(false);
   const {  imageSrc } = useContextStream();
@@ -104,6 +108,9 @@ export default function creatVisitors({ setHidden }: Props) {
           }}
           header="Cadastro de visitantes"
           SelectButton="Enter"
+          displayInX={(()=>{
+            setHidden(false)
+          })}
         />
       </div>
     </div>

@@ -1,5 +1,4 @@
 import { useContextStream } from '@/context/mediaDevices/mediaDevices';
-import { useEffect } from 'react';
 const constraints = {
   video: {
     width: { ideal: 1920 },

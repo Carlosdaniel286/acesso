@@ -6,6 +6,7 @@ export interface CadastrosProps {
     Onclik:()=>void
     header:string
     SelectButton:'1'|'2'|'3'|'Enter'|'Exit'
+    displayInX:(()=>void) | 'default'
   }
   //'Exit'|'Enter'
  

@@ -18,6 +18,9 @@
   position: relative;
   background-color: white;
 }
+.login main {
+  background-color: black;
+}
 
 .login input {
   width: 80%;

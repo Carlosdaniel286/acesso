@@ -60,7 +60,7 @@ export const EnterVistor = async ({
             showConfirmButton: false,
             timer: 700,
           });
-          setHiddeNav({ ...hiddeNav, overflow: false });
+          setHiddeNav({ ...hiddeNav, overflow: false ,modal:false});
       } catch (err) {
     if (err instanceof AxiosError) {
       await Swal.fire({

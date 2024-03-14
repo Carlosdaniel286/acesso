@@ -13,6 +13,8 @@ import { HandlerChanger } from "@/utils/changer/changer";
 import dotenv from 'dotenv'
 import CardVistorDetails from "../vitors/CardVistorDetails/CardVistorDetails";
 import Overlay from "../overlay/hidden";
+import Dashboard from "../dashboard/dashboard";
+
 
 dotenv.config()
 const urlBase = process.env.NEXT_PUBLIC_URL_BASE as string
@@ -31,7 +33,7 @@ export default function Scroll({ DiplayInfo }: scroll) {
       try {
         const response = await axios.get(`${urlBase}/getvisitor`,{
           withCredentials:true
-        }); // Faz uma requisição GET para obter os visitantes
+        }); 
         console.log(response.data)
         setVisitors(response.data); // Atualiza o estado dos visitantes com os dados da resposta
       } catch (error) {
@@ -45,11 +47,11 @@ export default function Scroll({ DiplayInfo }: scroll) {
       DiplayInfo();
     }
   }, []);
-
-
-
-  return (
+return (
     <div className={on.bodyon}>
+      <aside className={on.modal_fixed}>
+        <Dashboard/>
+      </aside>
       <div className={on.scroll}>
         {visitors &&
           visitors.map((item) => (
