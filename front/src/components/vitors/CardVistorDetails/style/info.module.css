@@ -1,79 +1,67 @@
 @font-face {
-    font-family: "MinhaFonte";
-    src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
-    /* Adicione outros formatos de fonte se necessário */
-  }
-  
+  font-family: "MinhaFonte";
+  src: url("/pro/SF-Compact-Rounded-Semibold.ttf") format("truetype");
+  /* Adicione outros formatos de fonte se necessário */
+}
+
+.bodyEnter {
+  position: absolute;
+  height: 600px;
+  width: 660px;
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+}
+.container_info {
+  width: 550px;
+  max-height: 400px;
+  box-sizing: border-box;
+}
+
+.bodyEnter main {
+  background-color: white;
+  border-radius: 20px;
+}
+.bodyEnter header {
+  background-color: rgb(230, 35, 35);
+}
+.container_form {
+  height: 100%;
+}
+@media screen and (min-height: 1000px) {
   .bodyEnter {
-    position: absolute;
-    height: 600px;
-    width: 660px;
+    width: 90%;
+    min-height: 950px;
+  }
+}
+
+@media screen and (min-height: 800px) and (max-height: 999px) {
+  .bodyEnter {
+    width: 98%;
+    min-height: 700px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container_form {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    margin: 2px;
-
   }
-  .container_info{
-    width: 550px;
-    max-height: 400px;
-    box-sizing: border-box;
+  .bodyEnter {
+    width: 98%;
   }
-  
-  .bodyEnter main{
-    background-color: white;
-    border-radius: 20px;
-    
-  }
-  .bodyEnter header{
-    background-color: rgb(230, 35, 35);
-  }
-  .container_form {
-    height: 100%;
-   
-   
-  }
-  @media screen and (min-height:1000px) {
-    .bodyEnter {
-        width: 90%;
-        min-height: 950px;
-    }
 }
 
-
-  @media screen and (min-height:800px) and (max-height:999px) {
-    .bodyEnter {
-        width: 98%;
-        min-height: 700px;
-    }
+@media screen and (max-width: 650px) {
+  .container_info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .bodyEnter {
+    width: 94%;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
 }
-  
-  @media screen and (max-width: 750px) {
-    .container_form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .bodyEnter {
-     width: 98%;
-    }
-    
-  }
-
-  @media screen and (max-width: 650px) {
-    .container_info {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    .bodyEnter {
-     width: 98%;
-    }
-    
-  }
-
- 
- 
- 
-  
-  
-  

@@ -14,34 +14,33 @@
   padding: 0px;
   box-sizing: border-box;
   background-color: white;
- 
+
   border-radius: 10px;
   min-height: 560px;
   max-height: 560px;
- }
- .Cadbodys main {
+}
+.Cadbodys main {
   background-color: white;
   width: 500px;
   border: 0cap;
- }
- .Cadbodys main header {
+}
+.Cadbodys main header {
   background-color: rgb(230, 35, 35);
-  
- }
- .Cadbodys main input {
+}
+.Cadbodys main input {
   color: black;
   padding-top: 25px;
   padding-bottom: 25px;
   background-color: white;
   width: 45%;
- }
+}
 
- .main {
- width: 560px;
- min-height: 500px;
- max-height: 500px;
+.main {
+  width: 560px;
+  min-height: 500px;
+  max-height: 500px;
   box-sizing: border-box;
- min-width: 40px;
+  min-width: 40px;
 }
 .main .submit {
   height: 30%;
@@ -56,9 +55,7 @@
   padding-bottom: 10px;
   justify-content: space-around;
   background-color: white;
-
 }
-
 
 .addAdress_main {
   padding-top: 10px;
@@ -81,12 +78,12 @@
   background: rgb(34, 33, 33) 8; /* Cor do indicador da barra de rolagem */
   max-height: 5px;
 }
-.contanier_AddPic{
+.contanier_AddPic {
   height: 100%;
   display: flex;
   flex-direction: column-reverse;
 }
-.button_AddPic{
+.button_AddPic {
   background-color: rgb(166, 74, 228);
   text-transform: capitalize;
   border: 0ch;
@@ -94,52 +91,55 @@
   color: rgb(255, 255, 255);
   font-family: "fonte";
   font-size: 1.2rem;
-  border-radius:6px;
+  border-radius: 6px;
   cursor: pointer;
   width: 100%;
 }
-.contanier_Picture{
+.contanier_Picture {
   width: 100%;
   margin-top: 10px;
   margin-left: 20px;
 }
-.content_inputs{
+.content_inputs {
   display: flex;
   width: 100%;
   justify-content: space-between;
 }
 
-
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 720px) {
   .main {
-    width: 97%;
+    width: 95%;
     min-height: 95%;
     max-height: 95%;
-    
-    }
+  }
   .Cadbodys {
     margin-left: 12px;
     margin-right: 12px;
     margin-bottom: 10px;
     width: 95vw;
     min-height: 620px;
-    max-height:620px;
-   background-color: white;
-   
-   
-   
+    max-height: 620px;
+    background-color: white;
   }
   .cad_inputs {
     width: 100%;
     min-height: 300px;
     max-height: 300px;
     border: 0ch;
-  
   }
 }
 @media screen and (min-height: 1000px) {
   .main {
     height: 90%;
     width: 650px;
+  }
+}
+@media screen and (min-height: 550px) {
+  .Cadbodys main {
+    width: 99%;
+  }
+  .Cadbodys {
+    margin-left: 22px;
+    margin-right: 22px;
   }
 }

@@ -18,11 +18,7 @@ export default function Info({ cards }: card) {
     setRenderAddress(!renderAddress);
   };
   const [renderFullImage, setRenderFullImage] = useState(false);
-
-  
-  
-  
-  return (
+return (
     <div className={style.container_info} >
       {renderFullImage &&  
       <>
