@@ -20,6 +20,8 @@ export class Visitor {
   private res: Response;
   private req:Request
   private src:string =''
+  private phone:string =''
+  
   constructor(
     req:Request,
     res:Response,
@@ -35,14 +37,13 @@ export class Visitor {
     this.idUser = userId;
     this.prisma = prismaClient;
     this.image =  this.req.file
+    this.phone = this.req.body.phone
     
   }
 
   async setNewVisitor() {
     try {
-      
-   
-        if(typeof this.image!=='undefined'){
+       if(typeof this.image!=='undefined'){
          this.src =`${urlBase}/${this.image.filename}`
         }
       
@@ -91,6 +92,7 @@ export class Visitor {
           cpf: this.cpf,
           license: this.license,
           image:this.src,
+          phone:this.phone,
           user: {
             connect: { id: this.idUser},
             

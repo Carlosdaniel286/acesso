@@ -20,9 +20,6 @@ export default function Seach() {
   const updateVistors =(project:project[])=>{
      setVisitors(project)
   }
-  
-  
-  
   const setValueOfCpf = (cpf: string) => {
     setInputs({ ...inputs, cpf });
   };

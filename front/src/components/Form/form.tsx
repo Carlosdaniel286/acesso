@@ -38,7 +38,7 @@ export default function Form ({
           <div className={on.value}>
                 <button className={on.value_button} 
                   onClick={(()=>{
-                    {displayInX !== 'default' ? displayInX : null}
+                    {displayInX !== 'default' ? displayInX() : null}
                     {displayInX ==='default'?  setHiddeNav({ ...hiddeNav, modal: false, overflow: false }):null }
                    
                   })}

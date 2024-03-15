@@ -112,6 +112,7 @@ export default function PortariaCadastro() {
           Onclik={Request}
           header="cadastro de porteiro"
           SelectButton="3"
+          displayInX={'default'}
         />
       </div>
     </div>

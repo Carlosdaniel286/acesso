@@ -13,29 +13,25 @@ type Means = {
 export default function Mean({ children }: Means) {
   const { hiddeNav } = useContextHiddent();
   const [filter, setFilter] = useState<boolean>(false);
- 
 
   const Css = (): React.CSSProperties => {
     if (filter)
       return {
-        background:'rgba(99, 97, 94, 0.7)',
-        padding:`${6}px`,
-        left:`${2}%`,
+        background: "rgba(99, 97, 94, 0.7)",
+        padding: `${6}px`,
+        left: `${2}%`,
       };
     return {
-      background:'none',
-      left:`${0}%`,
-      top:`${-4}px`,
-      padding:`${0}px`
-
+      background: "none",
+      left: `${0}%`,
+      top: `${-4}px`,
+      padding: `${0}px`,
     };
   };
 
-
-
   return (
     <div className={on.body}>
-      <header className="">
+      <header className={on.header}>
         <div className={on.ClikModal}>
           <ShowModal />
           {hiddeNav.modal && (
@@ -45,20 +41,11 @@ export default function Mean({ children }: Means) {
           )}
         </div>
         <div className={on.seach}>
-          <Seach />
+           <Seach />
         </div>
-        <div className={on.Bodyfilter}>
-        <div className={on.filter}
-         onClick={(()=>{
-          setFilter(!filter)
-         })}
-         style={Css()}
-        >
-          <Filtro />
-        </div>
-        </div>
+        
       </header>
-      <main key={"2"} className={on.main}>
+      <main  className={on.main}>
         {children}
       </main>
     </div>

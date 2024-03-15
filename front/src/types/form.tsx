@@ -36,6 +36,6 @@ export type project = {
   
   
   export interface Props {
-    setHidden: Dispatch<SetStateAction<boolean>>;
+    displayCreatVsitor:((ev:boolean)=>void)
   }
   

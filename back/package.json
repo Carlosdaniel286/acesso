@@ -41,7 +41,7 @@
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
-    "@prisma/client": "^5.10.2",
+    "@prisma/client": "^5.11.0",
     "@types/bcrypt": "^5.0.2",
     "@types/cookie": "^0.6.0",
     "@types/cookie-parser": "^1.4.6",
@@ -52,7 +52,7 @@
     "@types/uuid": "^9.0.8",
     "@types/zxcvbn": "^4.4.4",
     "nodemon": "^3.0.1",
-    "prisma": "^5.10.2"
+    "prisma": "^5.11.0"
   },
   "optionalDependencies": {
     "bufferutil": "^4.0.8",

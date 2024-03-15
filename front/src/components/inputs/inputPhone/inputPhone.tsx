@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-export default function InputPhone() {
+
+type Phone ={
+  getValueOfPhone:((ev:string)=>void)
+}
+
+export default function InputPhone({getValueOfPhone}:Phone) {
   const [phone, setPhone] = useState("");
   const [newPhone, setNewPhone] = useState<string[]>([]);
   
@@ -28,6 +33,10 @@ export default function InputPhone() {
     const phones = newPhone.join('');
     setPhone(phones);
   }, [newPhone]);
+  
+  useEffect(() => {
+     getValueOfPhone(phone)
+  }, [phone]);
 
   return (
     <>

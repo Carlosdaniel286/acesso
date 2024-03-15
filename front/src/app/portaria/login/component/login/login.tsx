@@ -70,6 +70,7 @@ export default function Login() {
             Onclik={Request}
             header="login"
             SelectButton="1"
+            displayInX={'default'}
           />
         </div>
       </div>

@@ -15,11 +15,9 @@ import Image from "next/image";
 import { useMediaDevices } from "@/hooks/initVideo/stream";
 import { submitPhoto } from "@/hooks/submitPhoto/sendPhoto";
 import InputPhone from "@/components/inputs/inputPhone/inputPhone";
- type Creat ={
-   setHidden:((ev:boolean)=>void) 
- }
+ 
 
-export default function CreatVisitors({ setHidden }: Creat) {
+export default function CreatVisitors({ displayCreatVsitor }:Props) {
   const [diplayAddAddress, setdiplayAddAddress] = useState(false);
   const [displayTakePhoto, setDisplayTakePhoto] = useState(false);
   const {  imageSrc } = useContextStream();
@@ -27,9 +25,12 @@ export default function CreatVisitors({ setHidden }: Creat) {
   const {
     handleSubmit,
     setValueOfAddress,
-    setValueOfCpf,setValueOfName,
-    setValueOfCnh,}=submitPhoto({
-      setHiddenSubmitPhoto:((ev) =>{setHidden(ev)}) 
+    setValueOfCpf,
+    setValueOfName,
+    setValueOfCnh,
+    setValueOfPhone
+  }=submitPhoto({
+      setHiddenSubmitPhoto:((ev) =>{displayCreatVsitor(ev)}) 
     })
 
   
@@ -41,8 +42,7 @@ export default function CreatVisitors({ setHidden }: Creat) {
           children={
             <>
             <div className={on.cad_inputs}>
-             
-              {displayTakePhoto && (
+             {displayTakePhoto && (
                 <TakePhoto
                    setDisplay={(ev: boolean) => {
                     setDisplayTakePhoto(ev);
@@ -69,9 +69,11 @@ export default function CreatVisitors({ setHidden }: Creat) {
               </div>
               <div className={on.content_inputs} >
               <InputCnh getValueOfCnh={setValueOfCnh} />
-              <InputPhone/>
-              </div>
+              <InputPhone  
+               getValueOfPhone={setValueOfPhone}
+              />
               
+              </div>
               <div className={on.contanier_Picture}>
                 {imageSrc && (
                   <Image
@@ -109,7 +111,7 @@ export default function CreatVisitors({ setHidden }: Creat) {
           header="Cadastro de visitantes"
           SelectButton="Enter"
           displayInX={(()=>{
-            setHidden(false)
+           displayCreatVsitor(false)
           })}
         />
       </div>

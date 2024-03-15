@@ -5,9 +5,8 @@ import Link from "next/link";
 import nav from "./style/nav.module.css";
 import Overlay from "../overlay/hidden";
 import VisitaCadastros from "../vitors/creatVistors/creatVistors";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import Filtro from "../vitors/filtroVistors/filtro";
-//import RenderInside from "./components/vistors/entersVistors/main";
 import RenderEveryVistor from "./everyVistors/main";
 import { useContextStream } from "@/context/mediaDevices/mediaDevices";
 
@@ -22,7 +21,9 @@ export default function Nav() {
           handleOverlayVisibility={"default"}
           children={
             <>
-              <VisitaCadastros setHidden={setHidden} />
+              <VisitaCadastros displayCreatVsitor={(()=>{
+                setHidden(!hidden)
+              })} />
             </>
           }
         />

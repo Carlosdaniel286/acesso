@@ -12,6 +12,7 @@ export const handleEmptyPhoto= async(inputs:Inputs)=>{
             cpf: inputs.cpf,
             cnh: inputs.cnh,
             address: inputs.address,
+            phone:inputs.phone
         },{
            withCredentials:true, 
         })

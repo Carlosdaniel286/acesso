@@ -1,19 +1,19 @@
 .bodyon {
   display: flex;
-  width: 100vw;
+  width: 100%;
   height: 100%;
-  align-items: flex-start;
+  justify-content: center;
+  
 }
 .modal_fixed {
   max-height: 87vh;
   min-height: 87vh;
-  background-colo: rgb(223, 65, 65);
   width: 300px;
 }
 
 .scroll {
   background-color: black;
-  width: 100%;
+  max-width: 80%;
   max-height: 80vh;
   overflow-y: scroll;
   display: flex;
@@ -22,7 +22,6 @@
   margin-top: 10px;
   flex-wrap: wrap;
   overflow-x: hidden;
-  padding-right: 0px;
   padding-bottom: 40px;
   overflow-x: hidden;
 }
@@ -32,7 +31,7 @@
 }
 .cards {
   border-radius: 10px;
-  width: 32%;
+  width: 29%;
   height: 200px;
   display: flex;
   margin-left: 5px;
@@ -54,10 +53,18 @@
     height: 200px;
   }
 }
+@media screen and (max-width: 770px) {
+  .bodyon aside {
+    display: none;
+  }
+  .scroll{
+    max-width: 90%;
+  }
+}
 
 @media (max-width: 1000px) {
   .cards {
-    height: 300px;
+   width: 45%;
   }
 }
 @media (min-width: 768px) {

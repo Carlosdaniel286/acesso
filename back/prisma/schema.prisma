@@ -94,6 +94,7 @@ model visitor {
   image   String    @default("")
   inside  inside[]
   outside outside[]
+  phone String  @default("")
   user    user      @relation(fields: [idUser], references: [id], map: "Visitor_idUser_fkey")
 
   @@index([idUser], map: "Visitor_idUser_fkey")

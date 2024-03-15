@@ -12,5 +12,5 @@ export type Inputs ={
     name: string;
     password: string;
     address:addressValue[]
-   
+    phone:string
 }

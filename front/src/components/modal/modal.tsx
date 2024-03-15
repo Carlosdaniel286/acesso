@@ -5,7 +5,7 @@
 import style from "./style/modal.module.css";
 import Nav from "@/components/navegetors/nav";
 import { useContextHiddent } from "@/context/hiddeNav";
-
+import Dashboard from "../dashboard/dashboard";
 
 export const Modal = () => {
   const { setHiddeNav, hiddeNav } = useContextHiddent();
@@ -14,13 +14,12 @@ export const Modal = () => {
     <>
       <div className={style.bodyModal}>
         <div className={style.Navs}>
-          <div
-            className={style.hiddenNav}
+          <div className={style.hiddenNav}
             onClick={() => setHiddeNav({ ...hiddeNav, modal: !hiddeNav.modal })}
           >
             X
           </div>
-          <Nav />
+         <Dashboard/>
         </div>
       </div>
       <div

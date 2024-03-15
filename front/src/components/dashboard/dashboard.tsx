@@ -1,48 +1,39 @@
 import style from "./style/dashboard.module.css";
-import Image from "next/image";
-import Filtro from "../vitors/filtroVistors/filtro";
 import { useState } from "react";
-import { useContextHiddent } from "@/context/hiddeNav";
+import DashboardCreatVistor from "./dashboardCreatVistor/dashboardcreatVistor";
+import DashboardAddVisitor from "./AddVisitorImage/addVisitorImage";
+import FilterSearch from "./filterSearch/filterSearch";
 
 export default function Dashboard() {
-   const { setHiddeNav, hiddeNav } = useContextHiddent();
   const [hidden, setHidden] = useState({
     filter: false,
     vistor: false,
   });
 
   return (
-   
     <div className={style.dashboard}>
-     
-<ul>
-        <li
-          onClick={() => {
+      
+        {hidden.vistor && (
+        <DashboardCreatVistor
+         renderComponents={(()=>{
+          setHidden({ ...hidden, vistor: !hidden.vistor });
+         })}
+        />
+       )}
+       
+       <ul>
+         <DashboardAddVisitor
+           renderComponents={(()=>{
             setHidden({ ...hidden, vistor: !hidden.vistor });
-            
-          }}
-        >
-          <div className={style.dashboard_containerImage}>
-            <Image
-              id={style.dashboardImage}
-              src={"/useradd.png"}
-              width={40}
-              height={40}
-              alt=""
-            />
-          </div>
-          <h3>criar</h3>
-        </li>
-        <li
-          onClick={() => {
+           })}
+         />
+          
+         <FilterSearch
+          renderComponents={(()=>{
             setHidden({ ...hidden, filter: !hidden.filter });
-          }}
-        >
-          <div className={style.filter}>
-            <Filtro displayOptions={hidden.filter} />
-          </div>
-          <h3>filtro</h3>
-        </li>
+          })}
+          renderOptions={hidden.filter}
+         />
       </ul>
     </div>
   );

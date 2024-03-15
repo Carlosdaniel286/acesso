@@ -1,0 +1,7 @@
+.dashboard_containerImage {
+  background-color: white;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+}
+

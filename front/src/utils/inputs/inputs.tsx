@@ -5,7 +5,7 @@ export const UtilisInputs:Inputs={
     id: 0,
     name:'',
     password:'',
-   
+    phone:'',
     address:[{
       lt:'',
       qd:''

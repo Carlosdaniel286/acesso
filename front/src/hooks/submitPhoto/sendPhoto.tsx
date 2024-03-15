@@ -16,6 +16,7 @@ type props={
 
 export const submitPhoto = ({setHiddenSubmitPhoto}:props) => {
 const [inputs,setInputs] = useState(UtilisInputs);
+
 const{photo}=useContextStream()
 const{setVisitors,visitors}=useVisitors()
 const{setHiddeNav,hiddeNav}=useContextHiddent()
@@ -32,6 +33,9 @@ const setValueOfAddress = (value: addressValue[]) => {
   };
   const setValueOfName = (name: string) => {
     setInputs({ ...inputs, name });
+  };
+  const setValueOfPhone = (phone: string) => {
+    setInputs({ ...inputs, phone });
   };
 const handleSubmit = async () => {
     const filter = inputs.address.filter((item) => {
@@ -86,5 +90,8 @@ const handleSubmit = async () => {
     setValueOfAddress,
     setValueOfCnh,
     setValueOfCpf,
-    setValueOfName}
+    setValueOfName,
+    setValueOfPhone,
+  
+  }
 }
